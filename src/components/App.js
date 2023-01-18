@@ -7,14 +7,20 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      // Diff pages: home/experience/education/aboutYou
       currentPage: 'home',
     }
+
+    this.changePageShown = this.changePageShown.bind(this)
   }
+
+  changePageShown() {
+
+  }
+
   render() {
     return (
       <div className="page-layout">
-        <Header />
+        <Header changePageShown={this.changePageShown}/>
       </div>
     )
   }

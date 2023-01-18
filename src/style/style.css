@@ -5,3 +5,9 @@
     padding: 0;
     text-decoration: none;
 }
+
+.page-layout {
+    background-color: #13005A;
+    color: #ffefef;
+    min-height: 100vh;
+}
