@@ -13,8 +13,8 @@ export default class App extends Component {
     this.changePageShown = this.changePageShown.bind(this)
   }
 
-  changePageShown() {
-
+  changePageShown(navChoice) {
+    this.setState({currentPage: navChoice})
   }
 
   render() {

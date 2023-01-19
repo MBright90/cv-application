@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 
 const NavItem = (props) => {
   return (
-    <li>
+    <li onClick={props.onClickFunc}>
       {props.navText}
     </li>
   )
 }
 
 NavItem.propTypes = {
-  navText: PropTypes.string
+  onClickFunc: PropTypes.func,
+  navText: PropTypes.string,
 }
 
 export default class PageNav extends Component {
@@ -24,15 +25,16 @@ export default class PageNav extends Component {
   #createNavArray() {
     const navItems = ['Home', 'Experience', 'Education', 'You']
 
-    return navItems.map((navItem) => <NavItem 
-      navText={navItem}
-      onClick={this.handleNavClick}
-      key={navItem.toLower()}
-    />)
+    return navItems.map((navItem) => {
+      return <NavItem 
+        onClickFunc={(e) => this.handleNavClick(e)}
+        navText={navItem}
+        key={navItem.toLowerCase()}
+      />})
   }
 
   handleNavClick(e) {
-    this.props.changePageShown(e.target.textContent)
+    this.props.changePageShown(e.target.textContent.toLowerCase())
   }
 
   render() {
