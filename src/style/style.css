@@ -7,6 +7,22 @@
     user-select: none;
 }
 
+@font-face {
+    font-family: "nobile";
+    src: url('./fonts/nobile-regular-webfont.woff') format('woff'),
+        url('./fonts/nobile-regular-webfont.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "nobile";
+    src: url('./fonts/nobile-bold-webfont.woff') format('woff'),
+        url('./fonts/nobile-bold-webfont.woff2') format('woff2');
+    font-style: normal;
+    font-weight: bold;
+}
+
 .page-layout {
     background-color: #13005A;
     color: #ffefef;
