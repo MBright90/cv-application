@@ -4,10 +4,35 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
+    user-select: none;
 }
 
 .page-layout {
     background-color: #13005A;
     color: #ffefef;
     min-height: 100vh;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+header > nav {
+    border-bottom: 1px solid #ffefef;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+header ul {
+    display: flex;
+    justify-content: space-around;
 }
