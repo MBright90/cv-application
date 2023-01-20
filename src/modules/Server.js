@@ -1,11 +1,13 @@
 export default class Server {
   constructor() {
-    this.name = null
-    this.phoneNumber = null
-    this.avatarImg = null
-    this.experience = []
-    this.education = []
-    this.coverLetter = null
+    this.user = {
+      name: '',
+      contactNumber: '',
+      avatarImg: null,
+      experience: null,
+      education: null,
+      coverLetter: null,
+    }
   }
 
   // TODO: Methods to save all data to localStorage
