@@ -10,6 +10,10 @@ export default class Server {
     }
   }
 
+  getCurrentInfo() {
+    return this.user
+  }
+
   // TODO: Methods to save all data to localStorage
   
   // TODO: take an argument for each attribute and save.
