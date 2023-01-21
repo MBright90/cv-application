@@ -2,10 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Avatar = (props) => {
+  const avatarImg = props.imgSource 
+    ? URL.createObjectURL(props.imgSource)
+    : Avatar.defaultProps.imgSource 
+
   return (
     <img 
       className="avatar"
-      src={props.imgSource}
+      src={avatarImg}
     />
   )
 }
@@ -15,7 +19,7 @@ Avatar.defaultProps = {
 }
 
 Avatar.propTypes = {
-  imgSource: PropTypes.string
+  imgSource: PropTypes.instanceOf(File) || PropTypes.string
 }
 
 export default Avatar

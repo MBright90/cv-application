@@ -45,6 +45,8 @@ const AccountInfo = () => {
 const AccountAvatar = (props) => {
   // TODO: create function to pass uploaded image back to server
 
+
+
   return (
     <div className="avatar-edit-overview">
       <Avatar imgSource={props.imgSource}/>
@@ -52,7 +54,8 @@ const AccountAvatar = (props) => {
         <input
           id="avatar-img-upload"
           type="file"
-          accept="image/png, image/jpeg, image/jpg, .svg"/>
+          accept="image/png, image/jpeg, image/jpg, .svg"
+          onChange={props.handleAvatarUpload}/>
         <i className="fa fa-cloud-upload"></i> Change Image
       </label>
       
@@ -61,15 +64,28 @@ const AccountAvatar = (props) => {
 }
 
 AccountAvatar.propTypes = {
-  imgSource: PropTypes.string
+  handleAvatarUpload: PropTypes.func,
+  imgSource: PropTypes.string,
 }
 
 export default class You extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleAvatarUpload = this.handleAvatarUpload.bind(this)
+  }
+
+  handleAvatarUpload(e) {
+    this.props.uploadAvatarChange(e.target.files[0])
+  }
+
   render() {
     return (
       <main>
         <div className="you-page-overview">
-          <AccountAvatar imgSource={this.props.userInfo.imgSource}/>
+          <AccountAvatar 
+            imgSource={this.props.userInfo.avatarImg}
+            handleAvatarUpload={this.handleAvatarUpload}/>
           <AccountInfo />
         </div>
       </main>
@@ -78,5 +94,6 @@ export default class You extends Component {
 }
 
 You.propTypes = {
-  userInfo: PropTypes.object
+  uploadAvatarChange: PropTypes.func,
+  userInfo: PropTypes.object,
 }

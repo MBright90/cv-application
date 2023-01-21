@@ -54,7 +54,12 @@ header > nav {
 
 header ul {
     display: flex;
+    font-weight: bold;
     justify-content: space-around;
+}
+
+header .active {
+    animation: nav-pulse 3s infinite;
 }
 
 main {
@@ -86,6 +91,7 @@ footer i {
 
 .avatar {
     border-radius: 50%;
+    height: 200px;
     width: 200px;
 }
 
@@ -131,4 +137,18 @@ footer i {
     color: #13005A;
     letter-spacing: 2px;
     padding: 2px 3px;
+}
+
+@keyframes nav-pulse {
+    0% {
+        transform: scale(1.2)
+    }
+
+    50% {
+        transform: scale(1.4)
+    }
+
+    100% {
+        transform: scale(1.2)
+    }
 }
