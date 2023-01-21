@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Header from './Header'
+import Footer from './Footer'
 import You from './You'
 
 import Server from '../modules/Server'
@@ -11,7 +12,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      currentPage: 'home',
+      currentPage: 'you',
     }
 
     this.changePageShown = this.changePageShown.bind(this)
@@ -31,6 +32,7 @@ export default class App extends Component {
       <div className="page-layout">
         <Header changePageShown={this.changePageShown}/>
         {main}
+        <Footer />
       </div>
     )
   }

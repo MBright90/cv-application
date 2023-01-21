@@ -11,10 +11,9 @@ const AccountInput = (props) => {
       <label htmlFor={props.inputName}>{props.labelText}</label>
       <input
         type="text"
-        maxLength="20"
+        maxLength="40"
         id={props.inputName}
-        name={props.inputName}
-      />
+        name={props.inputName}/>
     </div>
   )
 }
@@ -29,15 +28,15 @@ const AccountInfo = () => {
     <div className="account-info-overview">
       <AccountInput 
         inputName="account-input-name"
-        labelText="Full Name:"
+        labelText="Full Name "
       />
       <AccountInput 
         inputName="account-input-number"
-        labelText="Contact Number:"
+        labelText="Contact Number "
       />
       <AccountInput
         inputName="account-input-email"
-        labelText="Email:"
+        labelText="Email "
       />
     </div>
   )
@@ -47,14 +46,16 @@ const AccountAvatar = (props) => {
   // TODO: create function to pass uploaded image back to server
 
   return (
-    <div>
+    <div className="avatar-edit-overview">
       <Avatar imgSource={props.imgSource}/>
-      <input
-        type="file"
-        accept="image/png, image/jpeg, image/jpg, .svg"
-      >
-        Upload
-      </input>
+      <label htmlFor="avatar-img-upload">
+        <input
+          id="avatar-img-upload"
+          type="file"
+          accept="image/png, image/jpeg, image/jpg, .svg"/>
+        <i className="fa fa-cloud-upload"></i> Change Image
+      </label>
+      
     </div>
   )
 }
@@ -66,10 +67,12 @@ AccountAvatar.propTypes = {
 export default class You extends Component {
   render() {
     return (
-      <div className="you-overview">
-        <AccountAvatar imgSource={this.props.userInfo.imgSource}/>
-        <AccountInfo />
-      </div>
+      <main>
+        <div className="you-page-overview">
+          <AccountAvatar imgSource={this.props.userInfo.imgSource}/>
+          <AccountInfo />
+        </div>
+      </main>
     )
   }
 }
