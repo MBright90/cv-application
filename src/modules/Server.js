@@ -14,6 +14,13 @@ export default class Server {
     return this.user
   }
 
+  saveAvatarChange(newAvatarImage) {
+    this.user.avatarImg = newAvatarImage
+  }
+
+  // Validation methods
+  // ...
+
   // TODO: Methods to save all data to localStorage
   
   // TODO: take an argument for each attribute and save.
