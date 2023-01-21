@@ -8,13 +8,14 @@ const Header = (props) => {
   return (
     <header>
       <h1>Your CV</h1>
-      <PageNav changePageShown={props.changePageShown}/>
+      <PageNav 
+        changePageShown={props.changePageShown}/>
     </header>
   )
 }
 
 Header.propTypes = {
-  changePageShown: PropTypes.func
+  changePageShown: PropTypes.func,
 }
 
 export default Header
