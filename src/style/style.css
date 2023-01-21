@@ -18,6 +18,7 @@
     color: inherit;
     list-style: none;
     font-family: "nobile", sans-serif;
+    letter-spacing: 1px;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -32,6 +33,8 @@
 
 header {
     align-items: center;
+    background-color: #fff;
+    color: #13005A;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -44,7 +47,7 @@ header h1 {
 }
 
 header > nav {
-    border-bottom: 1px solid #ffefef;
+    border-bottom: 1px solid #13005A;
     padding-bottom: 10px;
     width: 100%;
 }
@@ -52,4 +55,80 @@ header > nav {
 header ul {
     display: flex;
     justify-content: space-around;
+}
+
+main {
+    display: grid;
+    height: calc(100vh - 170px);
+    place-content: center;
+    overflow: none auto;
+}
+
+footer {
+    background-color: #fff;
+    bottom: 0;
+    color: #13005A;
+    padding: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-link {
+    border-top: 1px solid #13005A;
+    padding-top: 10px;
+    width: calc(100vw-20px);
+}
+
+footer i {
+    margin-right: 5px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 200px;
+}
+
+/* you tab styles */
+.you-page-overview,
+.avatar-edit-overview {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.avatar-edit-overview label {
+    background-color: #ffefef;
+    border-radius: 5px;
+    color: #13005A;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+}
+
+.avatar-edit-overview input[type=file] {
+    display: none;
+}
+
+.account-info-overview {
+    text-align: left;
+    width: max(200px, 30%);
+}
+
+.account-info-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.account-info-input label {
+    font-weight: bold;
+}
+
+.account-info-input input[type=text] {
+    color: #13005A;
+    letter-spacing: 2px;
+    padding: 2px 3px;
 }
