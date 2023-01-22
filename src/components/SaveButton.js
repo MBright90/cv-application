@@ -32,7 +32,7 @@ export default class SaveInfoButton extends Component {
     // Retrieve all inputs in the account info container and return an object of values to
     // the App component
     e.preventDefault()
-    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input[type=text]')]
+    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input')]
     const inputValues = inputArr.map((inputField) => inputField.value)
     this.props.uploadAccountInfo(inputValues)
   }
