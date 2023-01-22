@@ -17,6 +17,7 @@ export default class App extends Component {
     }
 
     this.changePageShown = this.changePageShown.bind(this)
+    this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
   }
 
@@ -24,11 +25,21 @@ export default class App extends Component {
     this.setState({currentPage: navChoice})
   }
 
-  uploadAvatarChange(newImage) {
-    server.saveAvatarChange(newImage)
+  updateCurrentUser() {
     this.setState({
       currentUser: server.getCurrentInfo()
     })
+  }
+
+  // You tab info retrieval functions
+  uploadAvatarChange(newImage) {
+    server.saveAvatarChange(newImage)
+    this.updateCurrentUser(0)
+  }
+
+  uploadAccountInfo(accountInfoObject) {
+    server.saveAccountInfo(accountInfoObject)
+    this.updateCurrentUser()
   }
 
   render() {
@@ -39,6 +50,7 @@ export default class App extends Component {
     else if (mainPage === 'experience') console.log('experience')
     else if (mainPage === 'education') console.log('education')
     else if (mainPage === 'you') main = <You 
+      uploadAccountInfo={this.uploadAccountInfo}
       uploadAvatarChange={this.uploadAvatarChange}
       userInfo={this.state.currentUser}/>
 

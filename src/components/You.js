@@ -18,35 +18,99 @@ const AccountInput = (props) => {
   )
 }
 
+class SaveInfoButton extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentMessage: '',
+    }
+
+    this.notifySave = this.notifySave.bind(this)
+  }
+
+  #clearNotification = () => {
+    // Clear the success notification after three seconds
+    this.timerID = setTimeout(() => {
+      this.setState({
+        currentMessage: ''
+      })
+    }, 3000)
+  }
+
+  notifySave = (message) => {
+    this.setState({
+      currentMessage: message
+    })
+    this.#clearNotification()
+  }
+
+  collectFormData = (e) => {
+    // Retrieve all inputs in the account info container and return an object of values to
+    // the App component
+    e.preventDefault()
+    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input[type=text]')]
+    const inputValues = inputArr.map((inputField) => inputField.value)
+    this.props.uploadAccountInfo({
+      name: inputValues[0],
+      email: inputValues[1],
+      contactNumber: inputValues[2],
+    })
+  }
+
+  render() {
+    return (
+      <div className="save-button-container">
+        <button 
+          className="save-button"
+          type="submit"
+          onClick={(e) => {
+            this.collectFormData(e)
+            this.notifySave('Update Successful')
+          }}
+        >Update</button>
+        <p>{this.state.currentMessage}</p>
+      </div>
+    )
+  }
+}
+
+SaveInfoButton.propTypes = {
+  uploadAccountInfo: PropTypes.func
+}
+
 AccountInput.propTypes = {
   inputName: PropTypes.string,
   labelText: PropTypes.string,
 }
 
-const AccountInfo = () => {
+const AccountInfo = (props) => {
   return (
-    <div className="account-info-overview">
+    <form className="account-info-overview">
       <AccountInput 
         inputName="account-input-name"
         labelText="Full Name "
-      />
-      <AccountInput 
-        inputName="account-input-number"
-        labelText="Contact Number "
       />
       <AccountInput
         inputName="account-input-email"
         labelText="Email "
       />
-    </div>
+      <AccountInput 
+        inputName="account-input-number"
+        labelText="Contact Number "
+      />
+      <SaveInfoButton 
+        uploadAccountInfo={props.uploadAccountInfo}
+      />
+    </form>
   )
 }
 
+AccountInfo.propTypes = {
+  uploadAccountInfo: PropTypes.func
+}
+
 const AccountAvatar = (props) => {
-  // TODO: create function to pass uploaded image back to server
-
-
-
   return (
     <div className="avatar-edit-overview">
       <Avatar imgSource={props.imgSource}/>
@@ -76,7 +140,7 @@ export default class You extends Component {
   }
 
   handleAvatarUpload(e) {
-    this.props.uploadAvatarChange(e.target.files[0])
+    this.props.uploadAvatarChange(URL.createObjectURL(e.target.files[0]))
   }
 
   render() {
@@ -86,7 +150,8 @@ export default class You extends Component {
           <AccountAvatar 
             imgSource={this.props.userInfo.avatarImg}
             handleAvatarUpload={this.handleAvatarUpload}/>
-          <AccountInfo />
+          <AccountInfo 
+            uploadAccountInfo={this.props.uploadAccountInfo}/>
         </div>
       </main>
     )
@@ -94,6 +159,7 @@ export default class You extends Component {
 }
 
 You.propTypes = {
+  uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
   userInfo: PropTypes.object,
 }
