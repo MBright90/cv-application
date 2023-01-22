@@ -9,23 +9,38 @@ export default class Server {
       education: null,
       coverLetter: null,
     }
-
-    const savedUser = localStorage.getItem('user')
   }
 
   getCurrentInfo() {
     return this.user
   }
 
+  clearStorage() {
+    localStorage.clear()
+  }
+
   saveToStorage() {
-    localStorage.setItem('user', this.user)
+    localStorage.setItem('user', JSON.stringify(this.user))
   }
 
-  saveAvatarChange(newAvatarImage) {
+  async loadFromStorage() {
+    let savedUser
+    try {
+      savedUser = await JSON.parse(localStorage.getItem('user'))
+    }
+    finally {
+      if (savedUser) this.user = savedUser
+    }
+    console.log(this.user)
+  }
+
+  updateAvatarChange(newAvatarImage) {
     this.user.avatarImg = newAvatarImage
+
+    this.saveToStorage()
   }
 
-  saveAccountInfo(infoArray) {
+  updateAccountInfo(infoArray) {
     this.user.name = infoArray.name !== '' 
       ? infoArray.name 
       : this.user.name
@@ -35,6 +50,8 @@ export default class Server {
     this.user.contactNumber = infoArray.number !== ''
       ? infoArray.contactNumber
       : this.user.contactNumber
+
+    this.saveToStorage()
   }
 
   // Validation methods

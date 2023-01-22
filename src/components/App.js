@@ -6,6 +6,7 @@ import You from './You'
 
 import Server from '../modules/Server'
 const server = new Server()
+server.loadFromStorage()
 
 export default class App extends Component {
   constructor(props) {
@@ -31,15 +32,16 @@ export default class App extends Component {
     })
   }
 
-  // You tab info retrieval functions
-  uploadAvatarChange(newImage) {
-    server.saveAvatarChange(newImage)
-    this.updateCurrentUser(0)
-  }
+  // 'You' tab info retrieval functions //
 
   uploadAccountInfo(accountInfoObject) {
-    server.saveAccountInfo(accountInfoObject)
+    server.updateAccountInfo(accountInfoObject)
     this.updateCurrentUser()
+  }
+
+  uploadAvatarChange(newImage) {
+    server.updateAvatarChange(newImage)
+    this.updateCurrentUser(0)
   }
 
   render() {
