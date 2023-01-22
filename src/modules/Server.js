@@ -1,13 +1,14 @@
 export default class Server {
   constructor() {
     this.user = {
-      name: '',
+      firstName: '',
+      surname: '',
       email: '',
       contactNumber: '',
       avatarImg: null,
-      experience: null,
-      education: null,
-      coverLetter: null,
+      experience: [],
+      education: [],
+      coverLetter: '',
     }
   }
 
@@ -36,21 +37,22 @@ export default class Server {
 
   updateAvatarChange(newAvatarImage) {
     this.user.avatarImg = newAvatarImage
-
     this.saveToStorage()
   }
 
   updateAccountInfo(infoArray) {
-    this.user.name = infoArray.name !== '' 
-      ? infoArray.name 
-      : this.user.name
+    this.user.firstName = infoArray.firstName !== '' 
+      ? infoArray.firstName 
+      : this.user.firstName
+    this.user.surname = infoArray.surname !== '' 
+      ? infoArray.surname 
+      : this.user.surname
     this.user.email = infoArray.email !== ''
       ? infoArray.email
       : this.user.email
     this.user.contactNumber = infoArray.number !== ''
       ? infoArray.contactNumber
       : this.user.contactNumber
-
     this.saveToStorage()
   }
 

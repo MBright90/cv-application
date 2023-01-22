@@ -28,8 +28,12 @@ const AccountInfo = (props) => {
   return (
     <form className="account-info-overview">
       <AccountInput 
-        inputName="account-input-name"
-        labelText="Full Name "
+        inputName="account-input-first-name"
+        labelText="First Name(s) "
+      />
+      <AccountInput 
+        inputName="account-input-surname"
+        labelText="Surname "
       />
       <AccountInput
         inputName="account-input-email"
