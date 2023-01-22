@@ -37,9 +37,8 @@ header {
     color: #13005A;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     justify-content: center;
-    padding: 10px;
+    padding: 5px;
 }
 
 header h1 {
@@ -48,7 +47,7 @@ header h1 {
 
 header > nav {
     border-bottom: 1px solid #13005A;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     width: 100%;
 }
 
@@ -73,7 +72,7 @@ footer {
     background-color: #fff;
     bottom: 0;
     color: #13005A;
-    padding: 10px;
+    padding: 5px 10px 10px;
     position: fixed;
     text-align: center;
     width: 100%;
@@ -82,7 +81,7 @@ footer {
 .footer-link {
     border-top: 1px solid #13005A;
     padding-top: 10px;
-    width: calc(100vw-20px);
+    width: calc(100vw - 20px);
 }
 
 footer i {
@@ -93,6 +92,26 @@ footer i {
     border-radius: 50%;
     height: 200px;
     width: 200px;
+    object-fit: cover;
+}
+
+/* multi-use component styles */
+
+.save-button-container {
+    text-align: center;
+}
+
+.save-button-container .save-button {
+    background-color: #ffefef;
+    border-radius: 5px;
+    color: #13005A;
+    font-weight: bold;
+    margin: 20px;
+    padding: 3px 5px;
+}
+
+.save-button-container p {
+    height: 20px;
 }
 
 /* you tab styles */
@@ -103,6 +122,10 @@ footer i {
     flex-direction: column;
     gap: 10px;
     justify-content: center;
+}
+
+.you-page-overview {
+    width: max(100%);
 }
 
 .avatar-edit-overview label {
