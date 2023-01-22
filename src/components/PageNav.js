@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const NavItem = (props) => {
+  let isActive = ''
+  if (props.navText.toLowerCase() === props.currentPageShown) isActive = 'active'
+
   return (
-    <li onClick={props.onClickFunc}>
+    <li 
+      className={isActive}
+      onClick={props.onClickFunc}>
       {props.navText}
     </li>
   )
 }
 
 NavItem.propTypes = {
+  currentPageShown: PropTypes.string,
   onClickFunc: PropTypes.func,
   navText: PropTypes.string,
 }
@@ -17,16 +23,17 @@ NavItem.propTypes = {
 export default class PageNav extends Component {
   constructor(props) {
     super(props)
-    this.navArray = this.#createNavArray()
+    this.navArray = this.#createNavArray(props.currentPageShown)
 
     this.handleNavClick = this.handleNavClick.bind(this)
   }
 
-  #createNavArray() {
+  #createNavArray(currentPage) {
     const navItems = ['Home', 'Experience', 'Education', 'You']
 
     return navItems.map((navItem) => {
       return <NavItem 
+        currentPageShown={currentPage}
         onClickFunc={(e) => this.handleNavClick(e)}
         navText={navItem}
         key={navItem.toLowerCase()}
@@ -55,5 +62,6 @@ export default class PageNav extends Component {
 }
 
 PageNav.propTypes = {
-  changePageShown: PropTypes.func
+  changePageShown: PropTypes.func,
+  currentPageShown: PropTypes.string,
 }

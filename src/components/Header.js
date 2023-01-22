@@ -9,6 +9,7 @@ const Header = (props) => {
     <header>
       <h1>Your CV</h1>
       <PageNav 
+        currentPageShown={props.currentPageShown}
         changePageShown={props.changePageShown}/>
     </header>
   )
