@@ -63,7 +63,7 @@ header .active {
 
 main {
     display: grid;
-    height: calc(100vh - 170px);
+    height: calc(100vh - 143px);
     place-content: center;
     overflow: none auto;
 }
@@ -89,6 +89,7 @@ footer i {
 }
 
 .avatar {
+    border: 3px solid #ffefef;
     border-radius: 50%;
     height: 200px;
     width: 200px;
@@ -120,7 +121,7 @@ footer i {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
 }
 
