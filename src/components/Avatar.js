@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Avatar = (props) => {
   const avatarImg = props.imgSource 
-    ? URL.createObjectURL(props.imgSource)
+    ? props.imgSource
     : Avatar.defaultProps.imgSource 
 
   return (
@@ -19,7 +19,7 @@ Avatar.defaultProps = {
 }
 
 Avatar.propTypes = {
-  imgSource: PropTypes.instanceOf(File) || PropTypes.string
+  imgSource: PropTypes.string
 }
 
 export default Avatar
