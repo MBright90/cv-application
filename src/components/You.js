@@ -14,12 +14,14 @@ const AccountInput = (props) => {
         type="text"
         maxLength="40"
         id={props.inputName}
-        name={props.inputName}/>
+        name={props.inputName}
+        defaultValue={props.currentInfo}/>
     </div>
   )
 }
 
 AccountInput.propTypes = {
+  currentInfo: PropTypes.string,
   inputName: PropTypes.string,
   labelText: PropTypes.string,
 }
@@ -30,18 +32,22 @@ const AccountInfo = (props) => {
       <AccountInput 
         inputName="account-input-first-name"
         labelText="First Name(s) "
+        currentInfo={props.userInfo.firstName}
       />
       <AccountInput 
         inputName="account-input-surname"
         labelText="Surname "
+        currentInfo={props.userInfo.surname}
       />
       <AccountInput
         inputName="account-input-email"
         labelText="Email "
+        currentInfo={props.userInfo.email}
       />
       <AccountInput 
         inputName="account-input-number"
         labelText="Contact Number "
+        currentInfo={props.userInfo.contactNumber}
       />
       <SaveButton 
         uploadAccountInfo={props.uploadAccountInfo}
@@ -51,7 +57,8 @@ const AccountInfo = (props) => {
 }
 
 AccountInfo.propTypes = {
-  uploadAccountInfo: PropTypes.func
+  uploadAccountInfo: PropTypes.func,
+  userInfo: PropTypes.object
 }
 
 const AccountAvatar = (props) => {
@@ -84,7 +91,7 @@ export default class You extends Component {
   }
 
   handleAvatarUpload(e) {
-    this.props.uploadAvatarChange(URL.createObjectURL(e.target.files[0]))
+    this.props.uploadAvatarChange(e.target.files[0])
   }
 
   render() {
@@ -95,7 +102,8 @@ export default class You extends Component {
             imgSource={this.props.userInfo.avatarImg}
             handleAvatarUpload={this.handleAvatarUpload}/>
           <AccountInfo 
-            uploadAccountInfo={this.props.uploadAccountInfo}/>
+            uploadAccountInfo={this.props.uploadAccountInfo}
+            userInfo={this.props.userInfo}/>
         </div>
       </main>
     )

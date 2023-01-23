@@ -17,6 +17,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   changePageShown: PropTypes.func,
+  currentPageShown: PropTypes.string,
 }
 
 export default Header
