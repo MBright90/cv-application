@@ -7,7 +7,6 @@ import You from './You'
 
 import Server from '../modules/Server'
 const server = new Server()
-// server.clearStorage()
 server.loadFromStorage()
 
 export default class App extends Component {
@@ -20,6 +19,7 @@ export default class App extends Component {
     }
 
     this.changePageShown = this.changePageShown.bind(this)
+    this.updateCurrentUser = this.updateCurrentUser.bind(this)
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
   }
@@ -29,8 +29,9 @@ export default class App extends Component {
   }
 
   updateCurrentUser() {
+    const newUserState = server.getCurrentInfo()
     this.setState({
-      currentUser: server.getCurrentInfo()
+      currentUser: newUserState
     })
   }
 
@@ -47,9 +48,10 @@ export default class App extends Component {
     this.updateCurrentUser()
   }
 
-  uploadAvatarChange(newImage) {
-    server.updateAvatarChange(newImage)
-    this.updateCurrentUser()
+  async uploadAvatarChange(newImage) {
+    await server.updateAvatarChange(newImage)
+      // Add 1ms delay server to save user object
+      .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
   // uploadEducationInfo(inputValues) {

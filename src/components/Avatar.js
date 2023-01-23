@@ -2,10 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Avatar = (props) => {
+  let avatarImg
 
-  const avatarImg = props.imgSource
-    ? props.imgSource
-    : Avatar.defaultProps.imgSource
+  if (props.imgSource !== null) {
+    avatarImg = props.imgSource
+  } else {
+    avatarImg = Avatar.defaultProps.imgSource
+  }
 
   return (
     <img 

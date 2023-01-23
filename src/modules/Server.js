@@ -1,3 +1,5 @@
+import * as imageConversion from 'image-conversion'
+
 export default class Server {
   constructor() {
     this.user = {
@@ -32,12 +34,25 @@ export default class Server {
     finally {
       if (savedUser) this.user = savedUser
     }
-    console.log(this.user)
   }
 
-  updateAvatarChange(newAvatarImage) {
-    this.user.avatarImg = newAvatarImage
-    this.saveToStorage()
+  async updateAvatarChange(avatarImageFile) {
+    const saveAvatarToStorage = (avatarBaseImg) => {
+      this.user.avatarImg = avatarBaseImg
+      this.saveToStorage()
+    }
+
+    // Compress image
+    const blobResult = await imageConversion.compressAccurately(avatarImageFile, 200)
+
+    // Initiate fileReader and set to save result when loaded
+    const fileReader = new FileReader()
+    fileReader.onload = async function(readerResult) {
+      saveAvatarToStorage(readerResult.target.result)
+    }
+
+    // Pass compressed image to fileReader
+    fileReader.readAsDataURL(blobResult)
   }
 
   updateAccountInfo(infoArray) {
@@ -58,6 +73,7 @@ export default class Server {
 
   // Validation methods
   // ...
+  // Ensure date to are later than date from
 
   // TODO: Methods to save all data to localStorage
   
