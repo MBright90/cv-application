@@ -22,6 +22,7 @@ export default class App extends Component {
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
+    this.uploadEducationInfo = this.uploadEducationInfo.bind(this)
   }
 
   changePageShown(navChoice) {
@@ -54,9 +55,17 @@ export default class App extends Component {
       .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
-  // uploadEducationInfo(inputValues) {
-
-  // }
+  uploadEducationInfo(inputValues) {
+    const educationObj = {
+      institutionName: inputValues[0],
+      certificate: inputValues[1],
+      dateFrom: inputValues[2],
+      dateTo: inputValues[3],
+    }
+    console.log(educationObj)
+    console.log('bewbs')
+    // server.updateEducationInfo(educationObj)
+  }
 
   render() {
     const mainPage = this.state.currentPage
@@ -65,6 +74,7 @@ export default class App extends Component {
     if (mainPage === 'home') console.log('home')
     else if (mainPage === 'experience') console.log('experience')
     else if (mainPage === 'education') main = <Education
+      uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
 
