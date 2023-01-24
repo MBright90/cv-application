@@ -62,10 +62,12 @@ header .active {
 }
 
 main {
-    display: grid;
+    display: flex;
     height: calc(100vh - 143px);
-    place-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     overflow: none auto;
+    padding-top: 40px;
 }
 
 footer {
@@ -92,6 +94,7 @@ footer i {
     border: 3px solid #ffefef;
     border-radius: 50%;
     height: 200px;
+    src: url('https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000');
     width: 200px;
     object-fit: cover;
 }
@@ -99,7 +102,9 @@ footer i {
 /* multi-use component styles */
 
 .save-button-container {
-    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .save-button-container .save-button {
@@ -107,15 +112,11 @@ footer i {
     border-radius: 5px;
     color: #13005A;
     font-weight: bold;
-    margin: 20px;
     padding: 3px 5px;
+    width: 80px;
 }
 
-.save-button-container p {
-    height: 20px;
-}
-
-/* you tab styles */
+.education-page-overview,
 .you-page-overview,
 .avatar-edit-overview {
     align-items: center;
@@ -124,6 +125,62 @@ footer i {
     gap: 20px;
     justify-content: center;
 }
+
+.education-input-overview label,
+.account-info-input label {
+    font-weight: bold;
+}
+
+/************************/
+/* education tab styles */
+/************************/
+
+.education-input-overview {
+    display: flex;
+    flex-direction: column;
+    width: max(60%, 500px)
+}
+
+.education-input-overview form {
+    width: 60%;
+}
+
+.education-input-overview fieldset {
+    display: grid;
+    gap: 10px;
+    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+    padding: 20px;
+}
+
+.education-input-overview fieldset div {
+    display: flex;
+    flex-direction: column;
+}
+
+.education-input-overview fieldset div:nth-of-type(1) {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.education-input-overview fieldset div:nth-of-type(2) {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.education-input-overview fieldset .save-button-container {
+    grid-area: 4 / 1 / 5 / 3;
+}
+
+/* .education-input-overview fieldset .save-button {
+    width: max(40%, 100px)
+} */
+
+.education-input-overview legend {
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+/******************/
+/* you tab styles */
+/******************/
 
 .you-page-overview {
     width: max(100%);
@@ -162,6 +219,8 @@ footer i {
     letter-spacing: 2px;
     padding: 2px 3px;
 }
+
+/* animations */
 
 @keyframes nav-pulse {
     0% {
