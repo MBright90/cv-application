@@ -29,12 +29,12 @@ export default class SaveInfoButton extends Component {
   }
   
   collectFormData = (e) => {
-    // Retrieve all inputs in the account info container and return an object of values to
+    // Retrieve all inputs in the data container and return an object of values to
     // the App component
     e.preventDefault()
     const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input')]
     const inputValues = inputArr.map((inputField) => inputField.value)
-    this.props.uploadAccountInfo(inputValues)
+    this.props.uploadData(inputValues)
   }
   
   render() {
@@ -54,7 +54,10 @@ export default class SaveInfoButton extends Component {
   }
 }
 
-SaveInfoButton.propTypes = {
-  uploadAccountInfo: PropTypes.func
+SaveInfoButton.defaultProps = {
+  uploadData: () => {}
 }
-  
+
+SaveInfoButton.propTypes = {
+  uploadData: PropTypes.func
+}
