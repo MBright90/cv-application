@@ -131,6 +131,13 @@ footer i {
     font-weight: bold;
 }
 
+.education-input-overview input[type=text],
+.account-info-input input[type=text] {
+    color: #13005A;
+    letter-spacing: 2px;
+    padding: 2px 3px;
+}
+
 /************************/
 /* education tab styles */
 /************************/
@@ -138,7 +145,7 @@ footer i {
 .education-input-overview {
     display: flex;
     flex-direction: column;
-    width: max(60%, 500px)
+    width: max(50%, 400px)
 }
 
 .education-input-overview form {
@@ -148,8 +155,8 @@ footer i {
 .education-input-overview fieldset {
     display: grid;
     gap: 10px;
-    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
-    padding: 20px;
+    grid-template: repeat(3, 1fr) auto / repeat(2, 1fr);
+    padding: 0 20px;
 }
 
 .education-input-overview fieldset div {
@@ -159,6 +166,7 @@ footer i {
 
 .education-input-overview fieldset div:nth-of-type(1) {
     grid-area: 1 / 1 / 2 / 3;
+    margin-top: 0;
 }
 
 .education-input-overview fieldset div:nth-of-type(2) {
@@ -167,15 +175,17 @@ footer i {
 
 .education-input-overview fieldset .save-button-container {
     grid-area: 4 / 1 / 5 / 3;
+    height: min-content
 }
 
-/* .education-input-overview fieldset .save-button {
-    width: max(40%, 100px)
-} */
+.education-input-overview fieldset .save-button {
+    margin-bottom: 10px;
+}
 
 .education-input-overview legend {
     font-weight: bold;
-    margin: 0 20px;
+    margin: 0 10px;
+    padding: 0 10px;
 }
 
 /******************/
