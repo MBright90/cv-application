@@ -50,6 +50,7 @@ const AccountInfo = (props) => {
         currentInfo={props.userInfo.contactNumber}
       />
       <SaveButton 
+        setToClear={false}
         uploadData={props.uploadAccountInfo}
       />
     </form>
