@@ -88,9 +88,8 @@ export default class Server {
     educationItem.dateFrom = formatDate(educationObj.dateFrom)
     educationItem.dateTo = formatDate(educationObj.dateTo)
 
-    console.log(educationItem)
-
-    // this.user.education[this.user.education.length] = educationItem
+    this.user.education[this.user.education.length] = educationItem
+    this.saveToStorage()
   }
 
   //********************//
@@ -102,10 +101,10 @@ export default class Server {
   // Ensure date to are later than date from
 
   // TODO: Methods to save all data to localStorage
-  
-  // TODO: take an argument for each attribute and save.
+
+  // Sort experience/education based on date for display
 
   // TODO: Edit data at particular index in experience/education
 
-  // TODO: Overwrite personal data
+  // TODO: Clear all data
 }
