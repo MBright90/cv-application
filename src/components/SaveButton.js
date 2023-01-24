@@ -28,12 +28,16 @@ export default class SaveInfoButton extends Component {
     this.#clearNotification()
   }
   
-  collectFormData = (e) => {
+  handleFormData = (e) => {
+    const clearValues = (inputElements) => {
+      inputElements.forEach((el) => el.value = null)
+    }
     // Retrieve all inputs in the data container and return an object of values to
     // the App component
     e.preventDefault()
     const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input')]
     const inputValues = inputArr.map((inputField) => inputField.value)
+    if (this.props.setToClear === true) clearValues(inputArr)
     this.props.uploadData(inputValues)
   }
   
@@ -44,7 +48,7 @@ export default class SaveInfoButton extends Component {
           className="save-button"
           type="submit"
           onClick={(e) => {
-            this.collectFormData(e)
+            this.handleFormData(e)
             this.notifySave('Update Successful')
           }}
         >Update</button>
@@ -55,9 +59,11 @@ export default class SaveInfoButton extends Component {
 }
 
 SaveInfoButton.defaultProps = {
+  setToClear: true,
   uploadData: () => {}
 }
 
 SaveInfoButton.propTypes = {
-  uploadData: PropTypes.func
+  setToClear: PropTypes.bool,
+  uploadData: PropTypes.func,
 }
