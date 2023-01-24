@@ -35,6 +35,9 @@ export default class Server {
       if (savedUser) this.user = savedUser
     }
   }
+  //********************//
+  // Updating functions //
+  //********************//
 
   async updateAvatarChange(avatarImageFile) {
     const saveAvatarToStorage = (avatarBaseImg) => {
@@ -70,6 +73,29 @@ export default class Server {
       : this.user.contactNumber
     this.saveToStorage()
   }
+
+  updateEducationInfo(educationObj) {
+    const formatDate = (dateString) => {
+      const dateArray = dateString.split('-')
+
+      const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+      let monthIndex = (dateArray[1] - 1) >= 0 ? dateArray[1] - 1 : 12
+
+      return `${months[monthIndex]} ${dateArray[0]}`
+    }
+
+    const educationItem = educationObj
+    educationItem.dateFrom = formatDate(educationObj.dateFrom)
+    educationItem.dateTo = formatDate(educationObj.dateTo)
+
+    console.log(educationItem)
+
+    // this.user.education[this.user.education.length] = educationItem
+  }
+
+  //********************//
+  // Locating functions //
+  //********************//
 
   // Validation methods
   // ...
