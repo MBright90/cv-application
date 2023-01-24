@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import SaveButton from './SaveButton'
+
 const EducationDetail = (props) => {
   const education = props.educationItem
 
   return (
     <div className="education-list-item">
-      <p className="education-detail--headline">{education.institutionName} {education.dates}</p>
+      <p className="education-detail-headline">{education.institutionName} {education.dates}</p>
       <p>{education.certificateAwarded}</p>
     </div>
   )
@@ -26,7 +28,7 @@ const EducationList = (props) => {
   }
 
   return (
-    <div className="education-detail-list">
+    <div className="education-list-overview">
       {createEducationList()}
     </div>
   )
@@ -44,36 +46,39 @@ const EducationInput = (props) => {
       <fieldset>
         <legend>Add New Certificate</legend>
         <div>
-          <label htmlFor=""></label>
+          <label htmlFor="">Institution</label>
           <input 
             type="text"
             id=""
-            value={props.educationItem.institutionName}/>
+            defaultValue={props.educationItem.institutionName}/>
         </div>
         <div>
-          <label htmlFor=""></label>
+          <label htmlFor="">Certificate</label>
+          <input 
+            type="text"
+            id=""
+            defaultValue={props.educationItem.certificate}
+          />
+        </div>
+        <div>
+          <label htmlFor="">Date From</label>
           <input 
             type="date"
             id=""
-            value={props.educationItem.dateFrom}
-          />
-          <label htmlFor=""></label>
-          <input 
-            type="date" 
-            id=""
-            value={props.educationItem.dateTo}
+            defaultValue={props.educationItem.dateFrom}
           />
         </div>
         <div>
-          <label htmlFor=""></label>
+          <label htmlFor="">Date To</label>
           <input 
-            type="text"
+            type="date" 
             id=""
-            value={props.educationItem.certificate}
+            defaultValue={props.educationItem.dateTo}
           />
         </div>
+        <SaveButton 
+          uploadData={props.uploadEducationInfo}/>
       </fieldset>
-      <button type="submit"></button>
     </form>
   )
 }
@@ -81,14 +86,15 @@ const EducationInput = (props) => {
 EducationInput.defaultProps = {
   educationItem: {
     institutionName: '',
+    certificate: '',
     dateFrom: new Date(1, 1, 1970),
     dateTo: new Date(1, 1, 1971),
-    certificate: '',
   }
 }
 
 EducationInput.propTypes = {
   educationItem: PropTypes.object,
+  uploadEducationInfo: PropTypes.func,
 }
 
 export default class Education extends Component {
@@ -100,7 +106,9 @@ export default class Education extends Component {
     return (
       <main>
         <div className="education-page-overview">
-          <EducationInput />
+          <EducationInput 
+            uploadEducationInfo={this.props.uploadEducationInfo}
+          />
           <EducationList 
             educationArray={this.props.userEducationArray}
           />
@@ -111,5 +119,6 @@ export default class Education extends Component {
 }
 
 Education.propTypes = {
+  uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array
 }
