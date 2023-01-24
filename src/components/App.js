@@ -14,7 +14,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      currentPage: 'you',
+      currentPage: 'education',
       currentUser: server.getCurrentInfo(),
     }
 
@@ -38,15 +38,15 @@ export default class App extends Component {
 
   // 'You' tab info retrieval functions //
 
-  async uploadAccountInfo(inputValues) {
+  uploadAccountInfo(inputValues) {
     const accountInfoObj = {
       firstName: inputValues[0],
       surname: inputValues[1],
       email: inputValues[2],
       contactNumber: inputValues[3],
     }
-    await server.updateAccountInfo(accountInfoObj)
-      .then(() => this.updateCurrentUser())
+    server.updateAccountInfo(accountInfoObj)
+    this.updateCurrentUser()
   }
 
   async uploadAvatarChange(newImage) {
@@ -55,15 +55,19 @@ export default class App extends Component {
       .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
-  async uploadEducationInfo(inputValues) {
+  uploadEducationInfo(inputValues) {
+
+    const certificateSplice = inputValues.slice(3)
     const educationObj = {
       institutionName: inputValues[0],
-      certificate: inputValues[1],
-      dateFrom: inputValues[2],
-      dateTo: inputValues[3],
+      dateFrom: inputValues[1],
+      dateTo: inputValues[2],
+      certificates: certificateSplice,
     }
-    await server.updateEducationInfo(educationObj)
-      .then(() => this.updateCurrentUser())
+
+    server.updateEducationInfo(educationObj)
+    this.updateCurrentUser()
+    console.log(this.state.currentUser)
   }
 
   render() {
