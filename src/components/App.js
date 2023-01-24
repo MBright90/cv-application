@@ -38,15 +38,15 @@ export default class App extends Component {
 
   // 'You' tab info retrieval functions //
 
-  uploadAccountInfo(inputValues) {
+  async uploadAccountInfo(inputValues) {
     const accountInfoObj = {
       firstName: inputValues[0],
       surname: inputValues[1],
       email: inputValues[2],
       contactNumber: inputValues[3],
     }
-    server.updateAccountInfo(accountInfoObj)
-    this.updateCurrentUser()
+    await server.updateAccountInfo(accountInfoObj)
+      .then(() => this.updateCurrentUser())
   }
 
   async uploadAvatarChange(newImage) {
@@ -55,16 +55,15 @@ export default class App extends Component {
       .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
-  uploadEducationInfo(inputValues) {
+  async uploadEducationInfo(inputValues) {
     const educationObj = {
       institutionName: inputValues[0],
       certificate: inputValues[1],
       dateFrom: inputValues[2],
       dateTo: inputValues[3],
     }
-    console.log(educationObj)
-    console.log('bewbs')
-    // server.updateEducationInfo(educationObj)
+    await server.updateEducationInfo(educationObj)
+      .then(() => this.updateCurrentUser())
   }
 
   render() {
