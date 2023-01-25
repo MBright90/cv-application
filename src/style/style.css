@@ -26,7 +26,6 @@
 }
 
 .page-layout {
-    background-color: #13005A;
     color: #ffefef;
     min-height: 100vh;
 }
@@ -62,10 +61,12 @@ header .active {
 }
 
 main {
+    background-color: #13005A;
     display: flex;
-    height: calc(100vh - 143px);
     flex-direction: column;
     justify-content: flex-start;
+    margin-bottom: 49px;
+    min-height: calc(100vh - 143px);
     overflow: none auto;
     padding-top: 40px;
 }
@@ -94,12 +95,13 @@ footer i {
     border: 3px solid #ffefef;
     border-radius: 50%;
     height: 200px;
-    src: url('https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000');
     width: 200px;
     object-fit: cover;
 }
 
+/******************************/
 /* multi-use component styles */
+/******************************/
 
 .save-button-container {
     align-items: center;
@@ -136,6 +138,24 @@ footer i {
     color: #13005A;
     letter-spacing: 2px;
     padding: 2px 3px;
+}
+
+.delete-button,
+.edit-button {
+    color: #13005A;
+    position: absolute;
+    height: 25px;
+    right: 0;
+    text-align: center;
+    width: 25px;
+}
+
+.delete-button {
+    top: 35px;
+}
+
+.edit-button {
+    top: 5px;
 }
 
 /************************/
@@ -207,8 +227,10 @@ footer i {
 }
 
 .education-list-item {
-    margin: 10px 0; 
-    width: 100%;
+    position: relative;
+    margin: 10px 0;
+    padding-right: 30px;
+    width: calc(100% - 30px);
 }
 
 .education-list-item:not(:first-of-type) {
@@ -216,7 +238,7 @@ footer i {
 }
 
 .education-list-item .education-item-headline {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
 }
 
