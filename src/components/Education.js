@@ -9,16 +9,16 @@ const EducationItem = (props) => {
       return (
         <p
           key={certificate}
-          className="education-item-certificate"
+          className="list-item-details"
         >{certificate}</p>
       )
     })
   }
 
   return (
-    <div className="education-list-item">
-      <p className="education-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
-      <p className="education-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
+    <div className="list-item">
+      <p className="list-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
+      <p className="list-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
       {certificateParaArray(props.educationItem.certificates)}
       <EditButton />
       <DeleteButton />
@@ -120,18 +120,18 @@ class EducationInput extends Component {
       <form className='education-input-overview'>
         <fieldset>
           <legend>Add New Certificate</legend>
-          <div>
+          <div className="span-two">
             <label htmlFor="">Institution</label>
             <input 
               type="text"
-              id=""
+              id="education-institution-input"
               defaultValue={this.props.educationItem.institutionName}/>
           </div>
           <div>
             <label htmlFor="">Date From</label>
             <input 
               type="date"
-              id=""
+              id="education-date-from-input"
               defaultValue={this.props.educationItem.dateFrom}
             />
           </div>
@@ -139,11 +139,11 @@ class EducationInput extends Component {
             <label htmlFor="">Date To</label>
             <input 
               type="date" 
-              id=""
+              id="education-date-to-input"
               defaultValue={this.props.educationItem.dateTo}
             />
           </div>
-          <div className="certificate-input-container">
+          <div className="certificate-input-container span-two">
             <label htmlFor="certificates">Certificate(s)</label>
             {this.createCertificateInputs()}
             <button
@@ -153,7 +153,7 @@ class EducationInput extends Component {
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
-          <SaveInfoButton 
+          <SaveInfoButton
             uploadData={this.props.uploadEducationInfo}/>
         </fieldset>
       </form>
@@ -164,9 +164,9 @@ class EducationInput extends Component {
 EducationInput.defaultProps = {
   educationItem: {
     institutionName: '',
-    certificates: [''],
     dateFrom: new Date(1, 1, 1970),
     dateTo: new Date(1, 1, 1971),
+    certificates: [''],
   }
 }
 
@@ -175,28 +175,24 @@ EducationInput.propTypes = {
   uploadEducationInfo: PropTypes.func,
 }
 
-export default class Education extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <main>
-        <div className="education-page-overview">
-          <EducationInput 
-            uploadEducationInfo={this.props.uploadEducationInfo}
-          />
-          <EducationList 
-            educationArray={this.props.userEducationArray}
-          />
-        </div>
-      </main>
-    )
-  }
+const Education = (props) => {
+  return (
+    <main>
+      <div className="education-page-overview">
+        <EducationInput 
+          uploadEducationInfo={props.uploadEducationInfo}
+        />
+        <EducationList 
+          educationArray={props.userEducationArray}
+        />
+      </div>
+    </main>
+  )
 }
 
 Education.propTypes = {
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array
 }
+
+export default Education

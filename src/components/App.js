@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Education from './Education'
+import Experience from './Experience'
 import You from './You'
 
 import Server from '../modules/Server'
@@ -24,6 +25,7 @@ export default class App extends Component {
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
     this.uploadEducationInfo = this.uploadEducationInfo.bind(this)
+    this.uploadExperienceInfo = this.uploadExperienceInfo.bind(this)
   }
 
   changePageShown(navChoice) {
@@ -70,12 +72,29 @@ export default class App extends Component {
     this.updateCurrentUser()
   }
 
+  uploadExperienceInfo(inputValues) {
+    const experienceObj = {
+      workplaceName: inputValues[0],
+      dateFrom: inputValues[1],
+      dateTo: inputValues[2],
+      experienceSummary: inputValues[3]
+    }
+
+    server.updateExperienceInfo(experienceObj)
+    this.updateCurrentUser()
+  }
+
   render() {
     const mainPage = this.state.currentPage
     let main
 
     if (mainPage === 'home') console.log('home')
-    else if (mainPage === 'experience') console.log('experience')
+
+    else if (mainPage === 'experience') main = <Experience 
+      uploadExperienceInfo={this.uploadExperienceInfo}
+      userExperienceArray={this.state.currentUser.experience}
+    />
+
     else if (mainPage === 'education') main = <Education
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
@@ -97,3 +116,5 @@ export default class App extends Component {
     )
   }
 }
+
+// TODO: Create modal to edit previous data

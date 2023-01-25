@@ -42,6 +42,15 @@ export default class Server {
   // Utility functions //
   //*******************//
 
+  // Formats date to (MMM YYYY) where MMM is a three letter abbreviation
+  formatDate = (dateString) => {
+    const dateArray = dateString.split('-')
+
+    let monthIndex = (dateArray[1] - 1) >= 0 ? dateArray[1] - 1 : 12
+
+    return `${months[monthIndex]} ${dateArray[0]}`
+  }
+
   // Takes the formatted date (MMM - yyyy) where MMM is a three letter abbreviation
   // and returns the array sorted by most recent first
   sortByDate = (array) => {
@@ -126,22 +135,26 @@ export default class Server {
   }
 
   updateEducationInfo(educationObj) {
-    const formatDate = (dateString) => {
-      const dateArray = dateString.split('-')
-
-      let monthIndex = (dateArray[1] - 1) >= 0 ? dateArray[1] - 1 : 12
-  
-      return `${months[monthIndex]} ${dateArray[0]}`
-    }
-
     const educationItem = educationObj
-    educationItem.dateFrom = formatDate(educationObj.dateFrom)
-    educationItem.dateTo = formatDate(educationObj.dateTo)
+    educationItem.dateFrom = this.formatDate(educationObj.dateFrom)
+    educationItem.dateTo = this.formatDate(educationObj.dateTo)
 
     this.user.education[this.user.education.length] = educationItem
 
     const sortedArray = this.sortByDate(this.user.education)
     this.user.education = sortedArray
+    this.saveToStorage()
+  }
+
+  updateExperienceInfo(experienceObj) {
+    const experienceItem = experienceObj
+    experienceItem.dateFrom = this.formatDate(experienceObj.dateFrom)
+    experienceItem.dateTo = this.formatDate(experienceObj.dateTo)
+
+    this.user.experience[this.user.experience.length] = experienceItem
+
+    const sortedArray = this.sortByDate(this.user.experience)
+    this.user.experience = sortedArray
     this.saveToStorage()
   }
 
