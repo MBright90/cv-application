@@ -25,6 +25,26 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpe?g|png|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 25000,
+            filename: '[name].[ext]',
+            outputPath: 'assets/images/'
+          },
+        }]
+      },
+      {
+        test: /\.(woff2?)$/i,
+        exclude: /node_modules/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name].[ext]',
+          outputPath: 'assets/fonts/'
+        }
       }
     ]
   }

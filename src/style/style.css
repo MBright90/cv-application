@@ -118,6 +118,7 @@ footer i {
     width: 80px;
 }
 
+.home-page-overview,
 .education-page-overview,
 .experience-page-overview,
 .you-page-overview,
@@ -162,7 +163,8 @@ textarea {
 .education-input-overview,
 .education-list-overview,
 .experience-input-overview,
-.experience-list-overview {
+.experience-list-overview,
+.welcome-container {
     display: flex;
     flex-direction: column;
     width: max(50%, 400px)
@@ -311,6 +313,33 @@ textarea {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+}
+
+/*******************/
+/* home tab styles */
+/*******************/
+
+.welcome-container h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.welcome-container p {
+    line-height: 30px;
+    text-align: justify;
+}
+
+.welcome-container p:not(:last-of-type) {
+    margin-bottom: 20px;
+}
+
+.template-container {
+    align-items: center;
+    display: flex;
+}
+
+.template-container img {
+    src: url('https://www.cvtemplate.co.uk/images/thumbnails/212121/cv-template-compact.png')
 }
 
 /* animations */

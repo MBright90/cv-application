@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import Header from './Header'
 import Footer from './Footer'
+import Home from './Home'
 import Education from './Education'
 import Experience from './Experience'
 import You from './You'
@@ -16,7 +17,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      currentPage: 'education',
+      currentPage: 'home',
       currentUser: server.getCurrentInfo(),
     }
 
@@ -88,7 +89,7 @@ export default class App extends Component {
     const mainPage = this.state.currentPage
     let main
 
-    if (mainPage === 'home') console.log('home')
+    if (mainPage === 'home') main = <Home />
 
     else if (mainPage === 'experience') main = <Experience 
       uploadExperienceInfo={this.uploadExperienceInfo}
