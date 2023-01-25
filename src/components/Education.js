@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import SaveButton from './SaveButton'
+import { SaveInfoButton, EditButton, DeleteButton } from './SaveButton'
 
-const EducationDetail = (props) => {
+const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {
     return certificateArray.map((certificate) => {
       return (
@@ -20,18 +20,20 @@ const EducationDetail = (props) => {
       <p className="education-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
       <p className="education-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
       {certificateParaArray(props.educationItem.certificates)}
+      <EditButton />
+      <DeleteButton />
     </div>
   )
 }
 
-EducationDetail.propTypes = {
+EducationItem.propTypes = {
   educationItem: PropTypes.object
 }
 
 const EducationList = (props) => {
   const createEducationList = () => {
     return props.educationArray.map((educationItem) => {
-      return <EducationDetail
+      return <EducationItem
         key={`${educationItem.institutionName}${educationItem.dateFrom}`}
         educationItem={educationItem}/>
     })
@@ -85,6 +87,7 @@ class EducationInput extends Component {
     const newCertificateValues = [...this.state.currentCertificateValues]
     newCertificateValues[certificateIndex] = e.target.value
 
+    // Keeps up to date record of all current input values across the certificates
     this.setState({
       currentCertificateValues: newCertificateValues
     })
@@ -150,7 +153,7 @@ class EducationInput extends Component {
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
-          <SaveButton 
+          <SaveInfoButton 
             uploadData={this.props.uploadEducationInfo}/>
         </fieldset>
       </form>

@@ -1,5 +1,7 @@
 import * as imageConversion from 'image-conversion'
 
+const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
 export default class Server {
   constructor() {
     this.user = {
@@ -35,6 +37,55 @@ export default class Server {
       if (savedUser) this.user = savedUser
     }
   }
+
+  //*******************//
+  // Utility functions //
+  //*******************//
+
+  // Takes the formatted date (MMM - yyyy) where MMM is a three letter abbreviation
+  // and returns the array sorted by most recent first
+  sortByDate = (array) => {
+    if (array.length <= 1) return array
+    const sortedArray = array.sort((a, b) => {
+      // Split the end dates for comparison
+      const aDateSplit = a.dateTo.split(' ')
+      const bDateSplit = b.dateTo.split(' ')
+
+      // Compare year ending)
+      const aYearEnd = parseInt(aDateSplit[1], 10)
+      const bYearEnd = parseInt(bDateSplit[1], 10)
+
+      if (aYearEnd > bYearEnd) return -1
+      if (aYearEnd < bYearEnd) return 1
+
+      // Compare month ending if year is equal
+      const aMonthEnd = months.indexOf(aDateSplit[0])
+      const bMonthEnd = months.indexOf(bDateSplit[0])
+      if (aMonthEnd > bMonthEnd) return -1
+      if (aMonthEnd < bMonthEnd) return 1
+
+      // If certificates completed on the same month and year
+      // compare beginning dates
+      const aStartDateSplit = a.dateFrom.split(' ')
+      const bStartDateSplit = b.dateFrom.split(' ')
+      
+      // Compare year beginning
+      const aYearStart = parseInt(aStartDateSplit[1], 10)
+      const bYearStart = parseInt(bStartDateSplit[1], 10)
+      if (aYearStart > bYearStart) return -1
+      if (aYearStart < bYearStart) return 1
+
+      // Compare month beginning if month starting is equal
+      // If remains equal return -1
+      const aMonthStart = months.indexOf(aDateSplit[0])
+      const bMonthStart = months.indexOf(bDateSplit[0])
+      if (aMonthStart >= bMonthStart) return -1
+      else return 1
+    })
+
+    return sortedArray
+  }
+
   //********************//
   // Updating functions //
   //********************//
@@ -78,9 +129,8 @@ export default class Server {
     const formatDate = (dateString) => {
       const dateArray = dateString.split('-')
 
-      const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
       let monthIndex = (dateArray[1] - 1) >= 0 ? dateArray[1] - 1 : 12
-
+  
       return `${months[monthIndex]} ${dateArray[0]}`
     }
 
@@ -89,6 +139,9 @@ export default class Server {
     educationItem.dateTo = formatDate(educationObj.dateTo)
 
     this.user.education[this.user.education.length] = educationItem
+
+    const sortedArray = this.sortByDate(this.user.education)
+    this.user.education = sortedArray
     this.saveToStorage()
   }
 
