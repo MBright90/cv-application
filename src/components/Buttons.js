@@ -35,7 +35,8 @@ class SaveInfoButton extends Component {
     // Retrieve all inputs in the data container and return an object of values to
     // the App component
     e.preventDefault()
-    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input')]
+    // Search for all inputs/text areas within the form
+    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input'), ...e.target.parentNode.parentNode.querySelectorAll('textarea')]
     const inputValues = inputArr.map((inputField) => inputField.value)
     if (this.props.setToClear === true) clearValues(inputArr)
     this.props.uploadData(inputValues)
@@ -43,7 +44,7 @@ class SaveInfoButton extends Component {
   
   render() {
     return (
-      <div className="save-button-container">
+      <div className="save-button-container span-two">
         <button 
           className="save-button"
           type="submit"
