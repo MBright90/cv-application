@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default class SaveInfoButton extends Component {
+class SaveInfoButton extends Component {
   constructor(props) {
     super(props)
   
@@ -67,3 +67,35 @@ SaveInfoButton.propTypes = {
   setToClear: PropTypes.bool,
   uploadData: PropTypes.func,
 }
+
+const EditButton = (props) => {
+  return (
+    <button
+      className="edit-button"
+      type="button"
+      onClick={props.editFunc}>
+      <i className="fa-solid fa-pen-to-square"></i>
+    </button>
+  )
+}
+
+EditButton.propTypes = {
+  editFunc: PropTypes.func
+}
+
+const DeleteButton = (props) => {
+  return (
+    <button
+      className="delete-button"
+      type="button"
+      onClick={props.deleteFunc}>
+      <i className="fa-solid fa-trash-can"></i>
+    </button>
+  )
+}
+
+DeleteButton.propTypes = {
+  deleteFunc: PropTypes.func
+}
+
+export { SaveInfoButton, EditButton, DeleteButton }

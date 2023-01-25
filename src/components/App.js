@@ -7,6 +7,7 @@ import You from './You'
 
 import Server from '../modules/Server'
 const server = new Server()
+// server.clearStorage()
 server.loadFromStorage()
 
 export default class App extends Component {
@@ -67,7 +68,6 @@ export default class App extends Component {
 
     server.updateEducationInfo(educationObj)
     this.updateCurrentUser()
-    console.log(this.state.currentUser)
   }
 
   render() {

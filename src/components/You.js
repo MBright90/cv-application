@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Avatar from './Avatar'
-import SaveButton from './SaveButton'
+import { SaveInfoButton } from './Buttons'
 
 // TODO: Validation functions for name, telephone number, area, image type
 
@@ -49,7 +49,7 @@ const AccountInfo = (props) => {
         labelText="Contact Number "
         currentInfo={props.userInfo.contactNumber}
       />
-      <SaveButton 
+      <SaveInfoButton 
         setToClear={false}
         uploadData={props.uploadAccountInfo}
       />
