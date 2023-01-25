@@ -7,8 +7,9 @@ const TemplateSection = () => {
   return (
     <div className="template-container">
       <button
+        className="create-template-btn"
         onClick={() => console.log('clicked bitch')}
-      >Create</button>
+      >Create Template</button>
     </div>
   )
 }

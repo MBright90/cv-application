@@ -109,7 +109,8 @@ footer i {
     flex-direction: column;
 }
 
-.save-button-container .save-button {
+.save-button-container .save-button,
+.template-container .create-template-btn {
     background-color: #ffefef;
     border-radius: 5px;
     color: #13005A;
@@ -154,6 +155,10 @@ textarea {
 
 .edit-button {
     top: 5px;
+}
+
+button:hover {
+    background-color: #a8a0a0 !important;
 }
 
 /**************************/
@@ -300,6 +305,10 @@ textarea {
     padding: 5px 10px;
 }
 
+.avatar-edit-overview label:hover {
+    background-color: #a8a0a0 !important;
+}
+
 .avatar-edit-overview input[type=file] {
     display: none;
 }
@@ -340,6 +349,10 @@ textarea {
 
 .template-container img {
     src: url('https://www.cvtemplate.co.uk/images/thumbnails/212121/cv-template-compact.png')
+}
+
+.template-container .create-template-btn {
+    width: auto;
 }
 
 /* animations */
