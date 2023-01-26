@@ -6,6 +6,56 @@ import { SaveInfoButton } from './Buttons'
 
 // TODO: Validation functions for name, telephone number, area, image type
 
+const ReferenceInfo = (props) => {
+  return (
+    <form className="reference-input-overview">
+      <fieldset>
+        <legend>Add Reference</legend>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            maxLength="40"
+            id="reference-name-input"
+            defaultValue={props.reference.name}
+          />
+        </div>
+        <div>
+          <label>Position</label>
+          <input
+            type="text"
+            maxLength="40"
+            id="reference-name-input"
+            defaultValue={props.reference.position}
+          />
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            type="text"
+            maxLength="40"
+            id="reference-email-input"
+            defaultValue={props.reference.email}
+          />
+        </div>
+        <SaveInfoButton uploadData={console.log('hello')}/>
+      </fieldset>
+    </form>
+  )
+}
+
+ReferenceInfo.defaultProps = {
+  reference: {
+    name: '',
+    position: '',
+    email: '',
+  }
+}
+
+ReferenceInfo.propTypes = {
+  reference: PropTypes.object
+}
+
 const AccountInput = (props) => {
   return (
     <div className="account-info-input">
@@ -105,6 +155,9 @@ export default class You extends Component {
           <AccountInfo 
             uploadAccountInfo={this.props.uploadAccountInfo}
             userInfo={this.props.userInfo}/>
+          <ReferenceInfo 
+            reference={this.props.userInfo.reference}
+          />
         </div>
       </main>
     )
