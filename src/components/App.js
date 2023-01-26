@@ -69,7 +69,7 @@ export default class App extends Component {
       certificates: certificateSplice,
     }
 
-    server.updateEducationInfo(educationObj)
+    server.createEducationInfo(educationObj)
     this.updateCurrentUser()
   }
 
@@ -81,7 +81,7 @@ export default class App extends Component {
       experienceSummary: inputValues[3]
     }
 
-    server.updateExperienceInfo(experienceObj)
+    server.createExperienceInfo(experienceObj)
     this.updateCurrentUser()
   }
 
