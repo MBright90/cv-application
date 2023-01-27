@@ -25,6 +25,10 @@
     user-select: none;
 }
 
+button i {
+    pointer-events: none;
+}
+
 .page-layout {
     color: #ffefef;
     min-height: 100vh;
