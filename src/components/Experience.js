@@ -124,7 +124,8 @@ class Experience extends Component {
 
     this.setState({
       isModalActive: <EditInfoModal 
-        editForm={<ExperienceInput 
+        editForm={<ExperienceInput
+          experienceItem={experienceObj}
           uploadExperienceInfo={this.props.editExperienceInfo}
         />}
       />
