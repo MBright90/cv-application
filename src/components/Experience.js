@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
+import { EditInfoModal } from './Modals' 
 
 const ExperienceItem = (props) => {
   return (
@@ -9,13 +10,20 @@ const ExperienceItem = (props) => {
       <p className="list-item-headline">{props.experienceItem.workplaceName.toUpperCase()}</p>
       <p className="list-item-dates">{props.experienceItem.dateFrom} - {props.experienceItem.dateTo}</p>
       <p className="list-item-details">{props.experienceItem.experienceSummary}</p>
-      <EditButton />
-      <DeleteButton />
+      <EditButton 
+        editFunc={props.editFunc}
+        itemID={props.experienceItem.ID}
+      />
+      <DeleteButton
+        deleteFunc={console.log('delete')}
+        itemID={props.experienceItem.ID}
+      />
     </div>
   )
 }
 
 ExperienceItem.propTypes = {
+  editFunc: PropTypes.func,
   experienceItem: PropTypes.object
 }
 
@@ -25,6 +33,7 @@ const ExperienceList = (props) => {
       return <ExperienceItem 
         key={`${experienceItem.workplaceName}${experienceItem.dateFrom}`}
         experienceItem={experienceItem}
+        editFunc={props.editFunc}
       />
     })
   }
@@ -36,8 +45,8 @@ const ExperienceList = (props) => {
   )
 }
 
-
 ExperienceList.propTypes = {
+  editFunc: PropTypes.func,
   experienceArray: PropTypes.array
 }
 
@@ -45,7 +54,7 @@ const ExperienceInput = (props) => {
   return (
     <form className='experience-input-overview'>
       <fieldset>
-        <legend>Add New Certificate</legend>
+        <legend>Add Workplace Experience</legend>
         <div className="span-two">
           <label>Workplace</label>
           <input 
@@ -98,24 +107,54 @@ ExperienceInput.propTypes = {
   uploadExperienceInfo: PropTypes.func,
 }
 
-const Experience = (props) => {
-  return (
-    <main>
-      <div className="experience-page-overview">
-        <ExperienceInput 
-          uploadExperienceInfo={props.uploadExperienceInfo}
-        />
-        <ExperienceList 
-          experienceArray={props.userExperienceArray}
-        />
-      </div>
-    </main>
-  )
+class Experience extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isModalActive: false
+    }
+
+    this.showExperienceModal = this.showExperienceModal.bind(this)
+  }
+
+  showExperienceModal(e) {
+    const infoID = e.target.dataset.itemId
+    const experienceObj = this.props.requestInfoByID(infoID, 'experience')
+
+    this.setState({
+      isModalActive: <EditInfoModal 
+        editForm={<ExperienceInput 
+          uploadExperienceInfo={this.props.editExperienceInfo}
+        />}
+      />
+    })
+  }
+
+  render() {
+    return (
+      <main>
+        {this.state.isModalActive}
+        <div className="experience-page-overview">
+          <ExperienceInput 
+            uploadExperienceInfo={this.props.uploadExperienceInfo}
+          />
+          <ExperienceList 
+            experienceArray={this.props.userExperienceArray}
+            editFunc={this.showExperienceModal}
+          />
+        </div>
+      </main>
+    )
+  }
 }
 
 Experience.propTypes = {
+  editExperienceInfo: PropTypes.func,
+  requestInfoByID: PropTypes.func,
   uploadExperienceInfo: PropTypes.func,
   userExperienceArray: PropTypes.array,
 }
 
 export default Experience
+export { ExperienceInput }

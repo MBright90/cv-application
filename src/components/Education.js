@@ -20,8 +20,14 @@ const EducationItem = (props) => {
       <p className="list-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
       <p className="list-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
       {certificateParaArray(props.educationItem.certificates)}
-      <EditButton />
-      <DeleteButton />
+      <EditButton
+        editFunc={console.log('edit')}
+        itemID={props.educationItem.ID}
+      />
+      <DeleteButton
+        editFunc={console.log('edit')}
+        itemID={props.educationItem.ID}
+      />
     </div>
   )
 }
@@ -191,8 +197,10 @@ const Education = (props) => {
 }
 
 Education.propTypes = {
+  requestInfoByID: PropTypes.func,
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array
 }
 
 export default Education
+export { EducationInput }
