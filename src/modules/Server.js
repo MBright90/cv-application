@@ -21,10 +21,6 @@ export default class Server {
     }
   }
 
-  getCurrentInfo() {
-    return this.user
-  }
-
   clearStorage() {
     localStorage.clear()
   }
@@ -145,12 +141,39 @@ export default class Server {
 
     const sortedArray = this.sortByDate(this.user.experience)
     this.user.experience = sortedArray
+    console.log(this.user.experience)
     this.saveToStorage()
   }
 
-  //********************//
-  // Updating functions //
-  //********************//
+
+  //*******************//
+  // Reading functions //
+  //*******************//
+
+  getCurrentInfo() {
+    return this.user
+  }
+
+  getInfoByID(ID, type) {
+
+    let foundObject = -1
+    this.user[type]?.forEach((arrayItem) => {
+      if (arrayItem.ID == ID) {
+        foundObject = arrayItem
+      }
+    })
+    return foundObject
+  }
+
+  //****************************//
+  // Updating/editing functions //
+  //****************************//
+
+  editInfo(originalDataObj, newDataObj, type) {
+    this.user[type]?.forEach((arrayItem) => {
+      if (arrayItem === originalDataObj) arrayItem = newDataObj
+    })
+  }
 
   async updateAvatarChange(avatarImageFile) {
     const saveAvatarToStorage = (avatarBaseImg) => {
