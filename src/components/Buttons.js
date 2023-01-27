@@ -74,6 +74,7 @@ const EditButton = (props) => {
     <button
       className="edit-button"
       type="button"
+      data-item-id={props.itemID}
       onClick={props.editFunc}>
       <i className="fa-solid fa-pen-to-square"></i>
     </button>
@@ -81,7 +82,8 @@ const EditButton = (props) => {
 }
 
 EditButton.propTypes = {
-  editFunc: PropTypes.func
+  editFunc: PropTypes.func,
+  itemID: PropTypes.number,
 }
 
 const DeleteButton = (props) => {
@@ -89,6 +91,7 @@ const DeleteButton = (props) => {
     <button
       className="delete-button"
       type="button"
+      data-item-id={props.itemID}
       onClick={props.deleteFunc}>
       <i className="fa-solid fa-trash-can"></i>
     </button>
@@ -96,7 +99,8 @@ const DeleteButton = (props) => {
 }
 
 DeleteButton.propTypes = {
-  deleteFunc: PropTypes.func
+  deleteFunc: PropTypes.func,
+  itemID: PropTypes.number,
 }
 
 export { SaveInfoButton, EditButton, DeleteButton }
