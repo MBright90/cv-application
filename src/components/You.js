@@ -38,7 +38,7 @@ const ReferenceInfo = (props) => {
             defaultValue={props.reference.email}
           />
         </div>
-        <SaveInfoButton uploadData={console.log('hello')}/>
+        <SaveInfoButton uploadData={props.uploadReferenceInfo}/>
       </fieldset>
     </form>
   )
@@ -53,7 +53,8 @@ ReferenceInfo.defaultProps = {
 }
 
 ReferenceInfo.propTypes = {
-  reference: PropTypes.object
+  reference: PropTypes.object,
+  uploadReferenceInfo: PropTypes.func,
 }
 
 const AccountInput = (props) => {
@@ -157,6 +158,7 @@ export default class You extends Component {
             userInfo={this.props.userInfo}/>
           <ReferenceInfo 
             reference={this.props.userInfo.reference}
+            uploadReferenceInfo={this.props.uploadReferenceInfo}
           />
         </div>
       </main>
@@ -167,5 +169,6 @@ export default class You extends Component {
 You.propTypes = {
   uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
+  uploadReferenceInfo: PropTypes.func,
   userInfo: PropTypes.object,
 }

@@ -7,6 +7,8 @@ import Education from './Education'
 import Experience from './Experience'
 import You from './You'
 
+// import { EditInfoModal, DeleteModal } from './Modals'
+
 import Server from '../modules/Server'
 const server = new Server()
 // server.clearStorage()
@@ -17,20 +19,30 @@ export default class App extends Component {
     super(props)
 
     this.state = {
+      activeModal: false,
       currentPage: 'home',
-      currentUser: server.getCurrentInfo(),
+      currentUser: server.getCurrentInfo()
     }
 
     this.changePageShown = this.changePageShown.bind(this)
+    this.requestInfoByID = this.requestInfoByID.bind(this)
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
     this.uploadEducationInfo = this.uploadEducationInfo.bind(this)
     this.uploadExperienceInfo = this.uploadExperienceInfo.bind(this)
+    this.uploadReferenceInfo = this.uploadReferenceInfo.bind(this)
   }
 
   changePageShown(navChoice) {
     this.setState({currentPage: navChoice})
+  }
+
+  // info retrieval functions //
+
+  requestInfoByID(ID, type) {
+    const info = server.getInfoByID(ID, type)
+    console.log(info)
   }
 
   updateCurrentUser() {
@@ -40,7 +52,7 @@ export default class App extends Component {
     })
   }
 
-  // 'You' tab info retrieval functions //
+  // info upload functions //
 
   uploadAccountInfo(inputValues) {
     const accountInfoObj = {
@@ -85,25 +97,39 @@ export default class App extends Component {
     this.updateCurrentUser()
   }
 
+  uploadReferenceInfo(inputValues) {
+    const referenceObj = {
+      name: inputValues[0],
+      position: inputValues[1],
+      email: inputValues[2]
+    }
+    console.log(referenceObj)
+  }
+
+  // Edit and delete button functions //
+  editData
+
+  // Modal functions
+
   render() {
     const mainPage = this.state.currentPage
     let main
 
     if (mainPage === 'home') main = <Home />
-
-    else if (mainPage === 'experience') main = <Experience 
+    else if (mainPage === 'experience') main = <Experience
+      requestInfoByID={this.requestInfoByID} 
       uploadExperienceInfo={this.uploadExperienceInfo}
       userExperienceArray={this.state.currentUser.experience}
     />
-
     else if (mainPage === 'education') main = <Education
+      requestInfoByID={this.requestInfoByID}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
-
-    else if (mainPage === 'you') main = <You 
+    else main = <You 
       uploadAccountInfo={this.uploadAccountInfo}
       uploadAvatarChange={this.uploadAvatarChange}
+      uploadReferenceInfo={this.uploadReferenceInfo}
       userInfo={this.state.currentUser}/>
 
     return (
@@ -113,6 +139,7 @@ export default class App extends Component {
           changePageShown={this.changePageShown}/>
         {main}
         <Footer />
+        {this.state.activeModal}
       </div>
     )
   }
