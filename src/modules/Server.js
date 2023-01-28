@@ -63,11 +63,19 @@ export default class Server {
 
   // Formats date to (MMM YYYY) where MMM is a three letter abbreviation
   formatDate = (dateString) => {
-    const dateArray = dateString.split('-')
+    const dateSplitArray = dateString.split('-')
 
-    let monthIndex = (dateArray[1] - 1) >= 0 ? dateArray[1] - 1 : 12
+    let monthIndex = (dateSplitArray[1] - 1) >= 0 ? dateSplitArray[1] - 1 : 12
 
-    return `${months[monthIndex]} ${dateArray[0]}`
+    return `${months[monthIndex]} ${dateSplitArray[0]}`
+  }
+
+  // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
+  // returns a Date object
+  revertDate = (dateString) => {
+    const dateSplitArray = dateString.split(' ')
+    const monthIndex = months.indexOf(dateSplitArray[0])
+    return new Date(dateSplitArray[1], monthIndex)
   }
 
   // Takes the formatted date (MMM - yyyy) where MMM is a three letter abbreviation
