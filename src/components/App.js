@@ -26,6 +26,7 @@ export default class App extends Component {
 
     this.changePageShown = this.changePageShown.bind(this)
     this.requestInfoByID = this.requestInfoByID.bind(this)
+    this.revertToDateObject = this.revertToDateObject.bind(this)
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
@@ -42,7 +43,7 @@ export default class App extends Component {
 
   requestInfoByID(ID, type) {
     const info = server.getInfoByID(ID, type)
-    console.log(info)
+    return info
   }
 
   updateCurrentUser() {
@@ -107,7 +108,9 @@ export default class App extends Component {
   }
 
   // Edit and delete button functions //
-  editData
+  revertToDateObject(formattedDate) {
+    return server.revertDate(formattedDate)
+  }
 
   // Modal functions
 
@@ -117,12 +120,14 @@ export default class App extends Component {
 
     if (mainPage === 'home') main = <Home />
     else if (mainPage === 'experience') main = <Experience
-      requestInfoByID={this.requestInfoByID} 
+      requestInfoByID={this.requestInfoByID}
+      revertToDateObject={this.revertToDateObject}
       uploadExperienceInfo={this.uploadExperienceInfo}
       userExperienceArray={this.state.currentUser.experience}
     />
     else if (mainPage === 'education') main = <Education
       requestInfoByID={this.requestInfoByID}
+      revertToDateObject={this.revertToDateObject}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
