@@ -54,7 +54,7 @@ const ExperienceInput = (props) => {
   return (
     <form className='experience-input-overview'>
       <fieldset>
-        <legend>Add Workplace Experience</legend>
+        <legend>{props.formType} Workplace Experience</legend>
         <div className="span-two">
           <label>Workplace</label>
           <input 
@@ -83,7 +83,7 @@ const ExperienceInput = (props) => {
           <textarea
             id="experience-summary-input"
             minLength={20}
-            defaultValue={props.experienceItem.Summary}
+            defaultValue={props.experienceItem.experienceSummary}
           ></textarea>
         </div>
         <SaveInfoButton
@@ -99,11 +99,13 @@ ExperienceInput.defaultProps = {
     dateFrom: new Date(1, 1, 1970),
     dateTo: new Date(1, 1, 1971),
     experienceSummary: ''
-  }
+  },
+  formType: 'Add',
 }
 
 ExperienceInput.propTypes = {
   experienceItem: PropTypes.object,
+  formType: PropTypes.string,
   uploadExperienceInfo: PropTypes.func,
 }
 
@@ -122,10 +124,16 @@ class Experience extends Component {
     const infoID = e.target.dataset.itemId
     const experienceObj = this.props.requestInfoByID(infoID, 'experience')
 
+    // experienceObj.dateFrom = this.props.revertToDateObject(experienceObj.dateFrom)
+    // experienceObj.dateTo = this.props.revertToDateObject(experienceObj.dateTo)
+
+    // console.log(experienceObj)
+
     this.setState({
       isModalActive: <EditInfoModal 
         editForm={<ExperienceInput
           experienceItem={experienceObj}
+          formType='Edit'
           uploadExperienceInfo={this.props.editExperienceInfo}
         />}
       />
@@ -153,6 +161,7 @@ class Experience extends Component {
 Experience.propTypes = {
   editExperienceInfo: PropTypes.func,
   requestInfoByID: PropTypes.func,
+  revertToDateObject: PropTypes.func,
   uploadExperienceInfo: PropTypes.func,
   userExperienceArray: PropTypes.array,
 }
