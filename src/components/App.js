@@ -112,6 +112,13 @@ export default class App extends Component {
     return server.revertDate(formattedDate)
   }
 
+  // Unbound function passed to education and experience to close modals
+  closeModal() {
+    this.setState({
+      isModalActive: false
+    })
+  }
+
   // Modal functions
 
   render() {
@@ -120,6 +127,7 @@ export default class App extends Component {
 
     if (mainPage === 'home') main = <Home />
     else if (mainPage === 'experience') main = <Experience
+      closeModal={this.closeModal}
       requestInfoByID={this.requestInfoByID}
       revertToDateObject={this.revertToDateObject}
       uploadExperienceInfo={this.uploadExperienceInfo}

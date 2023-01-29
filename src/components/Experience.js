@@ -117,6 +117,7 @@ class Experience extends Component {
       isModalActive: false
     }
 
+    this.closeModal = this.props.closeModal.bind(this)
     this.showExperienceModal = this.showExperienceModal.bind(this)
   }
 
@@ -129,6 +130,7 @@ class Experience extends Component {
 
     this.setState({
       isModalActive: <EditInfoModal 
+        closeModal={this.closeModal}
         editForm={<ExperienceInput
           experienceItem={experienceObj}
           formType='Edit'
@@ -157,6 +159,7 @@ class Experience extends Component {
 }
 
 Experience.propTypes = {
+  closeModal: PropTypes.func,
   editExperienceInfo: PropTypes.func,
   requestInfoByID: PropTypes.func,
   revertToDateObject: PropTypes.func,

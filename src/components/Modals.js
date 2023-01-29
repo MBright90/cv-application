@@ -10,12 +10,18 @@ const EditInfoModal = (props) => {
     <div className="modal">
       <div className="modal-form-container">
         {props.editForm}
+        <button 
+          className="modal-close-button"
+          onClick={props.closeModal}>
+          <i className="fa-solid fa-x"></i>
+        </button>
       </div>
     </div>
   )
 }
 
 EditInfoModal.propTypes = {
+  closeModal: PropTypes.func,
   editForm: PropTypes.object,
 }
 
