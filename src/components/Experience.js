@@ -124,10 +124,8 @@ class Experience extends Component {
     const infoID = e.target.dataset.itemId
     const experienceObj = this.props.requestInfoByID(infoID, 'experience')
 
-    // experienceObj.dateFrom = this.props.revertToDateObject(experienceObj.dateFrom)
-    // experienceObj.dateTo = this.props.revertToDateObject(experienceObj.dateTo)
-
-    // console.log(experienceObj)
+    experienceObj.dateFrom = this.props.revertToDateObject(experienceObj.dateFrom)
+    experienceObj.dateTo = this.props.revertToDateObject(experienceObj.dateTo)
 
     this.setState({
       isModalActive: <EditInfoModal 

@@ -26,7 +26,7 @@ export default class App extends Component {
 
     this.changePageShown = this.changePageShown.bind(this)
     this.requestInfoByID = this.requestInfoByID.bind(this)
-    this.revertToDateObject = this.revertToDateObject.bind(this)
+    this.revertToDateObject = this.revertToDateObject.bind()
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
     this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
     this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
@@ -127,7 +127,6 @@ export default class App extends Component {
     />
     else if (mainPage === 'education') main = <Education
       requestInfoByID={this.requestInfoByID}
-      revertToDateObject={this.revertToDateObject}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
