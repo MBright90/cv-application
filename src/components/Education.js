@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
+import { EditInfoModal } from './Modals'
 
 const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {
@@ -181,23 +182,58 @@ EducationInput.propTypes = {
   uploadEducationInfo: PropTypes.func,
 }
 
-const Education = (props) => {
-  return (
-    <main>
-      <div className="education-page-overview">
-        <EducationInput 
-          uploadEducationInfo={props.uploadEducationInfo}
-        />
-        <EducationList 
-          educationArray={props.userEducationArray}
-        />
-      </div>
-    </main>
-  )
+class Education extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isModalActive: false
+    }
+
+    this.closeModal = this.props.closeModal.bind(this)
+    this.showExperienceModal = this.showExperienceModal.bind(this)
+  }
+
+  showEducationModal(e) {
+    const infoID = e.target.dataset.itemId
+    const educationObj = this.props.requestInfoByID(infoID, 'education')
+
+    educationObj.dateFrom = this.props.revertToDateObject(educationObj.dateFrom)
+    educationObj.dateTo = this.props.revertToDateObject(educationObj.dateTo)
+
+    this.setState({
+      isModalActive: <EditInfoModal 
+        closeModal={this.closeModal}
+        editForm={<EducationInput
+          educationItem={educationObj}
+          formType='Edit'
+          uploadEducationInfo={this.props.editEducationInfo}
+        />}
+      />
+    })
+  }
+
+  render() {
+    return (
+      <main>
+        <div className="education-page-overview">
+          <EducationInput 
+            uploadEducationInfo={this.props.uploadEducationInfo}
+          />
+          <EducationList 
+            educationArray={this.props.userEducationArray}
+          />
+        </div>
+      </main>
+    )
+  }
 }
 
 Education.propTypes = {
+  closeModal: PropTypes.func,
+  editEducationInfo: PropTypes.func,
   requestInfoByID: PropTypes.func,
+  revertToDateObject: PropTypes.func,
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array
 }

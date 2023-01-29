@@ -134,7 +134,9 @@ export default class App extends Component {
       userExperienceArray={this.state.currentUser.experience}
     />
     else if (mainPage === 'education') main = <Education
+      closeModal={this.closeModal}
       requestInfoByID={this.requestInfoByID}
+      revertToDateObject={this.revertToDateObject}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
