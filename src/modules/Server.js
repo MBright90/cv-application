@@ -71,11 +71,11 @@ export default class Server {
   }
 
   // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
-  // returns a Date object
+  // returns an ISO string to pass as default value to inputs 
   revertDate = (dateString) => {
     const dateSplitArray = dateString.split(' ')
     const monthIndex = months.indexOf(dateSplitArray[0])
-    return new Date(dateSplitArray[1], monthIndex)
+    return new Date(dateSplitArray[1], monthIndex).toISOString().substring(0,10)
   }
 
   // Takes the formatted date (MMM - yyyy) where MMM is a three letter abbreviation
