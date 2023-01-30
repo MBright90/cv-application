@@ -36,10 +36,11 @@ class SaveInfoButton extends Component {
     // the App component
     e.preventDefault()
     // Search for all inputs/text areas within the form
+    console.log(e.target.parentNode.parentNode)
     const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input'), ...e.target.parentNode.parentNode.querySelectorAll('textarea')]
     const inputValues = inputArr.map((inputField) => inputField.value)
     if (this.props.setToClear === true) clearValues(inputArr)
-    this.props.uploadData(inputValues)
+    this.props.uploadData(inputValues, e.target.dataset.itemId, e.target.dataset.infoType)
   }
   
   render() {
@@ -48,6 +49,8 @@ class SaveInfoButton extends Component {
         <button 
           className="save-button"
           type="submit"
+          data-item-id={this.props.itemID}
+          data-info-type={this.props.infoType}
           onClick={(e) => {
             this.handleFormData(e)
             this.notifySave('Update Successful')
@@ -60,11 +63,14 @@ class SaveInfoButton extends Component {
 }
 
 SaveInfoButton.defaultProps = {
-  setToClear: true,
-  uploadData: () => {}
+  infoType: '',
+  itemID: '',
+  setToClear: true
 }
 
 SaveInfoButton.propTypes = {
+  infoType: PropTypes.string,
+  itemID: PropTypes.string,
   setToClear: PropTypes.bool,
   uploadData: PropTypes.func,
 }

@@ -20,11 +20,12 @@ export default class App extends Component {
 
     this.state = {
       activeModal: false,
-      currentPage: 'home',
+      currentPage: 'experience',
       currentUser: server.getCurrentInfo()
     }
 
     this.changePageShown = this.changePageShown.bind(this)
+    this.editInfo = this.editInfo.bind(this)
     this.requestInfoByID = this.requestInfoByID.bind(this)
     this.revertToDateObject = this.revertToDateObject.bind()
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
@@ -72,7 +73,7 @@ export default class App extends Component {
       .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
-  uploadEducationInfo(inputValues) {
+  uploadEducationInfo(inputValues, infoID) {
 
     const certificateSplice = inputValues.slice(3)
     const educationObj = {
@@ -82,11 +83,11 @@ export default class App extends Component {
       certificates: certificateSplice,
     }
 
-    server.createEducationInfo(educationObj)
+    server.createEducationInfo(educationObj, infoID)
     this.updateCurrentUser()
   }
 
-  uploadExperienceInfo(inputValues) {
+  uploadExperienceInfo(inputValues, infoID) {
     const experienceObj = {
       workplaceName: inputValues[0],
       dateFrom: inputValues[1],
@@ -94,7 +95,7 @@ export default class App extends Component {
       experienceSummary: inputValues[3]
     }
 
-    server.createExperienceInfo(experienceObj)
+    server.createExperienceInfo(experienceObj, infoID)
     this.updateCurrentUser()
   }
 
@@ -108,6 +109,13 @@ export default class App extends Component {
   }
 
   // Edit and delete button functions //
+
+  editInfo(inputValues, infoID, type) {
+    if (type === 'education') this.uploadEducationInfo(inputValues, infoID)
+    else this.uploadExperienceInfo(inputValues, infoID)
+    this.closeModal()
+  }
+
   revertToDateObject(formattedDate) {
     return server.revertDate(formattedDate)
   }
@@ -128,6 +136,7 @@ export default class App extends Component {
     if (mainPage === 'home') main = <Home />
     else if (mainPage === 'experience') main = <Experience
       closeModal={this.closeModal}
+      editExperienceInfo={this.editInfo}
       requestInfoByID={this.requestInfoByID}
       revertToDateObject={this.revertToDateObject}
       uploadExperienceInfo={this.uploadExperienceInfo}

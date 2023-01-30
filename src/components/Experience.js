@@ -87,6 +87,8 @@ const ExperienceInput = (props) => {
           ></textarea>
         </div>
         <SaveInfoButton
+          itemID={props.itemID}
+          infoType={'experience'}
           uploadData={props.uploadExperienceInfo}/>
       </fieldset>
     </form>
@@ -105,6 +107,7 @@ ExperienceInput.defaultProps = {
 
 ExperienceInput.propTypes = {
   experienceItem: PropTypes.object,
+  itemID: PropTypes.string,
   formType: PropTypes.string,
   uploadExperienceInfo: PropTypes.func,
 }
@@ -123,7 +126,7 @@ class Experience extends Component {
 
   showExperienceModal(e) {
     const infoID = e.target.dataset.itemId
-    const experienceObj = this.props.requestInfoByID(infoID, 'experience')
+    const experienceObj = Object.assign({}, this.props.requestInfoByID(infoID, 'experience'))
 
     experienceObj.dateFrom = this.props.revertToDateObject(experienceObj.dateFrom)
     experienceObj.dateTo = this.props.revertToDateObject(experienceObj.dateTo)
@@ -134,6 +137,7 @@ class Experience extends Component {
         editForm={<ExperienceInput
           experienceItem={experienceObj}
           formType='Edit'
+          itemID={infoID}
           uploadExperienceInfo={this.props.editExperienceInfo}
         />}
       />
@@ -145,6 +149,7 @@ class Experience extends Component {
       <main>
         {this.state.isModalActive}
         <div className="experience-page-overview">
+          {this.state.isModalActive}
           <ExperienceInput 
             uploadExperienceInfo={this.props.uploadExperienceInfo}
           />

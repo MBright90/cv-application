@@ -22,7 +22,7 @@ const EducationItem = (props) => {
       <p className="list-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
       {certificateParaArray(props.educationItem.certificates)}
       <EditButton
-        editFunc={console.log('edit')}
+        editFunc={props.editFunc}
         itemID={props.educationItem.ID}
       />
       <DeleteButton
@@ -34,6 +34,7 @@ const EducationItem = (props) => {
 }
 
 EducationItem.propTypes = {
+  editFunc: PropTypes.func,
   educationItem: PropTypes.object
 }
 
@@ -42,6 +43,7 @@ const EducationList = (props) => {
     return props.educationArray.map((educationItem) => {
       return <EducationItem
         key={`${educationItem.institutionName}${educationItem.dateFrom}`}
+        editFunc={props.editFunc}
         educationItem={educationItem}/>
     })
   }
@@ -54,6 +56,7 @@ const EducationList = (props) => {
 }
 
 EducationList.propTypes = {
+  editFunc: PropTypes.func,
   educationArray: PropTypes.array
 }
 
@@ -126,7 +129,7 @@ class EducationInput extends Component {
     return (
       <form className='education-input-overview'>
         <fieldset>
-          <legend>Add New Certificate</legend>
+          <legend>{this.props.formType} New Certificate</legend>
           <div className="span-two">
             <label htmlFor="">Institution</label>
             <input 
@@ -179,6 +182,7 @@ EducationInput.defaultProps = {
 
 EducationInput.propTypes = {
   educationItem: PropTypes.object,
+  formType: PropTypes.string,
   uploadEducationInfo: PropTypes.func,
 }
 
@@ -191,7 +195,7 @@ class Education extends Component {
     }
 
     this.closeModal = this.props.closeModal.bind(this)
-    this.showExperienceModal = this.showExperienceModal.bind(this)
+    this.showEducationModal = this.showEducationModal.bind(this)
   }
 
   showEducationModal(e) {
@@ -217,11 +221,13 @@ class Education extends Component {
     return (
       <main>
         <div className="education-page-overview">
+          {this.state.isModalActive}
           <EducationInput 
             uploadEducationInfo={this.props.uploadEducationInfo}
           />
           <EducationList 
             educationArray={this.props.userEducationArray}
+            editFunc={this.showEducationModal}
           />
         </div>
       </main>
