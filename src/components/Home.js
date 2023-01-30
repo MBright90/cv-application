@@ -23,7 +23,7 @@ const TemplateSection = () => {
   return (
     <div className="template-container">
       <button
-        className="create-template-btn"
+        className="create-template-btn hover-button"
         onClick={() => console.log('clicked bitch')}
       >Create Template</button>
     </div>
