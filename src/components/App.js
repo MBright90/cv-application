@@ -25,6 +25,7 @@ export default class App extends Component {
     }
 
     this.changePageShown = this.changePageShown.bind(this)
+    this.deleteInfo = this.deleteInfo.bind(this)
     this.editInfo = this.editInfo.bind(this)
     this.requestInfoByID = this.requestInfoByID.bind(this)
     this.revertToDateObject = this.revertToDateObject.bind()
@@ -110,6 +111,11 @@ export default class App extends Component {
 
   // Edit and delete button functions //
 
+  deleteInfo(infoID, type) {
+    server.deleteInfo(infoID, type)
+    this.updateCurrentUser()
+  }
+
   editInfo(inputValues, infoID, type) {
     if (type === 'education') this.uploadEducationInfo(inputValues, infoID)
     else this.uploadExperienceInfo(inputValues, infoID)
@@ -136,19 +142,23 @@ export default class App extends Component {
     if (mainPage === 'home') main = <Home />
     else if (mainPage === 'experience') main = <Experience
       closeModal={this.closeModal}
+      deleteFunc={this.deleteInfo}
       editExperienceInfo={this.editInfo}
       requestInfoByID={this.requestInfoByID}
       revertToDateObject={this.revertToDateObject}
       uploadExperienceInfo={this.uploadExperienceInfo}
       userExperienceArray={this.state.currentUser.experience}
     />
+
     else if (mainPage === 'education') main = <Education
       closeModal={this.closeModal}
+      deleteFunc={this.deleteInfo}
       requestInfoByID={this.requestInfoByID}
       revertToDateObject={this.revertToDateObject}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
     />
+
     else main = <You 
       uploadAccountInfo={this.uploadAccountInfo}
       uploadAvatarChange={this.uploadAvatarChange}

@@ -73,7 +73,6 @@ export default class Server {
   // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
   // returns an ISO string to pass as default value to inputs 
   revertDate = (dateString) => {
-    console.log(dateString)
     const dateSplitArray = dateString.split(' ')
     const monthIndex = months.indexOf(dateSplitArray[0])
     return new Date(dateSplitArray[1], monthIndex).toISOString().substring(0,10)
@@ -154,6 +153,7 @@ export default class Server {
     experienceItem.dateTo = this.formatDate(experienceObj.dateTo)
 
     if (infoID) {
+      experienceItem.ID = infoID
       const infoIndex = (this.user.experience.map(item => item.ID)).indexOf(parseInt(infoID, 10))
       this.user.experience[infoIndex] = experienceItem
     } else {
@@ -192,13 +192,6 @@ export default class Server {
   // Updating/editing functions //
   //****************************//
 
-  // editInfo(infoID, newDataObj, type) {
-  //   console.log(newDataObj)
-  //   this.user[type]?.forEach((arrayItem) => {
-  //     if (arrayItem.ID === infoID) arrayItem = newDataObj
-  //   })
-  // }
-
   async updateAvatarChange(avatarImageFile) {
     const saveAvatarToStorage = (avatarBaseImg) => {
       this.user.avatarImg = avatarBaseImg
@@ -235,8 +228,15 @@ export default class Server {
   }
 
   //********************//
-  // Locating functions //
+  // Deleting functions //
   //********************//
+
+  deleteInfo(infoID, type) {
+    console.log(infoID, type)
+    const infoIndex = this.user[type].map(item => item.ID).indexOf(infoID)
+    this.user[type].splice(infoIndex, 1)
+    this.saveToStorage()
+  }
 
   // Validation methods
   // ...
