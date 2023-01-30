@@ -35,19 +35,29 @@ class SaveInfoButton extends Component {
     // Retrieve all inputs in the data container and return an object of values to
     // the App component
     e.preventDefault()
-    // Search for all inputs/text areas within the form
+
+    // Search for all inputs/textAreas within the form and map into an array of values
     console.log(e.target.parentNode.parentNode)
-    const inputArr = [...e.target.parentNode.parentNode.querySelectorAll('input'), ...e.target.parentNode.parentNode.querySelectorAll('textarea')]
+    const inputArr = [
+      ...e.target.parentNode.parentNode.querySelectorAll('input'),
+      ...e.target.parentNode.parentNode.querySelectorAll('textarea')
+    ]
     const inputValues = inputArr.map((inputField) => inputField.value)
+
+    // If the inputs are set to clear, empty them after storing 
+    // the values and submit to the server
     if (this.props.setToClear === true) clearValues(inputArr)
     this.props.uploadData(inputValues, e.target.dataset.itemId, e.target.dataset.infoType)
+
+    // If editing via an open modal, close model after submitting
+    if (this.props.closeModal) this.props.closeModal()
   }
   
   render() {
     return (
       <div className="save-button-container span-two">
         <button 
-          className="save-button"
+          className="save-button hover-button"
           type="submit"
           data-item-id={this.props.itemID}
           data-info-type={this.props.infoType}
@@ -69,6 +79,7 @@ SaveInfoButton.defaultProps = {
 }
 
 SaveInfoButton.propTypes = {
+  closeModal: PropTypes.func,
   infoType: PropTypes.string,
   itemID: PropTypes.string,
   setToClear: PropTypes.bool,
@@ -78,7 +89,7 @@ SaveInfoButton.propTypes = {
 const EditButton = (props) => {
   return (
     <button
-      className="edit-button"
+      className="edit-button hover-button"
       type="button"
       data-item-id={props.itemID}
       onClick={props.editFunc}>
@@ -89,24 +100,30 @@ const EditButton = (props) => {
 
 EditButton.propTypes = {
   editFunc: PropTypes.func,
-  itemID: PropTypes.number,
+  itemID: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 }
 
 const DeleteButton = (props) => {
   return (
     <button
-      className="delete-button"
+      className="delete-button hover-button"
       type="button"
       data-item-id={props.itemID}
-      onClick={props.deleteFunc}>
+      onClick={props.showDeleteFunc}>
       <i className="fa-solid fa-trash-can"></i>
     </button>
   )
 }
 
 DeleteButton.propTypes = {
-  deleteFunc: PropTypes.func,
-  itemID: PropTypes.number,
+  itemID: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  showDeleteFunc: PropTypes.func,
 }
 
 export { SaveInfoButton, EditButton, DeleteButton }
