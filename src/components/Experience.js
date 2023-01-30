@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
-import { EditInfoModal } from './Modals' 
+import { DeleteInfoModal, EditInfoModal } from './Modals' 
 
 const ExperienceItem = (props) => {
   return (
@@ -15,8 +15,8 @@ const ExperienceItem = (props) => {
         itemID={props.experienceItem.ID}
       />
       <DeleteButton
-        deleteFunc={console.log('delete')}
         itemID={props.experienceItem.ID}
+        showDeleteFunc={props.showDeleteFunc}
       />
     </div>
   )
@@ -24,7 +24,8 @@ const ExperienceItem = (props) => {
 
 ExperienceItem.propTypes = {
   editFunc: PropTypes.func,
-  experienceItem: PropTypes.object
+  experienceItem: PropTypes.object,
+  showDeleteFunc: PropTypes.func,
 }
 
 const ExperienceList = (props) => {
@@ -32,6 +33,7 @@ const ExperienceList = (props) => {
     return props.experienceArray.map((experienceItem) => {
       return <ExperienceItem 
         key={`${experienceItem.workplaceName}${experienceItem.dateFrom}`}
+        showDeleteFunc={props.showDeleteFunc}
         experienceItem={experienceItem}
         editFunc={props.editFunc}
       />
@@ -47,10 +49,14 @@ const ExperienceList = (props) => {
 
 ExperienceList.propTypes = {
   editFunc: PropTypes.func,
-  experienceArray: PropTypes.array
+  experienceArray: PropTypes.array,
+  showDeleteFunc: PropTypes.func,
 }
 
 const ExperienceInput = (props) => {
+  let closeModal
+  if (props.closeModal) closeModal = props.closeModal
+
   return (
     <form className='experience-input-overview'>
       <fieldset>
@@ -87,8 +93,9 @@ const ExperienceInput = (props) => {
           ></textarea>
         </div>
         <SaveInfoButton
+          closeModal={closeModal}
           itemID={props.itemID}
-          infoType={'experience'}
+          infoType='experience'
           uploadData={props.uploadExperienceInfo}/>
       </fieldset>
     </form>
@@ -106,6 +113,7 @@ ExperienceInput.defaultProps = {
 }
 
 ExperienceInput.propTypes = {
+  closeModal: PropTypes.func,
   experienceItem: PropTypes.object,
   itemID: PropTypes.string,
   formType: PropTypes.string,
@@ -121,7 +129,23 @@ class Experience extends Component {
     }
 
     this.closeModal = this.props.closeModal.bind(this)
+
+    this.showDeleteModal = this.showDeleteModal.bind(this)
     this.showExperienceModal = this.showExperienceModal.bind(this)
+  }
+
+  showDeleteModal(e) {
+
+    const infoID = e.target.dataset.itemId
+
+    this.setState({
+      isModalActive: <DeleteInfoModal
+        closeModal={this.closeModal}
+        deleteFunc={this.props.deleteFunc}
+        itemID={infoID}
+        type='experience'
+      />
+    })
   }
 
   showExperienceModal(e) {
@@ -135,6 +159,7 @@ class Experience extends Component {
       isModalActive: <EditInfoModal 
         closeModal={this.closeModal}
         editForm={<ExperienceInput
+          closeModal={this.closeModal}
           experienceItem={experienceObj}
           formType='Edit'
           itemID={infoID}
@@ -154,6 +179,7 @@ class Experience extends Component {
             uploadExperienceInfo={this.props.uploadExperienceInfo}
           />
           <ExperienceList 
+            showDeleteFunc={this.showDeleteModal}
             experienceArray={this.props.userExperienceArray}
             editFunc={this.showExperienceModal}
           />
@@ -165,6 +191,7 @@ class Experience extends Component {
 
 Experience.propTypes = {
   closeModal: PropTypes.func,
+  deleteFunc: PropTypes.func,
   editExperienceInfo: PropTypes.func,
   requestInfoByID: PropTypes.func,
   revertToDateObject: PropTypes.func,
