@@ -73,6 +73,7 @@ export default class Server {
   // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
   // returns an ISO string to pass as default value to inputs 
   revertDate = (dateString) => {
+    console.log(dateString)
     const dateSplitArray = dateString.split(' ')
     const monthIndex = months.indexOf(dateSplitArray[0])
     return new Date(dateSplitArray[1], monthIndex).toISOString().substring(0,10)
@@ -125,28 +126,42 @@ export default class Server {
   //********************//
   // Creating functions //
   //********************//
+  // If an infoID is supplied, alters the current information object with that ID.
+  // Otherwise it creates a new information object and generates a random ID
 
-  createEducationInfo(educationObj) {
+  createEducationInfo(educationObj, infoID) {
     const educationItem = educationObj
     educationItem.dateFrom = this.formatDate(educationObj.dateFrom)
     educationItem.dateTo = this.formatDate(educationObj.dateTo)
 
-    educationItem.ID = this.generateID(this.user.education)
-    this.user.education[this.user.education.length] = educationItem
+    if (infoID) {
+      const infoIndex = this.user.experience.map(item => item.ID).indexOf(parseInt(infoID, 10))
+      this.user.education[infoIndex] = educationItem
+    } else {
+      educationItem.ID = this.generateID(this.user.education)
+      this.user.education[this.user.education.length] = educationItem
+    }
 
     const sortedArray = this.sortByDate(this.user.education)
     this.user.education = sortedArray
     this.saveToStorage()
   }
 
-  createExperienceInfo(experienceObj) {
+  createExperienceInfo(experienceObj, infoID) {
+
     const experienceItem = experienceObj
     experienceItem.dateFrom = this.formatDate(experienceObj.dateFrom)
     experienceItem.dateTo = this.formatDate(experienceObj.dateTo)
 
-    experienceItem.ID = this.generateID(this.user.experience)
-    this.user.experience[this.user.experience.length] = experienceItem
+    if (infoID) {
+      const infoIndex = (this.user.experience.map(item => item.ID)).indexOf(parseInt(infoID, 10))
+      this.user.experience[infoIndex] = experienceItem
+    } else {
+      experienceItem.ID = this.generateID(this.user.experience)
+      this.user.experience[this.user.experience.length] = experienceItem
+    }
 
+    // Sort experience array by date prior to saving
     const sortedArray = this.sortByDate(this.user.experience)
     this.user.experience = sortedArray
     console.log(this.user.experience)
@@ -177,11 +192,12 @@ export default class Server {
   // Updating/editing functions //
   //****************************//
 
-  editInfo(originalDataObj, newDataObj, type) {
-    this.user[type]?.forEach((arrayItem) => {
-      if (arrayItem === originalDataObj) arrayItem = newDataObj
-    })
-  }
+  // editInfo(infoID, newDataObj, type) {
+  //   console.log(newDataObj)
+  //   this.user[type]?.forEach((arrayItem) => {
+  //     if (arrayItem.ID === infoID) arrayItem = newDataObj
+  //   })
+  // }
 
   async updateAvatarChange(avatarImageFile) {
     const saveAvatarToStorage = (avatarBaseImg) => {
