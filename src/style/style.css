@@ -69,8 +69,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 49px;
-    min-height: calc(100vh - 143px);
+    padding-bottom: 49px;
+    min-height: calc(100vh - 192px);
     overflow: none auto;
     padding-top: 40px;
 }
@@ -114,7 +114,8 @@ footer i {
 }
 
 .save-button-container .save-button,
-.template-container .create-template-btn {
+.template-container .create-template-btn,
+.modal .confirm-container button {
     background-color: #ffefef;
     border-radius: 5px;
     color: #13005A;
@@ -143,6 +144,10 @@ textarea {
     padding: 2px 3px;
 }
 
+button {
+    border: none;
+}
+
 .delete-button,
 .edit-button {
     color: #13005A;
@@ -161,7 +166,7 @@ textarea {
     top: 5px;
 }
 
-button:hover {
+.hover-button:hover {
     background-color: #a8a0a0 !important;
 }
 
@@ -231,7 +236,6 @@ label {
 .list-item:not(:first-of-type) {
     border-top: 2px solid #ffefef;
 }
-
 
 legend {
     font-weight: bold;
@@ -413,6 +417,15 @@ textarea {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+.modal .confirm-container {
+    align-items: center;
+    color: #13005A;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
 }
 
 /**************/
