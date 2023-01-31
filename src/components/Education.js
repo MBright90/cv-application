@@ -8,8 +8,7 @@ const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {
     return certificateArray.map((certificate) => {
       return (
-        <p
-          key={certificate}
+        <p key={certificate}
           className="list-item-details"
         >{certificate}</p>
       )
@@ -71,14 +70,14 @@ const CertificateInput = (props) => {
       id={`certificate${props.inputIndex}`}
       defaultValue={props.currentCertificate}
       data-input-index={props.inputIndex}
-      onChange={props.handleCertificateChange}
+      onChange={props.handleValueChange}
     />
   )
 }
 
 CertificateInput.propTypes = {
   currentCertificate: PropTypes.string,
-  handleCertificateChange: PropTypes.func,
+  handleValueChange: PropTypes.func,
   inputIndex: PropTypes.number,
 }
 
@@ -91,25 +90,9 @@ class EducationInput extends Component {
       currentCertificateValues: [...this.props.educationItem.certificates]
     }
 
-    this.handleCertificateChange = this.handleCertificateChange.bind(this)
+    this.handleInfoSave = this.handleInfoSave.bind(this)
     this.handleNewCertificate = this.handleNewCertificate.bind(this)
-  }
-
-  handleCertificateChange(e) {
-    const certificateIndex = parseInt(e.target.dataset.inputIndex, 10)
-    const newCertificateValues = [...this.state.currentCertificateValues]
-    newCertificateValues[certificateIndex] = e.target.value
-
-    // Keeps up to date record of all current input values across the certificates
-    this.setState({
-      currentCertificateValues: newCertificateValues
-    })
-  }
-
-  handleNewCertificate() {
-    this.setState({
-      certificateInputAmount: this.state.certificateInputAmount + 1
-    })
+    this.handleValueChange = this.handleValueChange.bind(this)
   }
 
   createCertificateInputs = () => {
@@ -122,10 +105,27 @@ class EducationInput extends Component {
         key={`certificate-${index}`}
         inputIndex={index}
         currentCertificate={this.state.currentCertificateValues[index]}
-        handleCertificateChange={this.handleCertificateChange}
+        handleValueChange={this.handleValueChange}
       />
       )
     })
+  }
+
+  handleInfoSave(inputValues, infoID, infoType) {
+    this.setState({
+      certificateInputAmount: 1
+    })
+    this.props.uploadEducationInfo(inputValues, infoID, infoType)
+  }
+
+  handleNewCertificate() {
+    this.setState({
+      certificateInputAmount: this.state.certificateInputAmount + 1
+    })
+  }
+
+  handleValueChange(e) {
+    this.props.validateInput(e.target)
   }
 
   render() {
@@ -141,6 +141,8 @@ class EducationInput extends Component {
             <input 
               type="text"
               id="education-institution-input"
+              onChange={this.handleValueChange}
+              data-is-required={true}
               defaultValue={this.props.educationItem.institutionName}/>
           </div>
           <div>
@@ -148,6 +150,8 @@ class EducationInput extends Component {
             <input 
               type="date"
               id="education-date-from-input"
+              onChange={this.handleValueChange}
+              data-is-required={true}
               defaultValue={this.props.educationItem.dateFrom}
             />
           </div>
@@ -156,6 +160,8 @@ class EducationInput extends Component {
             <input 
               type="date" 
               id="education-date-to-input"
+              onChange={this.handleValueChange}
+              data-is-required={true}
               defaultValue={this.props.educationItem.dateTo}
             />
           </div>
@@ -173,7 +179,7 @@ class EducationInput extends Component {
             closeModal={closeModal}
             itemID={this.props.itemID}
             infoType='education'
-            uploadData={this.props.uploadEducationInfo}/>
+            uploadData={this.handleInfoSave}/>
         </fieldset>
       </form>
     )
@@ -183,7 +189,7 @@ class EducationInput extends Component {
 EducationInput.defaultProps = {
   educationItem: {
     institutionName: '',
-    dateFrom: new Date(1, 1, 1970),
+    dateFrom: new Date(1970).toISOString().substring(0, 10),
     dateTo: new Date().toISOString().substring(0,10),
     certificates: [''],
   },
@@ -196,6 +202,7 @@ EducationInput.propTypes = {
   itemID: PropTypes.string,
   formType: PropTypes.string,
   uploadEducationInfo: PropTypes.func,
+  validateInput: PropTypes.func,
 }
 
 class Education extends Component {
@@ -241,6 +248,7 @@ class Education extends Component {
           formType='Edit'
           itemID={infoID}
           uploadEducationInfo={this.props.editEducationInfo}
+          validateInput={this.props.validateInput}
         />}
       />
     })
@@ -253,6 +261,7 @@ class Education extends Component {
           {this.state.isModalActive}
           <EducationInput 
             uploadEducationInfo={this.props.uploadEducationInfo}
+            validateInput={this.props.validateInput}
           />
           <EducationList 
             educationArray={this.props.userEducationArray}
@@ -272,7 +281,8 @@ Education.propTypes = {
   requestInfoByID: PropTypes.func,
   revertToDateObject: PropTypes.func,
   uploadEducationInfo: PropTypes.func,
-  userEducationArray: PropTypes.array
+  userEducationArray: PropTypes.array,
+  validateInput: PropTypes.func,
 }
 
 export default Education
