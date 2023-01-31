@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
-import { EditInfoModal } from './Modals'
+import { DeleteInfoModal, EditInfoModal } from './Modals'
 
 const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {
@@ -26,8 +26,8 @@ const EducationItem = (props) => {
         itemID={props.educationItem.ID}
       />
       <DeleteButton
-        editFunc={console.log('edit')}
         itemID={props.educationItem.ID}
+        showDeleteFunc={props.showDeleteFunc}
       />
     </div>
   )
@@ -35,7 +35,8 @@ const EducationItem = (props) => {
 
 EducationItem.propTypes = {
   editFunc: PropTypes.func,
-  educationItem: PropTypes.object
+  educationItem: PropTypes.object,
+  showDeleteFunc: PropTypes.func,
 }
 
 const EducationList = (props) => {
@@ -44,7 +45,8 @@ const EducationList = (props) => {
       return <EducationItem
         key={`${educationItem.institutionName}${educationItem.dateFrom}`}
         editFunc={props.editFunc}
-        educationItem={educationItem}/>
+        educationItem={educationItem}
+        showDeleteFunc={props.showDeleteFunc}/>
     })
   }
 
@@ -57,7 +59,8 @@ const EducationList = (props) => {
 
 EducationList.propTypes = {
   editFunc: PropTypes.func,
-  educationArray: PropTypes.array
+  educationArray: PropTypes.array,
+  showDeleteFunc: PropTypes.func,
 }
 
 const CertificateInput = (props) => {
@@ -126,6 +129,9 @@ class EducationInput extends Component {
   }
 
   render() {
+    let closeModal
+    if (this.props.closeModal) closeModal = this.props.closeModal
+
     return (
       <form className='education-input-overview'>
         <fieldset>
@@ -157,13 +163,16 @@ class EducationInput extends Component {
             <label htmlFor="certificates">Certificate(s)</label>
             {this.createCertificateInputs()}
             <button
-              className="new-certificate-button"
+              className="new-certificate-button hover-button"
               type="button"
               onClick={this.handleNewCertificate}>
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
           <SaveInfoButton
+            closeModal={closeModal}
+            itemID={this.props.itemID}
+            infoType='education'
             uploadData={this.props.uploadEducationInfo}/>
         </fieldset>
       </form>
@@ -175,13 +184,16 @@ EducationInput.defaultProps = {
   educationItem: {
     institutionName: '',
     dateFrom: new Date(1, 1, 1970),
-    dateTo: new Date(1, 1, 1971),
+    dateTo: new Date().toISOString().substring(0,10),
     certificates: [''],
-  }
+  },
+  formType: 'Add',
 }
 
 EducationInput.propTypes = {
+  closeModal: PropTypes.func,
   educationItem: PropTypes.object,
+  itemID: PropTypes.string,
   formType: PropTypes.string,
   uploadEducationInfo: PropTypes.func,
 }
@@ -195,12 +207,27 @@ class Education extends Component {
     }
 
     this.closeModal = this.props.closeModal.bind(this)
+    this.showDeleteModal = this.showDeleteModal.bind(this)
     this.showEducationModal = this.showEducationModal.bind(this)
+  }
+
+  showDeleteModal(e) {
+
+    const infoID = e.target.dataset.itemId
+
+    this.setState({
+      isModalActive: <DeleteInfoModal
+        closeModal={this.closeModal}
+        deleteFunc={this.props.deleteFunc}
+        itemID={infoID}
+        type='education'
+      />
+    })
   }
 
   showEducationModal(e) {
     const infoID = e.target.dataset.itemId
-    const educationObj = this.props.requestInfoByID(infoID, 'education')
+    const educationObj = Object.assign({}, this.props.requestInfoByID(infoID, 'education'))
 
     educationObj.dateFrom = this.props.revertToDateObject(educationObj.dateFrom)
     educationObj.dateTo = this.props.revertToDateObject(educationObj.dateTo)
@@ -209,8 +236,10 @@ class Education extends Component {
       isModalActive: <EditInfoModal 
         closeModal={this.closeModal}
         editForm={<EducationInput
+          closeModal={this.closeModal}
           educationItem={educationObj}
           formType='Edit'
+          itemID={infoID}
           uploadEducationInfo={this.props.editEducationInfo}
         />}
       />
@@ -228,6 +257,7 @@ class Education extends Component {
           <EducationList 
             educationArray={this.props.userEducationArray}
             editFunc={this.showEducationModal}
+            showDeleteFunc={this.showDeleteModal}
           />
         </div>
       </main>
@@ -237,6 +267,7 @@ class Education extends Component {
 
 Education.propTypes = {
   closeModal: PropTypes.func,
+  deleteFunc: PropTypes.func,
   editEducationInfo: PropTypes.func,
   requestInfoByID: PropTypes.func,
   revertToDateObject: PropTypes.func,

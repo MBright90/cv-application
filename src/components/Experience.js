@@ -33,9 +33,9 @@ const ExperienceList = (props) => {
     return props.experienceArray.map((experienceItem) => {
       return <ExperienceItem 
         key={`${experienceItem.workplaceName}${experienceItem.dateFrom}`}
-        showDeleteFunc={props.showDeleteFunc}
-        experienceItem={experienceItem}
         editFunc={props.editFunc}
+        experienceItem={experienceItem}
+        showDeleteFunc={props.showDeleteFunc}
       />
     })
   }
@@ -106,7 +106,7 @@ ExperienceInput.defaultProps = {
   experienceItem: {
     workplaceName: '',
     dateFrom: new Date(1, 1, 1970),
-    dateTo: new Date(1, 1, 1971),
+    dateTo: new Date().toISOString().substring(0,10),
     experienceSummary: ''
   },
   formType: 'Add',
@@ -129,7 +129,6 @@ class Experience extends Component {
     }
 
     this.closeModal = this.props.closeModal.bind(this)
-
     this.showDeleteModal = this.showDeleteModal.bind(this)
     this.showExperienceModal = this.showExperienceModal.bind(this)
   }
@@ -179,9 +178,9 @@ class Experience extends Component {
             uploadExperienceInfo={this.props.uploadExperienceInfo}
           />
           <ExperienceList 
-            showDeleteFunc={this.showDeleteModal}
             experienceArray={this.props.userExperienceArray}
             editFunc={this.showExperienceModal}
+            showDeleteFunc={this.showDeleteModal}
           />
         </div>
       </main>
