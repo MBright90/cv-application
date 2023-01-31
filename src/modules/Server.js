@@ -39,9 +39,9 @@ export default class Server {
     }
   }
 
-  //*******************//
-  // Utility functions //
-  //*******************//
+  //*****************//
+  // Utility methods //
+  //*****************//
 
   generateID = (array) => {
     let newID
@@ -49,7 +49,7 @@ export default class Server {
     while (IDChecking) {
       // Suggest a new ID based on ms since 01/01/1970
       // Set ID checking to false so if no matches are found, it no longer checks
-      newID = Date.now()
+      newID = Date.now().toString()
       IDChecking = false
 
       // Go through the array to check that current suggested ID does not match any other
@@ -122,39 +122,46 @@ export default class Server {
     return sortedArray
   }
 
-  //********************//
-  // Creating functions //
-  //********************//
+  //******************//
+  // Creating methods //
+  //******************//
   // If an infoID is supplied, alters the current information object with that ID.
   // Otherwise it creates a new information object and generates a random ID
 
   createEducationInfo(educationObj, infoID) {
     const educationItem = educationObj
+
     educationItem.dateFrom = this.formatDate(educationObj.dateFrom)
     educationItem.dateTo = this.formatDate(educationObj.dateTo)
 
+    console.log(educationItem)
+
     if (infoID) {
-      const infoIndex = this.user.experience.map(item => item.ID).indexOf(parseInt(infoID, 10))
+      educationItem.ID = infoID
+      const infoIndex = this.user.education.map(item => item.ID).indexOf(infoID)
       this.user.education[infoIndex] = educationItem
     } else {
       educationItem.ID = this.generateID(this.user.education)
       this.user.education[this.user.education.length] = educationItem
     }
 
+    // Sort experience array by date prior to saving
     const sortedArray = this.sortByDate(this.user.education)
     this.user.education = sortedArray
     this.saveToStorage()
   }
 
   createExperienceInfo(experienceObj, infoID) {
-
     const experienceItem = experienceObj
+
     experienceItem.dateFrom = this.formatDate(experienceObj.dateFrom)
     experienceItem.dateTo = this.formatDate(experienceObj.dateTo)
 
+    console.log(experienceItem)
+
     if (infoID) {
       experienceItem.ID = infoID
-      const infoIndex = (this.user.experience.map(item => item.ID)).indexOf(parseInt(infoID, 10))
+      const infoIndex = this.user.experience.map(item => item.ID).indexOf(infoID)
       this.user.experience[infoIndex] = experienceItem
     } else {
       experienceItem.ID = this.generateID(this.user.experience)
@@ -164,14 +171,13 @@ export default class Server {
     // Sort experience array by date prior to saving
     const sortedArray = this.sortByDate(this.user.experience)
     this.user.experience = sortedArray
-    console.log(this.user.experience)
     this.saveToStorage()
   }
 
 
-  //*******************//
-  // Reading functions //
-  //*******************//
+  //*****************//
+  // Reading methods //
+  //*****************//
 
   getCurrentInfo() {
     return this.user
@@ -188,9 +194,9 @@ export default class Server {
     return foundObject
   }
 
-  //****************************//
-  // Updating/editing functions //
-  //****************************//
+  //**************************//
+  // Updating/editing methods //
+  //**************************//
 
   async updateAvatarChange(avatarImageFile) {
     const saveAvatarToStorage = (avatarBaseImg) => {
@@ -227,9 +233,9 @@ export default class Server {
     this.saveToStorage()
   }
 
-  //********************//
-  // Deleting functions //
-  //********************//
+  //******************//
+  // Deleting methods //
+  //******************//
 
   deleteInfo(infoID, type) {
     console.log(infoID, type)
@@ -238,7 +244,14 @@ export default class Server {
     this.saveToStorage()
   }
 
+  //********************//
   // Validation methods
+  // *******************//
+
+  validateInputValue(formInputElements) {
+    console.log(formInputElements)
+  }
+
   // ...
   // Ensure date to are later than date from
 
