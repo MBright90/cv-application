@@ -117,7 +117,7 @@ footer i {
 .template-container .create-template-btn,
 .modal .confirm-container button {
     background-color: #ffefef;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     color: #13005A;
     font-weight: bold;
     padding: 3px 5px;
@@ -307,7 +307,7 @@ textarea {
 
 .avatar-edit-overview label {
     background-color: #ffefef;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     color: #13005A;
     margin-bottom: 20px;
     padding: 5px 10px;
