@@ -70,6 +70,10 @@ export default class Server {
     return `${months[monthIndex]} ${dateSplitArray[0]}`
   }
 
+  removeEmptyFields = (array) => {
+    return array.filter((item) => {if (item != '') return item})
+  }
+
   // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
   // returns an ISO string to pass as default value to inputs 
   revertDate = (dateString) => {
@@ -248,9 +252,42 @@ export default class Server {
   // Validation methods
   // *******************//
 
-  validateInputValue(formInputElements) {
-    console.log(formInputElements)
+  #removeInvalidHighlight = (inputElement) => {
+    // Clear the success notification after three seconds
+    this.timerID = setTimeout(() => {
+      inputElement.classList.remove('invalid-highlight')
+    }, 3000)
   }
+  
+  #highlightInvalidField = (inputElement) => {
+    inputElement.classList.add('invalid-highlight')
+    this.#removeInvalidHighlight(inputElement)
+  }
+
+  validateTextSubmission(inputElement) {
+    if (inputElement.value.length < inputElement.minLength) {
+      this.#highlightInvalidField(inputElement)
+      return `Please include at least ${inputElement.minLength} characters}`
+    } else {
+      return ''
+    }
+  }
+
+  validateInputSubmission(inputElementArr) {
+    let validCheck = ''
+
+    for (let i = 0; i < inputElementArr.length; i++) {
+      const inputElement = inputElementArr[i]
+      if (inputElement.type === 'text' || inputElement.nodeName === 'TEXTAREA') {
+        validCheck = this.validateTextSubmission(inputElement)
+        if (validCheck !== '') break
+      }
+    }
+
+    return 'This has been submitted and failed validation'
+  }
+  //   if (inputElement.data-is-required)
+  // }
 
   // ...
   // Ensure date to are later than date from
