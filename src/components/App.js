@@ -35,6 +35,7 @@ export default class App extends Component {
     this.uploadEducationInfo = this.uploadEducationInfo.bind(this)
     this.uploadExperienceInfo = this.uploadExperienceInfo.bind(this)
     this.uploadReferenceInfo = this.uploadReferenceInfo.bind(this)
+    this.validateInputSubmission = this.validateInputSubmission.bind(this)
   }
 
   changePageShown(navChoice) {
@@ -76,7 +77,7 @@ export default class App extends Component {
 
   uploadEducationInfo(inputValues, infoID) {
 
-    const certificateSplice = inputValues.slice(3)
+    const certificateSplice = server.removeEmptyFields(inputValues.slice(3))
     const educationObj = {
       institutionName: inputValues[0],
       dateFrom: inputValues[1],
@@ -133,7 +134,43 @@ export default class App extends Component {
     })
   }
 
-  // Modal functions
+  // Validation passing functions
+
+  validateCurrentInputValue(inputEl) {
+
+    const checkMinLength = (value, minLength) => {
+      if (value.length >= parseInt(minLength, 10)) return true
+    }
+
+    let isValid = true
+    let errorMessage
+
+    if (inputEl.type == 'text' || inputEl.nodeName === 'TEXTAREA') {
+      if (!checkMinLength(inputEl.value, inputEl.minLength)) {
+        errorMessage = `Please include at least ${inputEl.minLength} characters`
+        isValid = false
+      }
+    }
+
+    else if (inputEl.type === 'date'){
+      if (!Date.parse(inputEl.value)) {
+        errorMessage = 'This date is required'
+        isValid = false
+      }
+    }
+
+    if (!isValid) {
+      inputEl.classList.add('invalid')
+      return errorMessage
+    } else {
+      inputEl.classList.remove('invalid')
+      return ''
+    }
+  }
+
+  validateInputSubmission(inputElementArr) {
+    return server.validateInputSubmission(inputElementArr)
+  }
 
   render() {
     const mainPage = this.state.currentPage
@@ -148,22 +185,29 @@ export default class App extends Component {
       revertToDateObject={this.revertToDateObject}
       uploadExperienceInfo={this.uploadExperienceInfo}
       userExperienceArray={this.state.currentUser.experience}
+      validateInput={this.validateCurrentInputValue}
+      validateInputSubmission={this.validateInputSubmission}
     />
 
     else if (mainPage === 'education') main = <Education
       closeModal={this.closeModal}
       deleteFunc={this.deleteInfo}
+      editEducationInfo={this.editInfo}
       requestInfoByID={this.requestInfoByID}
       revertToDateObject={this.revertToDateObject}
       uploadEducationInfo={this.uploadEducationInfo}
       userEducationArray={this.state.currentUser.education}
+      validateInput={this.validateCurrentInputValue}
+      validateInputSubmission={this.validateInputSubmission}
     />
 
     else main = <You 
       uploadAccountInfo={this.uploadAccountInfo}
       uploadAvatarChange={this.uploadAvatarChange}
       uploadReferenceInfo={this.uploadReferenceInfo}
-      userInfo={this.state.currentUser}/>
+      userInfo={this.state.currentUser}
+      validateInput={this.validateInput}
+      validateInputSubmission={this.validateInputSubmission}/>
 
     return (
       <div className="page-layout">

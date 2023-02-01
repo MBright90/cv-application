@@ -155,11 +155,14 @@ export default class You extends Component {
             handleAvatarUpload={this.handleAvatarUpload}/>
           <AccountInfo 
             uploadAccountInfo={this.props.uploadAccountInfo}
-            userInfo={this.props.userInfo}/>
+            userInfo={this.props.userInfo}
+            validateInput={this.props.validateInput}
+            validateInputSubmission={this.props.validateInputSubmission}/>
           <ReferenceInfo 
             reference={this.props.userInfo.reference}
             uploadReferenceInfo={this.props.uploadReferenceInfo}
-          />
+            validateInput={this.props.validateInput}
+            validateInputSubmission={this.props.validateInputSubmission}/>
         </div>
       </main>
     )
@@ -171,4 +174,6 @@ You.propTypes = {
   uploadAvatarChange: PropTypes.func,
   uploadReferenceInfo: PropTypes.func,
   userInfo: PropTypes.object,
+  validateInput: PropTypes.func,
+  validateInputSubmission: PropTypes.func,
 }
