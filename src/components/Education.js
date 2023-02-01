@@ -70,6 +70,7 @@ const CertificateInput = (props) => {
       id={`certificate${props.inputIndex}`}
       defaultValue={props.currentCertificate}
       data-input-index={props.inputIndex}
+      minLength="3"
       onChange={props.handleValueChange}
     />
   )
@@ -141,6 +142,7 @@ class EducationInput extends Component {
             <input 
               type="text"
               id="education-institution-input"
+              minLength="3"
               onChange={this.handleValueChange}
               data-is-required={true}
               defaultValue={this.props.educationItem.institutionName}/>
@@ -152,6 +154,7 @@ class EducationInput extends Component {
               id="education-date-from-input"
               onChange={this.handleValueChange}
               data-is-required={true}
+              data-date="from"
               defaultValue={this.props.educationItem.dateFrom}
             />
           </div>
@@ -162,6 +165,7 @@ class EducationInput extends Component {
               id="education-date-to-input"
               onChange={this.handleValueChange}
               data-is-required={true}
+              data-date="to"
               defaultValue={this.props.educationItem.dateTo}
             />
           </div>
@@ -283,6 +287,7 @@ Education.propTypes = {
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array,
   validateInput: PropTypes.func,
+  validateInputSubmission: PropTypes.func,
 }
 
 export default Education

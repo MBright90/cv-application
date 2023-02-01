@@ -70,6 +70,7 @@ const ExperienceInput = (props) => {
           <input 
             type="text"
             id="experience-workplace-input"
+            minLength="3"
             onChange={handleValueChange}
             data-is-required={true}
             defaultValue={props.experienceItem.workplaceName}/>
@@ -81,6 +82,7 @@ const ExperienceInput = (props) => {
             id="experience-date-from-input"
             onChange={handleValueChange}
             data-is-required={true}
+            data-date="from"
             defaultValue={props.experienceItem.dateFrom}
           />
         </div>
@@ -91,15 +93,18 @@ const ExperienceInput = (props) => {
             id="experience-date-to-input"
             onChange={handleValueChange}
             data-is-required={true}
+            data-date="to"
             defaultValue={props.experienceItem.dateTo}
           />
         </div>
         <div className="span-two">
           <label>Summary</label>
           <textarea
+            type="text"
             id="experience-summary-input"
-            minLength={20}
+            minLength="20"
             onChange={handleValueChange}
+            data-is-required={true}
             defaultValue={props.experienceItem.experienceSummary}
           ></textarea>
         </div>
@@ -107,7 +112,8 @@ const ExperienceInput = (props) => {
           closeModal={closeModal}
           itemID={props.itemID}
           infoType='experience'
-          uploadData={props.uploadExperienceInfo}/>
+          uploadData={props.uploadExperienceInfo}
+          validateInputSubmission={props.validateInputSubmission}/>
       </fieldset>
     </form>
   )
@@ -130,6 +136,7 @@ ExperienceInput.propTypes = {
   formType: PropTypes.string,
   uploadExperienceInfo: PropTypes.func,
   validateInput: PropTypes.func,
+  validateInputSubmission: PropTypes.func,
 }
 
 class Experience extends Component {
@@ -176,6 +183,7 @@ class Experience extends Component {
           itemID={infoID}
           uploadExperienceInfo={this.props.editExperienceInfo}
           validateInput={this.props.validateInput}
+          validateInputSubmission={this.props.validateInputSubmission}
         />}
       />
     })
@@ -190,6 +198,7 @@ class Experience extends Component {
           <ExperienceInput 
             uploadExperienceInfo={this.props.uploadExperienceInfo}
             validateInput={this.props.validateInput}
+            validateInputSubmission={this.props.validateInputSubmission}
           />
           <ExperienceList 
             experienceArray={this.props.userExperienceArray}
@@ -211,6 +220,7 @@ Experience.propTypes = {
   uploadExperienceInfo: PropTypes.func,
   userExperienceArray: PropTypes.array,
   validateInput: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }
 
 export default Experience
