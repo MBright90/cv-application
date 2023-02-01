@@ -139,6 +139,7 @@ footer i {
 input[type=text],
 input[type=date],
 textarea {
+    border: none;
     color: #13005A;
     letter-spacing: 2px;
     padding: 2px 3px;
@@ -426,6 +427,16 @@ textarea {
     flex-direction: column;
     gap: 20px;
     justify-content: center;
+}
+
+/************/
+/* validity */
+/************/
+
+.invalid-highlight,
+.invalid:focus {
+    background-color: #F48484;
+    outline-color: #820000;
 }
 
 /**************/
