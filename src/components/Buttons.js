@@ -9,7 +9,7 @@ class SaveInfoButton extends Component {
       currentMessage: '',
     }
   
-    this.notifySave = this.notifySave.bind(this)
+    this.notifyMessage = this.notifyMessage.bind(this)
   }
   
   #clearNotification = () => {
@@ -21,7 +21,7 @@ class SaveInfoButton extends Component {
     }, 3000)
   }
   
-  notifySave = (message) => {
+  notifyMessage = (message) => {
     this.setState({
       currentMessage: message
     })
@@ -32,25 +32,33 @@ class SaveInfoButton extends Component {
     const clearValues = (inputElements) => {
       inputElements.forEach((el) => el.value = null)
     }
-    // Retrieve all inputs in the data container and return an object of values to
-    // the App component
+
     e.preventDefault()
 
-    // Search for all inputs/textAreas within the form and map into an array of values
-    console.log(e.target.parentNode.parentNode)
+    // Search for all inputs/textAreas within the form and 
+    // submit to the server for validation before committing
     const inputArr = [
       ...e.target.parentNode.parentNode.querySelectorAll('input'),
       ...e.target.parentNode.parentNode.querySelectorAll('textarea')
     ]
-    const inputValues = inputArr.map((inputField) => inputField.value)
+    const validatedInfo = this.props.validateInputSubmission(inputArr)
+    console.log(validatedInfo)
 
-    // If the inputs are set to clear, empty them after storing 
-    // the values and submit to the server
-    if (this.props.setToClear === true) clearValues(inputArr)
-    this.props.uploadData(inputValues, e.target.dataset.itemId, e.target.dataset.infoType)
+    if (validatedInfo === '') {
+      // map into an array of values for parsing and pass to 
+      const inputValues = inputArr.map((inputField) => inputField.value)
+      this.props.uploadData(inputValues, e.target.dataset.itemId, e.target.dataset.infoType)
+      this.notifyMessage('Update successful')
+      if (this.props.setToClear === true) clearValues(inputArr)
 
-    // If editing via an open modal, close model after submitting
-    if (this.props.closeModal) this.props.closeModal()
+      // If editing via an open modal, close model after submitting
+      if (this.props.closeModal) this.props.closeModal()
+
+    } else {
+      // If there is a validation message to display, notify the user
+      this.notifyMessage(validatedInfo)
+    }
+
   }
   
   render() {
@@ -61,10 +69,7 @@ class SaveInfoButton extends Component {
           type="submit"
           data-item-id={this.props.itemID}
           data-info-type={this.props.infoType}
-          onClick={(e) => {
-            this.handleFormData(e)
-            this.notifySave('Update Successful')
-          }}
+          onClick={this.handleFormData}
         >Update</button>
         <p>{this.state.currentMessage}</p>
       </div>
@@ -84,6 +89,7 @@ SaveInfoButton.propTypes = {
   itemID: PropTypes.string,
   setToClear: PropTypes.bool,
   uploadData: PropTypes.func,
+  validateInputSubmission: PropTypes.func,
 }
 
 const EditButton = (props) => {
@@ -100,10 +106,7 @@ const EditButton = (props) => {
 
 EditButton.propTypes = {
   editFunc: PropTypes.func,
-  itemID: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  itemID: PropTypes.string,
 }
 
 const DeleteButton = (props) => {
@@ -119,10 +122,7 @@ const DeleteButton = (props) => {
 }
 
 DeleteButton.propTypes = {
-  itemID: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
+  itemID: PropTypes.string,
   showDeleteFunc: PropTypes.func,
 }
 
