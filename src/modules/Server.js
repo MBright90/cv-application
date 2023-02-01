@@ -273,6 +273,12 @@ export default class Server {
     }
   }
 
+  validateDateComparison(dateInputArr) {
+    const dateFrom = dateInputArr.find(input => input.dataset.date === 'from')
+    const dateTo = dateInputArr.find(input => input.dataset.date === 'to')
+    return dateFrom < dateTo
+  }
+
   validateInputSubmission(inputElementArr) {
     let validCheck = ''
 
@@ -284,7 +290,12 @@ export default class Server {
       }
     }
 
-    return 'This has been submitted and failed validation'
+    if (validCheck === '') {
+      const dateInputArr = inputElementArr.filter((input) => input.type === 'date')
+      if (!this.validateDateComparison(dateInputArr)) validCheck = 'Ensure "Date From" comes before "Date To"'
+    }
+
+    return validCheck
   }
   //   if (inputElement.data-is-required)
   // }
