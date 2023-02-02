@@ -290,17 +290,6 @@ export default class Server {
 
     return [validCheck, invalidInput]
   }
-  //   if (inputElement.data-is-required)
-  // }
-
-  // ...
-  // Ensure date to are later than date from
-
-  // TODO: Methods to save all data to localStorage
-
-  // Sort experience/education based on date for display
-
-  // TODO: Edit data at particular index in experience/education
 
   // TODO: Clear all data
 }
