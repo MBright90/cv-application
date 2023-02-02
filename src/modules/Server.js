@@ -252,50 +252,43 @@ export default class Server {
   // Validation methods
   // *******************//
 
-  #removeInvalidHighlight = (inputElement) => {
-    // Clear the success notification after three seconds
-    this.timerID = setTimeout(() => {
-      inputElement.classList.remove('invalid-highlight')
-    }, 3000)
-  }
-  
-  #highlightInvalidField = (inputElement) => {
-    inputElement.classList.add('invalid-highlight')
-    this.#removeInvalidHighlight(inputElement)
-  }
-
   validateTextSubmission(inputElement) {
-    if (inputElement.value.length < inputElement.minLength) {
-      this.#highlightInvalidField(inputElement)
-      return `Please include at least ${inputElement.minLength} characters}`
-    } else {
-      return ''
-    }
+    if (inputElement.value.length < inputElement.minLength)
+      return `Please include at least ${inputElement.minLength} characters`
+    return ''
   }
 
   validateDateComparison(dateInputArr) {
     const dateFrom = dateInputArr.find(input => input.dataset.date === 'from')
     const dateTo = dateInputArr.find(input => input.dataset.date === 'to')
-    return dateFrom < dateTo
+
+    return dateFrom.value < dateTo.value
   }
 
   validateInputSubmission(inputElementArr) {
     let validCheck = ''
+    let invalidInput = false
 
     for (let i = 0; i < inputElementArr.length; i++) {
       const inputElement = inputElementArr[i]
       if (inputElement.type === 'text' || inputElement.nodeName === 'TEXTAREA') {
         validCheck = this.validateTextSubmission(inputElement)
-        if (validCheck !== '') break
+        if (validCheck !== '') {
+          invalidInput = inputElement
+          break
+        }
       }
     }
 
     if (validCheck === '') {
       const dateInputArr = inputElementArr.filter((input) => input.type === 'date')
-      if (!this.validateDateComparison(dateInputArr)) validCheck = 'Ensure "Date From" comes before "Date To"'
+      if (!this.validateDateComparison(dateInputArr)) {
+        validCheck = 'Ensure "Date From" comes before "Date To"'
+        invalidInput = dateInputArr[0]
+      }
     }
 
-    return validCheck
+    return [validCheck, invalidInput]
   }
   //   if (inputElement.data-is-required)
   // }
