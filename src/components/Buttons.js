@@ -11,10 +11,22 @@ class SaveInfoButton extends Component {
   
     this.notifyMessage = this.notifyMessage.bind(this)
   }
+
+  #removeInvalidHighlight = (inputElement) => {
+    // Clear the success notification after three seconds
+    this.highlightTimerID = setTimeout(() => {
+      inputElement.classList.remove('invalid-highlight')
+    }, 3000)
+  }
+  
+  highlightInvalidField = (inputElement) => {
+    inputElement.classList.add('invalid-highlight')
+    this.#removeInvalidHighlight(inputElement)
+  }
   
   #clearNotification = () => {
     // Clear the success notification after three seconds
-    this.timerID = setTimeout(() => {
+    this.notificationTimerID = setTimeout(() => {
       this.setState({
         currentMessage: ''
       })
@@ -41,11 +53,13 @@ class SaveInfoButton extends Component {
       ...e.target.parentNode.parentNode.querySelectorAll('input'),
       ...e.target.parentNode.parentNode.querySelectorAll('textarea')
     ]
-    const validatedInfo = this.props.validateInputSubmission(inputArr)
-    console.log(validatedInfo)
 
-    if (validatedInfo === '') {
-      // map into an array of values for parsing and pass to 
+    // Retrieve an array, with index 0 being the validation message and
+    // index 1 being the first invalid field
+    const validatedInfo = this.props.validateInputSubmission(inputArr)
+
+    if (!validatedInfo[1]) {
+      // map into an array of values for parsing and pass to relevant server function
       const inputValues = inputArr.map((inputField) => inputField.value)
       this.props.uploadData(inputValues, e.target.dataset.itemId, e.target.dataset.infoType)
       this.notifyMessage('Update successful')
@@ -55,8 +69,10 @@ class SaveInfoButton extends Component {
       if (this.props.closeModal) this.props.closeModal()
 
     } else {
-      // If there is a validation message to display, notify the user
-      this.notifyMessage(validatedInfo)
+      // If there is a validation message to display, notify the user and
+      // highlight all invalid fields
+      this.notifyMessage(validatedInfo[0])
+      this.highlightInvalidField(validatedInfo[1])
     }
 
   }
