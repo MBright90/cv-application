@@ -34,7 +34,6 @@ EditInfoModal.propTypes = {
 const DeleteInfoModal = (props) => {
 
   const handleDeleteClick = (e) => {
-    console.log(e.target)
     const infoID = e.target.dataset.itemId
     const infoType = e.target.dataset.type
 
@@ -69,4 +68,31 @@ DeleteInfoModal.propTypes = {
   type: PropTypes.string,
 }
 
-export { EditInfoModal, DeleteInfoModal }
+const ResetInfoModal = (props) => {
+
+  const handleResetClick = () => {
+    props.resetFunc()
+    props.closeModal()
+  }
+
+  return (
+    <div className="modal">
+      <div className="modal-form-container">
+        <div className="confirm-container">
+          <p>Are you sure you want to reset all data?</p>
+          <button
+            onClick={handleResetClick}
+          >Confirm</button>
+        </div>
+        <ModalCloseButton closeModal={props.closeModal} />
+      </div>
+    </div>
+  )
+}
+
+ResetInfoModal.propTypes = {
+  closeModal: PropTypes.func,
+  resetFunc: PropTypes.func,
+}
+
+export { EditInfoModal, DeleteInfoModal, ResetInfoModal }
