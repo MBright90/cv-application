@@ -27,6 +27,7 @@ export default class App extends Component {
     this.changePageShown = this.changePageShown.bind(this)
     this.deleteInfo = this.deleteInfo.bind(this)
     this.editInfo = this.editInfo.bind(this)
+    this.resetAllData = this.resetAllData.bind(this)
     this.requestInfoByID = this.requestInfoByID.bind(this)
     this.revertToDateObject = this.revertToDateObject.bind()
     this.updateCurrentUser = this.updateCurrentUser.bind(this)
@@ -127,6 +128,10 @@ export default class App extends Component {
     return server.revertDate(formattedDate)
   }
 
+  resetAllData() {
+    server.clearStorage()
+  }
+
   // Unbound function passed to education and experience to close modals
   closeModal() {
     this.setState({
@@ -215,7 +220,9 @@ export default class App extends Component {
           currentPageShown={this.state.currentPage} 
           changePageShown={this.changePageShown}/>
         {main}
-        <Footer />
+        <Footer 
+          closeModal={this.closeModal}
+          resetFunc={this.resetAllData}/>
         {this.state.activeModal}
       </div>
     )
