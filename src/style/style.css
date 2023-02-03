@@ -91,6 +91,11 @@ footer {
     width: calc(100vw - 20px);
 }
 
+.reset-data-button {
+    position: absolute;
+    right: 5px;
+}
+
 footer i {
     margin-right: 5px;
 }
@@ -115,7 +120,8 @@ footer i {
 
 .save-button-container .save-button,
 .template-container .create-template-btn,
-.modal .confirm-container button {
+.modal .confirm-container button,
+.reset-data-button {
     background-color: #ffefef;
     /* border-radius: 5px; */
     color: #13005A;
