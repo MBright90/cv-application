@@ -183,7 +183,8 @@ class EducationInput extends Component {
             closeModal={closeModal}
             itemID={this.props.itemID}
             infoType='education'
-            uploadData={this.handleInfoSave}/>
+            uploadData={this.handleInfoSave}
+            validateInputSubmission={this.props.validateInputSubmission}/>
         </fieldset>
       </form>
     )
@@ -207,6 +208,7 @@ EducationInput.propTypes = {
   formType: PropTypes.string,
   uploadEducationInfo: PropTypes.func,
   validateInput: PropTypes.func,
+  validateInputSubmission: PropTypes.func,
 }
 
 class Education extends Component {
