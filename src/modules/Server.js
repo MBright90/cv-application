@@ -222,18 +222,16 @@ export default class Server {
   }
 
   updateAccountInfo(infoArray) {
-    this.user.firstName = infoArray.firstName !== '' 
-      ? infoArray.firstName 
-      : this.user.firstName
-    this.user.surname = infoArray.surname !== '' 
-      ? infoArray.surname 
-      : this.user.surname
-    this.user.email = infoArray.email !== ''
-      ? infoArray.email
-      : this.user.email
-    this.user.contactNumber = infoArray.number !== ''
-      ? infoArray.contactNumber
-      : this.user.contactNumber
+    this.user.firstName = infoArray.firstName
+    this.user.surname = infoArray.surname
+    this.user.email = infoArray.email
+    this.user.contactNumber = infoArray.number
+    this.saveToStorage()
+  }
+  updateReferenceInfo(infoArray) {
+    this.user.reference.name = infoArray.name
+    this.user.reference.position = infoArray.position
+    this.user.reference.email = infoArray.email
     this.saveToStorage()
   }
 
@@ -265,6 +263,10 @@ export default class Server {
     return dateFrom.value < dateTo.value
   }
 
+  validateEmailSubmission(emailInput) {
+    console.log(emailInput)
+  }
+
   validateInputSubmission(inputElementArr) {
     let validCheck = ''
     let invalidInput = false
@@ -286,6 +288,11 @@ export default class Server {
         validCheck = 'Ensure "Date From" comes before "Date To"'
         invalidInput = dateInputArr[0]
       }
+    }
+
+    if (validCheck === '') {
+      const emailInputArr = inputElementArr.filter((input) => input.id.includes('email'))
+      console.log(emailInputArr)
     }
 
     return [validCheck, invalidInput]
