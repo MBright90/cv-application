@@ -20,7 +20,7 @@ export default class App extends Component {
 
     this.state = {
       activeModal: false,
-      currentPage: 'experience',
+      currentPage: 'you',
       currentUser: server.getCurrentInfo()
     }
 
