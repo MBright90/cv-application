@@ -50,15 +50,6 @@ export default class App extends Component {
     })
   }
 
-  // emphasizeNavChoice() {
-  //   const navItems = document.querySelectorAll('nav ul li')
-  //   navItems.forEach((navItem) => {
-  //     navItem.textContent === e.target.textContent
-  //       ? navItem.classList.add('active')
-  //       : navItem.classList.remove('active')
-  //   })  
-  // }
-
   // info retrieval functions //
 
   requestInfoByID(ID, type) {
@@ -199,7 +190,10 @@ export default class App extends Component {
     const mainPage = this.state.currentPage
     let main
 
-    if (mainPage === 'home') main = <Home />
+    if (mainPage === 'home') main = <Home 
+      changePageShown={this.changePageShown}
+    />
+
     else if (mainPage === 'experience') main = <Experience
       closeModal={this.closeModal}
       deleteFunc={this.deleteInfo}
@@ -234,16 +228,15 @@ export default class App extends Component {
       validateInput={this.validateCurrentInputValue}
       validateInputSubmission={this.validateInputSubmission}/>
 
-    else main = <CVTemplate 
-      userInfo={this.state.currentInfo}
+    else if (mainPage === 'cv-template') main = <CVTemplate 
+      userInfo={this.state.currentUser}
     />
 
     return (
       <div className="page-layout">
         <Header
           currentPageShown={this.state.currentPage} 
-          changePageShown={this.changePageShown}
-          emphasizeNavChoice={this.emphasizeNavChoice}/>
+          changePageShown={this.changePageShown}/>
         {main}
         <Footer />
       </div>

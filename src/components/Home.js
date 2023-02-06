@@ -19,30 +19,36 @@ const Welcome = () => {
   )
 }
 
-const TemplateSection = () => {
+const TemplateSection = (props) => {
   return (
     <div className="template-container">
       <button
         className="create-template-btn hover-button"
-        onClick={() => console.log('clicked bitch')}
+        onClick={() => props.changePageShown('cv-template')}
       >Create Template</button>
     </div>
   )
 }
 
-const Home = () => {
+TemplateSection.propTypes = {
+  changePageShown: PropTypes.func,
+}
+
+const Home = (props) => {
 
   return (
     <main>
       <div className="home-page-overview">
         <Welcome />
-        <TemplateSection />
+        <TemplateSection 
+          changePageShown={props.changePageShown}/>
       </div>
     </main>
   )
 }
 
 Home.propTypes = {
+  changePageShown: PropTypes.func,
   user: PropTypes.object
 }
 
