@@ -19,7 +19,6 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      activeModal: false,
       currentPage: 'you',
       currentUser: server.getCurrentInfo()
     }
@@ -108,7 +107,7 @@ export default class App extends Component {
       position: inputValues[1],
       email: inputValues[2]
     }
-    console.log(referenceObj)
+    server.updateReferenceInfo(referenceObj)
   }
 
   // Edit and delete button functions //
@@ -130,9 +129,10 @@ export default class App extends Component {
 
   resetAllData() {
     server.clearStorage()
+    this.updateCurrentUser()
   }
 
-  // Unbound function passed to education and experience to close modals
+  // Unbound function passed to be bound and close modals
   closeModal() {
     this.setState({
       isModalActive: false
@@ -207,11 +207,13 @@ export default class App extends Component {
     />
 
     else main = <You 
+      closeModal={this.closeModal}
+      resetFunc={this.resetAllData}
       uploadAccountInfo={this.uploadAccountInfo}
       uploadAvatarChange={this.uploadAvatarChange}
       uploadReferenceInfo={this.uploadReferenceInfo}
       userInfo={this.state.currentUser}
-      validateInput={this.validateInput}
+      validateInput={this.validateCurrentInputValue}
       validateInputSubmission={this.validateInputSubmission}/>
 
     return (
@@ -220,10 +222,7 @@ export default class App extends Component {
           currentPageShown={this.state.currentPage} 
           changePageShown={this.changePageShown}/>
         {main}
-        <Footer 
-          closeModal={this.closeModal}
-          resetFunc={this.resetAllData}/>
-        {this.state.activeModal}
+        <Footer />
       </div>
     )
   }
