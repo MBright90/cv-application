@@ -6,6 +6,7 @@ import Home from './Home'
 import Education from './Education'
 import Experience from './Experience'
 import You from './You'
+import CVTemplate from './CVTemplate'
 
 // import { EditInfoModal, DeleteModal } from './Modals'
 
@@ -39,8 +40,24 @@ export default class App extends Component {
   }
 
   changePageShown(navChoice) {
-    this.setState({currentPage: navChoice})
+    this.setState({currentPage: navChoice.toLowerCase()})
+
+    const navItems = document.querySelectorAll('nav ul li')
+    navItems.forEach((navItem) => {
+      navItem.textContent === navChoice
+        ? navItem.classList.add('active')
+        : navItem.classList.remove('active')
+    })
   }
+
+  // emphasizeNavChoice() {
+  //   const navItems = document.querySelectorAll('nav ul li')
+  //   navItems.forEach((navItem) => {
+  //     navItem.textContent === e.target.textContent
+  //       ? navItem.classList.add('active')
+  //       : navItem.classList.remove('active')
+  //   })  
+  // }
 
   // info retrieval functions //
 
@@ -207,7 +224,7 @@ export default class App extends Component {
       validateInputSubmission={this.validateInputSubmission}
     />
 
-    else main = <You 
+    else if (mainPage === 'you') main = <You 
       closeModal={this.closeModal}
       resetFunc={this.resetAllData}
       uploadAccountInfo={this.uploadAccountInfo}
@@ -217,11 +234,16 @@ export default class App extends Component {
       validateInput={this.validateCurrentInputValue}
       validateInputSubmission={this.validateInputSubmission}/>
 
+    else main = <CVTemplate 
+      userInfo={this.state.currentInfo}
+    />
+
     return (
       <div className="page-layout">
         <Header
           currentPageShown={this.state.currentPage} 
-          changePageShown={this.changePageShown}/>
+          changePageShown={this.changePageShown}
+          emphasizeNavChoice={this.emphasizeNavChoice}/>
         {main}
         <Footer />
       </div>

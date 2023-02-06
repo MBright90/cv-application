@@ -41,13 +41,14 @@ export default class PageNav extends Component {
   }
 
   handleNavClick(e) {
-    this.props.changePageShown(e.target.textContent.toLowerCase())
-    const navItems = document.querySelectorAll('nav ul li')
-    navItems.forEach((navItem) => {
-      navItem.textContent === e.target.textContent
-        ? navItem.classList.add('active')
-        : navItem.classList.remove('active')
-    })
+    this.props.changePageShown(e.target.textContent)
+    // emphasiseNavChoice(e.target)
+    // const navItems = document.querySelectorAll('nav ul li')
+    // navItems.forEach((navItem) => {
+    //   navItem.textContent === e.target.textContent
+    //     ? navItem.classList.add('active')
+    //     : navItem.classList.remove('active')
+    // })
   }
 
   render() {
