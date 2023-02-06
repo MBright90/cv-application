@@ -91,11 +91,6 @@ footer {
     width: calc(100vw - 20px);
 }
 
-.reset-data-button {
-    position: absolute;
-    right: 5px;
-}
-
 footer i {
     margin-right: 5px;
 }
@@ -123,11 +118,10 @@ footer i {
 .modal .confirm-container button,
 .reset-data-button {
     background-color: #ffefef;
-    /* border-radius: 5px; */
     color: #13005A;
     font-weight: bold;
     padding: 3px 5px;
-    width: 80px;
+    min-width: 80px;
 }
 
 .home-page-overview,
@@ -434,6 +428,10 @@ textarea {
     gap: 20px;
     justify-content: center;
 }
+
+.modal input {
+    border: 1px solid #13005A
+} 
 
 /************/
 /* validity */
