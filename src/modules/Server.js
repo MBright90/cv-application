@@ -251,7 +251,7 @@ export default class Server {
   // Validation methods
   // *******************//
 
-  validateTextSubmission(inputElement) {
+  validateMinLength(inputElement) {
     if (inputElement.value.length < inputElement.minLength)
       return `Please include at least ${inputElement.minLength} characters`
     return ''
@@ -265,17 +265,22 @@ export default class Server {
   }
 
   validateEmailSubmission(emailInput) {
-    console.log(emailInput)
+    const value = emailInput.value
+    if (!value.match(/^\w+([.-]?w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/)) 
+      return 'Please enter a valid email address'
+    return ''
   }
 
   validateInputSubmission(inputElementArr) {
     let validCheck = ''
     let invalidInput = false
 
+    // Check through all inputs and any that are text based/textAreas, check their
+    // minLength attribute via function call
     for (let i = 0; i < inputElementArr.length; i++) {
       const inputElement = inputElementArr[i]
       if (inputElement.type === 'text' || inputElement.nodeName === 'TEXTAREA') {
-        validCheck = this.validateTextSubmission(inputElement)
+        validCheck = this.validateMinLength(inputElement)
         if (validCheck !== '') {
           invalidInput = inputElement
           break
@@ -296,8 +301,18 @@ export default class Server {
     // If any input expects an email
     if (validCheck === '') {
       const emailInputArr = inputElementArr.filter((input) => input.id.includes('email'))
-      console.log(emailInputArr)
+      if (emailInputArr.length > 0) {
+        for (let i = 0; i < emailInputArr.length; i += 1) {
+          validCheck = this.validateEmailSubmission(emailInputArr[i])
+          if (validCheck !== '') {
+            invalidInput = emailInputArr[i]
+            break
+          }
+        }
+      }
     }
+
+    console.log(validCheck)
 
     return [validCheck, invalidInput]
   }
