@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { ResetInfoModal } from './Modals'
-
 class SaveInfoButton extends Component {
   constructor(props) {
     super(props)
@@ -144,43 +142,20 @@ DeleteButton.propTypes = {
   showDeleteFunc: PropTypes.func,
 }
 
-class ResetButton extends Component {
-  constructor(props) {
-    super(props)
+const ResetButton = (props) => {
 
-    this.state = {
-      isModalActive: false,
-    }
-
-    this.closeModal = this.props.closeModal.bind(this)
-  }
-
-  showDeleteModal() {
-    this.setState({
-      isModalActive: <ResetInfoModal
-        closeModal={this.closeModal}
-        deleteFunc={this.props.resetFunc}
-      />
-    })
-  }
-
-  render() {
-    return (
-      <div className="reset-data-button">
-        {this.state.isModalActive}
-        <button
-          type="button"
-          onClick={this.showDeleteModal}>
-          Reset Data
-        </button>
-      </div>
-    )
-  }
+  return (
+    <button
+      className="reset-data-button"
+      type="button"
+      onClick={props.showResetModal}>
+          Reset Site Data
+    </button>
+  )
 }
 
 ResetButton.propTypes = {
-  closeModal: PropTypes.func,
-  resetFunc: PropTypes.func,
+  showResetModal: PropTypes.func,
 }
 
-export { SaveInfoButton, EditButton, DeleteButton }
+export { SaveInfoButton, EditButton, DeleteButton, ResetButton }
