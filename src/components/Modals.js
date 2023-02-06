@@ -79,7 +79,7 @@ const ResetInfoModal = (props) => {
     <div className="modal">
       <div className="modal-form-container">
         <div className="confirm-container">
-          <p>Are you sure you want to reset all data?</p>
+          <p>This action cannot be reversed. Are you sure you wish to clear all data?</p>
           <button
             onClick={handleResetClick}
           >Confirm</button>
