@@ -84,7 +84,7 @@ const ResetInfoModal = (props) => {
             onClick={handleResetClick}
           >Confirm</button>
         </div>
-        <ModalCloseButton closeModal={props.closeModal} />
+        <ModalCloseButton closeModal={props.closeModal}/>
       </div>
     </div>
   )
