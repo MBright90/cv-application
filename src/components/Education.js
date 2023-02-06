@@ -255,6 +255,7 @@ class Education extends Component {
           itemID={infoID}
           uploadEducationInfo={this.props.editEducationInfo}
           validateInput={this.props.validateInput}
+          validateInputSubmission={this.props.validateInputSubmission}
         />}
       />
     })
@@ -268,6 +269,7 @@ class Education extends Component {
           <EducationInput 
             uploadEducationInfo={this.props.uploadEducationInfo}
             validateInput={this.props.validateInput}
+            validateInputSubmission={this.props.validateInputSubmission}
           />
           <EducationList 
             educationArray={this.props.userEducationArray}
