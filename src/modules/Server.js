@@ -9,6 +9,7 @@ export default class Server {
       surname: '',
       email: '',
       contactNumber: '',
+      profession: '',
       avatarImg: null,
       experience: [],
       education: [],
@@ -138,8 +139,6 @@ export default class Server {
     educationItem.dateFrom = this.formatDate(educationObj.dateFrom)
     educationItem.dateTo = this.formatDate(educationObj.dateTo)
 
-    console.log(educationItem)
-
     if (infoID) {
       educationItem.ID = infoID
       const infoIndex = this.user.education.map(item => item.ID).indexOf(infoID)
@@ -160,8 +159,6 @@ export default class Server {
 
     experienceItem.dateFrom = this.formatDate(experienceObj.dateFrom)
     experienceItem.dateTo = this.formatDate(experienceObj.dateTo)
-
-    console.log(experienceItem)
 
     if (infoID) {
       experienceItem.ID = infoID
@@ -226,6 +223,7 @@ export default class Server {
     this.user.surname = infoObj.surname
     this.user.email = infoObj.email
     this.user.contactNumber = infoObj.contactNumber
+    this.user.profession = infoObj.profession
     this.saveToStorage()
   }
 
@@ -241,7 +239,6 @@ export default class Server {
   //******************//
 
   deleteInfo(infoID, type) {
-    console.log(infoID, type)
     const infoIndex = this.user[type].map(item => item.ID).indexOf(infoID)
     this.user[type].splice(infoIndex, 1)
     this.saveToStorage()
@@ -311,8 +308,6 @@ export default class Server {
         }
       }
     }
-
-    console.log(validCheck)
 
     return [validCheck, invalidInput]
   }

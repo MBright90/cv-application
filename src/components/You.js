@@ -127,6 +127,12 @@ const AccountInfo = (props) => {
         validateInput={props.validateInput}
         currentInfo={props.userInfo.contactNumber}
       />
+      <AccountInput 
+        inputName="account-input-profession"
+        labelText="Profession "
+        validateInput={props.validateInput}
+        currentInfo={props.userInfo.profession}
+      />
       <SaveInfoButton 
         setToClear={false}
         uploadData={props.uploadAccountInfo}

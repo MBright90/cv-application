@@ -64,6 +64,7 @@ export default class App extends Component {
       surname: inputValues[1],
       email: inputValues[2],
       contactNumber: inputValues[3],
+      profession: inputValues[4],
     }
     server.updateAccountInfo(accountInfoObj)
     this.updateCurrentUser()
