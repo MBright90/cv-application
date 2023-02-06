@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Avatar from './Avatar'
-import { SaveInfoButton } from './Buttons'
+import { ResetButton, SaveInfoButton } from './Buttons'
+import { ResetInfoModal } from './Modals'
 
 // TODO: Validation functions for name, telephone number, area, image type
 
@@ -47,6 +48,7 @@ const ReferenceInfo = (props) => {
           />
         </div>
         <SaveInfoButton 
+          setToClear={false}
           uploadData={props.uploadReferenceInfo}
           validateInputSubmission={props.validateInputSubmission}/>
       </fieldset>
@@ -167,16 +169,32 @@ export default class You extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      isModalActive: false,
+    }
+
+    this.closeModal = this.props.closeModal.bind(this)
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this)
+    this.showResetModal = this.showResetModal.bind(this)
   }
 
   handleAvatarUpload(e) {
     this.props.uploadAvatarChange(e.target.files[0])
   }
 
+  showResetModal() {
+    this.setState({
+      isModalActive: <ResetInfoModal 
+        closeModal={this.closeModal}
+        resetFunc={this.props.resetFunc}
+      />
+    })
+  }
+
   render() {
     return (
       <main>
+        {this.state.isModalActive}
         <div className="you-page-overview">
           <AccountAvatar 
             imgSource={this.props.userInfo.avatarImg}
@@ -191,6 +209,8 @@ export default class You extends Component {
             uploadReferenceInfo={this.props.uploadReferenceInfo}
             validateInput={this.props.validateInput}
             validateInputSubmission={this.props.validateInputSubmission}/>
+          <ResetButton 
+            showResetModal={this.showResetModal}/>
         </div>
       </main>
     )
@@ -198,6 +218,8 @@ export default class You extends Component {
 }
 
 You.propTypes = {
+  closeModal: PropTypes.func,
+  resetFunc: PropTypes.func,
   uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
   uploadReferenceInfo: PropTypes.func,
