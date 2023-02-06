@@ -221,17 +221,18 @@ export default class Server {
     fileReader.readAsDataURL(blobResult)
   }
 
-  updateAccountInfo(infoArray) {
-    this.user.firstName = infoArray.firstName
-    this.user.surname = infoArray.surname
-    this.user.email = infoArray.email
-    this.user.contactNumber = infoArray.number
+  updateAccountInfo(infoObj) {
+    this.user.firstName = infoObj.firstName
+    this.user.surname = infoObj.surname
+    this.user.email = infoObj.email
+    this.user.contactNumber = infoObj.contactNumber
     this.saveToStorage()
   }
-  updateReferenceInfo(infoArray) {
-    this.user.reference.name = infoArray.name
-    this.user.reference.position = infoArray.position
-    this.user.reference.email = infoArray.email
+
+  updateReferenceInfo(infoObj) {
+    this.user.reference.name = infoObj.name
+    this.user.reference.position = infoObj.position
+    this.user.reference.email = infoObj.email
     this.saveToStorage()
   }
 
@@ -284,12 +285,15 @@ export default class Server {
 
     if (validCheck === '') {
       const dateInputArr = inputElementArr.filter((input) => input.type === 'date')
-      if (!this.validateDateComparison(dateInputArr)) {
+
+      // If there are multiple date inputs:
+      if (dateInputArr.length > 1 && !this.validateDateComparison(dateInputArr)) {
         validCheck = 'Ensure "Date From" comes before "Date To"'
         invalidInput = dateInputArr[0]
       }
     }
 
+    // If any input expects an email
     if (validCheck === '') {
       const emailInputArr = inputElementArr.filter((input) => input.id.includes('email'))
       console.log(emailInputArr)
