@@ -429,6 +429,10 @@ textarea {
     justify-content: center;
 }
 
+.modal p {
+    text-align: center;
+}
+
 .modal input {
     border: 1px solid #13005A
 } 
