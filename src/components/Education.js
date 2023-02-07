@@ -1,66 +1,67 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
+import EducationList from './EducationList'
+import { SaveInfoButton} from './Buttons'
 import { DeleteInfoModal, EditInfoModal } from './Modals'
 
-const EducationItem = (props) => {
-  const certificateParaArray = (certificateArray) => {
-    return certificateArray.map((certificate) => {
-      return (
-        <p key={certificate}
-          className="list-item-details"
-        >{certificate}</p>
-      )
-    })
-  }
+// const EducationItem = (props) => {
+//   const certificateParaArray = (certificateArray) => {
+//     return certificateArray.map((certificate) => {
+//       return (
+//         <p key={certificate}
+//           className="list-item-details"
+//         >{certificate}</p>
+//       )
+//     })
+//   }
 
-  return (
-    <div className="list-item">
-      <p className="list-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
-      <p className="list-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
-      {certificateParaArray(props.educationItem.certificates)}
-      <EditButton
-        editFunc={props.editFunc}
-        itemID={props.educationItem.ID}
-      />
-      <DeleteButton
-        itemID={props.educationItem.ID}
-        showDeleteFunc={props.showDeleteFunc}
-      />
-    </div>
-  )
-}
+//   return (
+//     <div className="list-item">
+//       <p className="list-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
+//       <p className="list-item-dates">{props.educationItem.dateFrom} - {props.educationItem.dateTo}</p>
+//       {certificateParaArray(props.educationItem.certificates)}
+//       <EditButton
+//         editFunc={props.editFunc}
+//         itemID={props.educationItem.ID}
+//       />
+//       <DeleteButton
+//         itemID={props.educationItem.ID}
+//         showDeleteFunc={props.showDeleteFunc}
+//       />
+//     </div>
+//   )
+// }
 
-EducationItem.propTypes = {
-  editFunc: PropTypes.func,
-  educationItem: PropTypes.object,
-  showDeleteFunc: PropTypes.func,
-}
+// EducationItem.propTypes = {
+//   editFunc: PropTypes.func,
+//   educationItem: PropTypes.object,
+//   showDeleteFunc: PropTypes.func,
+// }
 
-const EducationList = (props) => {
-  const createEducationList = () => {
-    return props.educationArray.map((educationItem) => {
-      return <EducationItem
-        key={`${educationItem.institutionName}${educationItem.dateFrom}`}
-        editFunc={props.editFunc}
-        educationItem={educationItem}
-        showDeleteFunc={props.showDeleteFunc}/>
-    })
-  }
+// const EducationList = (props) => {
+//   const createEducationList = () => {
+//     return props.educationArray.map((educationItem) => {
+//       return <EducationItem
+//         key={`${educationItem.institutionName}${educationItem.dateFrom}`}
+//         editFunc={props.editFunc}
+//         educationItem={educationItem}
+//         showDeleteFunc={props.showDeleteFunc}/>
+//     })
+//   }
 
-  return (
-    <div className="education-list-overview">
-      {createEducationList()}
-    </div>
-  )
-}
+//   return (
+//     <div className="education-list-overview">
+//       {createEducationList()}
+//     </div>
+//   )
+// }
 
-EducationList.propTypes = {
-  editFunc: PropTypes.func,
-  educationArray: PropTypes.array,
-  showDeleteFunc: PropTypes.func,
-}
+// EducationList.propTypes = {
+//   editFunc: PropTypes.func,
+//   educationArray: PropTypes.array,
+//   showDeleteFunc: PropTypes.func,
+// }
 
 const CertificateInput = (props) => {
   return (
@@ -271,7 +272,8 @@ class Education extends Component {
             validateInput={this.props.validateInput}
             validateInputSubmission={this.props.validateInputSubmission}
           />
-          <EducationList 
+          <EducationList
+            editable={true}
             educationArray={this.props.userEducationArray}
             editFunc={this.showEducationModal}
             showDeleteFunc={this.showDeleteModal}

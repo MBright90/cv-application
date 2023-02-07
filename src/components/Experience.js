@@ -1,57 +1,58 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { SaveInfoButton, EditButton, DeleteButton } from './Buttons'
+import ExperienceList from './ExperienceList'
+import { SaveInfoButton } from './Buttons'
 import { DeleteInfoModal, EditInfoModal } from './Modals' 
 
-const ExperienceItem = (props) => {
-  return (
-    <div className="list-item">
-      <p className="list-item-headline">{props.experienceItem.workplaceName.toUpperCase()}</p>
-      <p className="list-item-dates">{props.experienceItem.dateFrom} - {props.experienceItem.dateTo}</p>
-      <p className="list-item-details">{props.experienceItem.experienceSummary}</p>
-      <EditButton 
-        editFunc={props.editFunc}
-        itemID={props.experienceItem.ID}
-      />
-      <DeleteButton
-        itemID={props.experienceItem.ID}
-        showDeleteFunc={props.showDeleteFunc}
-      />
-    </div>
-  )
-}
+// const ExperienceItem = (props) => {
+//   return (
+//     <div className="list-item">
+//       <p className="list-item-headline">{props.experienceItem.workplaceName.toUpperCase()}</p>
+//       <p className="list-item-dates">{props.experienceItem.dateFrom} - {props.experienceItem.dateTo}</p>
+//       <p className="list-item-details">{props.experienceItem.experienceSummary}</p>
+//       <EditButton 
+//         editFunc={props.editFunc}
+//         itemID={props.experienceItem.ID}
+//       />
+//       <DeleteButton
+//         itemID={props.experienceItem.ID}
+//         showDeleteFunc={props.showDeleteFunc}
+//       />
+//     </div>
+//   )
+// }
 
-ExperienceItem.propTypes = {
-  editFunc: PropTypes.func,
-  experienceItem: PropTypes.object,
-  showDeleteFunc: PropTypes.func,
-}
+// ExperienceItem.propTypes = {
+//   editFunc: PropTypes.func,
+//   experienceItem: PropTypes.object,
+//   showDeleteFunc: PropTypes.func,
+// }
 
-const ExperienceList = (props) => {
-  const createExperienceList = () => {
-    return props.experienceArray.map((experienceItem) => {
-      return <ExperienceItem 
-        key={`${experienceItem.workplaceName}${experienceItem.dateFrom}`}
-        editFunc={props.editFunc}
-        experienceItem={experienceItem}
-        showDeleteFunc={props.showDeleteFunc}
-      />
-    })
-  }
+// const ExperienceList = (props) => {
+//   const createExperienceList = () => {
+//     return props.experienceArray.map((experienceItem) => {
+//       return <ExperienceItem 
+//         key={`${experienceItem.workplaceName}${experienceItem.dateFrom}`}
+//         editFunc={props.editFunc}
+//         experienceItem={experienceItem}
+//         showDeleteFunc={props.showDeleteFunc}
+//       />
+//     })
+//   }
 
-  return (
-    <div className="experience-list-overview">
-      {createExperienceList()}
-    </div>
-  )
-}
+//   return (
+//     <div className="experience-list-overview">
+//       {createExperienceList()}
+//     </div>
+//   )
+// }
 
-ExperienceList.propTypes = {
-  editFunc: PropTypes.func,
-  experienceArray: PropTypes.array,
-  showDeleteFunc: PropTypes.func,
-}
+// ExperienceList.propTypes = {
+//   editFunc: PropTypes.func,
+//   experienceArray: PropTypes.array,
+//   showDeleteFunc: PropTypes.func,
+// }
 
 const ExperienceInput = (props) => {
   let closeModal
@@ -201,6 +202,7 @@ class Experience extends Component {
             validateInputSubmission={this.props.validateInputSubmission}
           />
           <ExperienceList 
+            editable={true}
             experienceArray={this.props.userExperienceArray}
             editFunc={this.showExperienceModal}
             showDeleteFunc={this.showDeleteModal}
