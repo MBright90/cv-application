@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Avatar from './Avatar'
+import EducationList from './EducationList'
+import ExperienceList from './ExperienceList'
 
 const CVTemplate = (props) => {
   return (
@@ -18,18 +20,27 @@ const CVTemplate = (props) => {
         <div className="cv-template-extras">
           <div>
             <p className="bold">Contact</p>
-            <p><i className="fa-solid fa-envelope"></i> {props.userInfo.email}</p>
-            <p><i className="fa-solid fa-phone"> {props.userInfo.contactNumber}</i></p>
+            <p>{props.userInfo.email} <i className="fa-solid fa-envelope"></i></p>
+            <p>{props.userInfo.contactNumber} <i className="fa-solid fa-phone"></i></p>
           </div>
           <div>
             <p className="bold">Reference</p>
-            <p><i className="fa-solid fa-user"></i> {props.userInfo.reference.name}</p>
-            <p><i className="fa-solid fa-location-dot"></i> {props.userInfo.reference.position}</p>
-            <p><i className="fa-solid fa-envelope"></i> {props.userInfo.reference.email}</p>
+            <p>{props.userInfo.reference.name} <i className="fa-solid fa-user"></i></p>
+            <p>{props.userInfo.reference.position} <i className="fa-solid fa-location-dot"></i></p>
+            <p>{props.userInfo.reference.email} <i className="fa-solid fa-envelope"></i></p>
           </div>
         </div>
-        {/* Experience */}
-        {/* Education */}
+        <div>
+          <p className="bold cv-template-list-title">Experience</p>
+          <ExperienceList 
+            experienceArray={props.userInfo.experience}/>
+        </div>
+        <div>
+          <p className="bold cv-template-list-title">Education</p>
+          <EducationList 
+            educationArray={props.userInfo.education}/>
+        </div>
+        
       </div>
     </main>
   )
