@@ -20,7 +20,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      currentPage: 'you',
+      currentPage: 'cv-template',
       currentUser: server.getCurrentInfo()
     }
 
