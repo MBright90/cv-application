@@ -1,15 +1,15 @@
 @font-face {
     font-family: "nobile";
-    src: url('../assets/fonts/nobile-regular-webfont.woff') format('woff'),
-        url('../assets/fonts/nobile-regular-webfont.woff2') format('woff2');
+    src: url('./fonts/nobile-regular-webfont.woff') format('woff'),
+        url('./fonts/nobile-regular-webfont.woff2') format('woff2');
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "nobile";
-    src: url('../assets/fonts/nobile-bold-webfont.woff') format('woff'),
-        url('../assets/fonts/nobile-bold-webfont.woff2') format('woff2');
+    src: url('./fonts/nobile-bold-webfont.woff') format('woff'),
+        url('./fonts/nobile-bold-webfont.woff2') format('woff2');
     font-style: normal;
     font-weight: bold;
 }
