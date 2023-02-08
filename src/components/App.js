@@ -8,9 +8,8 @@ import Experience from './Experience'
 import You from './You'
 import CVTemplate from './CVTemplate'
 
-// import { EditInfoModal, DeleteModal } from './Modals'
-
 import Server from '../modules/Server'
+
 const server = new Server()
 server.loadFromStorage()
 
