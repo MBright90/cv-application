@@ -5,11 +5,13 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    publicPath: '/',
   },
   plugins: [
     new HTMLWebpackPlugin({
       template: './src/index.html',
+      filename: 'index.html',
       title: 'The CV',
     })
   ],
@@ -27,7 +29,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(jpe?g|png|svg)$/,
+        test: /\.(jpe?g|png|svg)$/i,
         use: [{
           loader: 'url-loader',
           options: {
@@ -38,7 +40,7 @@ module.exports = {
         }]
       },
       {
-        test: /\.(woff2?)$/i,
+        test: /\.(woff|ttf|woff2?)$/i,
         exclude: /node_modules/,
         type: 'asset/resource',
         generator: {
