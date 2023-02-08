@@ -7,7 +7,7 @@ const Header = (props) => {
 
   return (
     <header>
-      <h1>Your CV</h1>
+      <h1>YOUR CV</h1>
       <PageNav 
         currentPageShown={props.currentPageShown}
         changePageShown={props.changePageShown}/>

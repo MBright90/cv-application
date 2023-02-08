@@ -29,7 +29,7 @@ export default class PageNav extends Component {
   }
 
   #createNavArray(currentPage) {
-    const navItems = ['Home', 'Experience', 'Education', 'You']
+    const navItems = ['HOME', 'EXPERIENCE', 'EDUCATION', 'YOU']
 
     return navItems.map((navItem) => {
       return <NavItem 
