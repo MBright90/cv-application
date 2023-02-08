@@ -7,6 +7,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'main.js',
     publicPath: '/',
+    clean: true,
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -34,20 +35,19 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 25000,
-            filename: '[name].[ext]',
-            outputPath: 'assets/images/'
           },
-        }]
+        }],
+        generator: {
+          filename: './assets/images/[name][ext]',
+        },
       },
       {
-        test: /\.(woff|ttf|woff2?)$/i,
-        exclude: /node_modules/,
+        test: /\.(woff(2)?|ttf|eot)$/,
         type: 'asset/resource',
         generator: {
-          filename: '[name].[ext]',
-          outputPath: 'assets/fonts/'
-        }
-      }
+          filename: './assets/fonts/[name][ext]',
+        },
+      },
     ]
   }
 }
