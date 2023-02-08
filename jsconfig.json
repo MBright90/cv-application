@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src/",
+      "lib": ["ES2022"],
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"],
+}
