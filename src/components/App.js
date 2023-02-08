@@ -12,7 +12,6 @@ import CVTemplate from './CVTemplate'
 
 import Server from '../modules/Server'
 const server = new Server()
-// server.clearStorage()
 server.loadFromStorage()
 
 export default class App extends Component {
@@ -20,7 +19,7 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      currentPage: 'cv-template',
+      currentPage: 'home',
       currentUser: server.getCurrentInfo()
     }
 
@@ -243,5 +242,3 @@ export default class App extends Component {
     )
   }
 }
-
-// TODO: Create modal to edit previous data
