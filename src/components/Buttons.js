@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+
 class SaveInfoButton extends Component {
   constructor(props) {
     super(props)
@@ -115,7 +118,7 @@ const EditButton = (props) => {
       type="button"
       data-item-id={props.itemID}
       onClick={props.editFunc}>
-      <i className="fa-solid fa-pen-to-square"></i>
+      <FontAwesomeIcon icon={faPenToSquare} />
     </button>
   )
 }
@@ -132,7 +135,7 @@ const DeleteButton = (props) => {
       type="button"
       data-item-id={props.itemID}
       onClick={props.showDeleteFunc}>
-      <i className="fa-solid fa-trash-can"></i>
+      <FontAwesomeIcon icon={faTrashCan} />
     </button>
   )
 }

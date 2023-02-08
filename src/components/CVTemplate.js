@@ -5,6 +5,9 @@ import Avatar from './Avatar'
 import EducationList from './EducationList'
 import ExperienceList from './ExperienceList'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faPhone, faUser, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+
 const CVTemplate = (props) => {
   return (
     <main>
@@ -20,14 +23,14 @@ const CVTemplate = (props) => {
         <div className="cv-template-extras">
           <div>
             <p className="bold">Contact</p>
-            <p>{props.userInfo.email} <i className="fa-solid fa-envelope"></i></p>
-            <p>{props.userInfo.contactNumber} <i className="fa-solid fa-phone"></i></p>
+            <p>{props.userInfo.email} <FontAwesomeIcon icon={faEnvelope}/></p>
+            <p>{props.userInfo.contactNumber} <FontAwesomeIcon icon={faPhone} /></p>
           </div>
           <div>
             <p className="bold">Reference</p>
-            <p>{props.userInfo.reference.name} <i className="fa-solid fa-user"></i></p>
-            <p>{props.userInfo.reference.position} <i className="fa-solid fa-location-dot"></i></p>
-            <p>{props.userInfo.reference.email} <i className="fa-solid fa-envelope"></i></p>
+            <p>{props.userInfo.reference.name} <FontAwesomeIcon icon={faUser}/></p>
+            <p>{props.userInfo.reference.position} <FontAwesomeIcon icon={faLocationDot}/></p>
+            <p>{props.userInfo.reference.email} <FontAwesomeIcon icon={faEnvelope}/></p>
           </div>
         </div>
         <div>

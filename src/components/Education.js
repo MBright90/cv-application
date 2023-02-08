@@ -5,6 +5,9 @@ import EducationList from './EducationList'
 import { SaveInfoButton} from './Buttons'
 import { DeleteInfoModal, EditInfoModal } from './Modals'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 const CertificateInput = (props) => {
   return (
     <input
@@ -119,7 +122,7 @@ class EducationInput extends Component {
               className="new-certificate-button hover-button"
               type="button"
               onClick={this.handleNewCertificate}>
-              <i className="fa-solid fa-plus"></i>
+              <FontAwesomeIcon icon={faPlus} />
             </button>
           </div>
           <SaveInfoButton
