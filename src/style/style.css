@@ -1,15 +1,15 @@
 @font-face {
     font-family: "nobile";
-    src: url('./fonts/nobile-regular-webfont.woff') format('woff'),
-        url('./fonts/nobile-regular-webfont.woff2') format('woff2');
+    src: url('../assets/fonts/nobile-regular-webfont.woff') format('woff'),
+        url('../assets/fonts/nobile-regular-webfont.woff2') format('woff2');
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "nobile";
-    src: url('./fonts/nobile-bold-webfont.woff') format('woff'),
-        url('./fonts/nobile-bold-webfont.woff2') format('woff2');
+    src: url('../assets/fonts/nobile-bold-webfont.woff') format('woff'),
+        url('../assets/fonts/nobile-bold-webfont.woff2') format('woff2');
     font-style: normal;
     font-weight: bold;
 }
@@ -106,6 +106,10 @@ footer i {
 /******************************/
 /* multi-use component styles */
 /******************************/
+
+.banner {
+    width: 100%;
+}
 
 .save-button-container {
     align-items: center;
@@ -339,6 +343,10 @@ legend {
     padding: 5px 20px;
 }
 
+.reset-data-button {
+    margin-bottom: 20px;
+}
+
 /*******************/
 /* home tab styles */
 /*******************/
@@ -360,10 +368,6 @@ legend {
 .template-container {
     align-items: center;
     display: flex;
-}
-
-.template-container img {
-    src: url('https://www.cvtemplate.co.uk/images/thumbnails/212121/cv-template-compact.png')
 }
 
 .template-container .create-template-btn {
