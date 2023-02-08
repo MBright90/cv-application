@@ -29,8 +29,6 @@ const EducationItem = (props) => {
       />
     ]
   }
-
-  console.log(props.editable)
   
   return (
     <div className="list-item">
@@ -41,14 +39,14 @@ const EducationItem = (props) => {
     </div>
   )
 }
-  
+
 EducationItem.propTypes = {
   editable: PropTypes.bool,
   editFunc: PropTypes.func,
   educationItem: PropTypes.object,
   showDeleteFunc: PropTypes.func,
 }
-  
+
 const EducationList = (props) => {
   const createEducationList = () => {
     return props.educationArray.map((educationItem) => {
@@ -60,7 +58,7 @@ const EducationList = (props) => {
         showDeleteFunc={props.showDeleteFunc}/>
     })
   }
-  
+
   return (
     <div className="education-list-overview">
       {createEducationList()}
@@ -73,7 +71,7 @@ EducationList.defaultProps = {
   editFunc: () => {},
   showDeleteFunc: () => {},
 }
-  
+
 EducationList.propTypes = {
   editable: PropTypes.bool,
   editFunc: PropTypes.func,
