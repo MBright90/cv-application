@@ -1,0 +1,21 @@
+.bold {
+    font-weight: bold;
+}
+
+.cv-template-overview {
+    column-gap: 20px;
+    display: grid;
+    width: max(75%, 400px);
+    grid-template-columns: 330px 1fr;
+    row-gap: 10px;
+}
+
+.cv-template-overview p,
+.cv-template-overview span {
+    letter-spacing: 2px;
+}
+
+.cv-template-list-title {
+    border-bottom: 2px solid #fff;
+    font-size: 24px;
+}
