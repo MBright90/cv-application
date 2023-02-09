@@ -1,0 +1,13 @@
+.template-container {
+    align-items: center;
+    display: flex;
+}
+
+.template-container .create-template-btn {
+    background-color: #ffefef;
+    color: #13005A;
+    font-weight: bold;
+    padding: 3px 5px;
+    min-width: 80px;
+    width: auto;
+}
