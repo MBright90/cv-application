@@ -1,0 +1,41 @@
+.modal {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.modal .modal-form-container {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    left: 0;
+    justify-content: center;
+    padding: 40px 20px;
+    position: absolute;
+    right: 0;
+}
+
+.modal .modal-form-container button {
+    background-color: #13005A;
+    color: #fff;
+}
+
+.modal .confirm-container {
+    align-items: center;
+    color: #13005A;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.modal p {
+    text-align: center;
+}
