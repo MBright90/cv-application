@@ -423,18 +423,23 @@ legend {
 }
 
 .cv-template-extras {
-    border-right: 1px solid #fff;
+    border-right: 2px solid #fff;
     grid-area: 2 / 1 / span 2 / 2 ;
     padding-right: 5px;
 }
 
 .cv-template-extras p {
-    margin-top: 5px;
+    margin-top: 10px;
     text-align: right;
 }
 
 .cv-template-extras > div:nth-of-type(2) {
-    margin-top: 15px;
+    margin-top: 30px;
+}
+
+.cv-template-list-title {
+    border-bottom: 2px solid #fff;
+    font-size: 24px;
 }
 
 
