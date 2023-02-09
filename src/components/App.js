@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Header from './Header'
-import Footer from './Footer'
-import Home from './Home'
-import Education from './Education'
-import Experience from './Experience'
-import You from './You'
-import CVTemplate from './CVTemplate'
+import Header from './nav/Header'
+import Footer from './nav/Footer'
+import Home from './home/Home'
+import Education from './education/Education'
+import Experience from './experience/Experience'
+import You from './you/You'
+import CVTemplate from './home/CVTemplate'
 
 import Server from '../modules/Server'
 

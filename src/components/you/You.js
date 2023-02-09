@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Avatar from './Avatar'
-import { ResetButton, SaveInfoButton } from './Buttons'
-import { ResetInfoModal } from './Modals'
+import Avatar from '../utilities/Avatar'
+import { ResetButton, SaveInfoButton } from '../utilities/Buttons'
+import { ResetInfoModal } from '../utilities/Modals'
 
 // TODO: Validation functions for name, telephone number, area, image type
 

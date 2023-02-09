@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Avatar from './Avatar'
-import EducationList from './EducationList'
-import ExperienceList from './ExperienceList'
+import Avatar from '../utilities/Avatar'
+import EducationList from '../education/EducationList'
+import ExperienceList from '../experience/ExperienceList'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faPhone, faUser, faLocationDot } from '@fortawesome/free-solid-svg-icons'

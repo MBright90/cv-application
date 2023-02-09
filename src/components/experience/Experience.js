@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import ExperienceList from './ExperienceList'
-import { SaveInfoButton } from './Buttons'
-import { DeleteInfoModal, EditInfoModal } from './Modals' 
+import { SaveInfoButton } from '../utilities/Buttons'
+import { DeleteInfoModal, EditInfoModal } from '../utilities/Modals' 
 
 const ExperienceInput = (props) => {
   let closeModal

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import EducationList from './EducationList'
-import { SaveInfoButton} from './Buttons'
-import { DeleteInfoModal, EditInfoModal } from './Modals'
+import { SaveInfoButton} from '../utilities/Buttons'
+import { DeleteInfoModal, EditInfoModal } from '../utilities/Modals'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
