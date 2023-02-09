@@ -6,7 +6,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'main.js',
-    publicPath: '/',
     clean: true,
   },
   plugins: [
@@ -42,7 +41,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff(2)?|ttf|eot)$/,
+        test: /\.(woff(2)?|ttf|eot)$/i,
         type: 'asset/resource',
         generator: {
           filename: './assets/fonts/[name][ext]',
