@@ -30,3 +30,5 @@ ResetInfoModal.propTypes = {
   closeModal: PropTypes.func,
   resetFunc: PropTypes.func,
 }
+
+export default ResetInfoModal
