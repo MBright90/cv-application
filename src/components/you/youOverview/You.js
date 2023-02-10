@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './style.css'
 import AccountAvatarUpload from '../accountAvatarUpload/AccountAvatarUpload'
 import AccountInfo from '../accountInfo/AccountInfo'
 import ReferenceInfo from '../referenceInfoInput/ReferenceInfoInput'

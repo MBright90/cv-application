@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './style.css'
 import Avatar from '../../utilities/avatar/Avatar'
 
 const AccountAvatarUpload = (props) => {
