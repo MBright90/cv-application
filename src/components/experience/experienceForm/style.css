@@ -1,0 +1,35 @@
+.experience-input-overview {
+    display: flex;
+    flex-direction: column;
+    width: max(50%, 400px)
+}
+
+.experience-input-overview form {
+    width: 60%;
+}
+
+.experience-input-overview fieldset div {
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-input-overview fieldset {
+    display: grid;
+    gap: 10px;
+    grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
+    padding: 0 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+legend {
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 0 10px;
+}
+
+.span-two {
+    grid-column: span 2;
+}

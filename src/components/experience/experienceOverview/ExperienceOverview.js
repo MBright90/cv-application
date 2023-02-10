@@ -1,87 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import ExperienceList from './ExperienceList'
-import { SaveInfoButton } from '../utilities/Buttons'
+import './style.css'
+import ExperienceForm from '../experienceForm/ExperienceForm'
+import ExperienceList from '../experienceList/ExperienceList'
 import { DeleteInfoModal, EditInfoModal } from '../utilities/Modals' 
 
-const ExperienceInput = (props) => {
-  let closeModal
-  if (props.closeModal) closeModal = props.closeModal
-
-  const handleValueChange = (e) => {
-    props.validateInput(e.target)
-  }
-
-  return (
-    <form className='experience-input-overview'>
-      <fieldset>
-        <legend>{props.formType} Workplace Experience</legend>
-        <div className="span-two">
-          <label>Workplace</label>
-          <input 
-            type="text"
-            id="experience-workplace-input"
-            minLength="3"
-            onChange={handleValueChange}
-            data-is-required={true}
-            defaultValue={props.experienceItem.workplaceName}/>
-        </div>
-        <div>
-          <label>Date From</label>
-          <input 
-            type="date"
-            id="experience-date-from-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="from"
-            defaultValue={props.experienceItem.dateFrom}
-          />
-        </div>
-        <div>
-          <label>Date To</label>
-          <input 
-            type="date" 
-            id="experience-date-to-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="to"
-            defaultValue={props.experienceItem.dateTo}
-          />
-        </div>
-        <div className="span-two">
-          <label>Summary</label>
-          <textarea
-            type="text"
-            id="experience-summary-input"
-            minLength="20"
-            onChange={handleValueChange}
-            data-is-required={true}
-            defaultValue={props.experienceItem.experienceSummary}
-          ></textarea>
-        </div>
-        <SaveInfoButton
-          closeModal={closeModal}
-          itemID={props.itemID}
-          infoType='experience'
-          uploadData={props.uploadExperienceInfo}
-          validateInputSubmission={props.validateInputSubmission}/>
-      </fieldset>
-    </form>
-  )
-}
-
-ExperienceInput.defaultProps = {
-  experienceItem: {
-    workplaceName: '',
-    dateFrom: new Date(1970).toISOString().substring(0, 10),
-    dateTo: new Date().toISOString().substring(0,10),
-    experienceSummary: ''
-  },
-  formType: 'Add',
-}
-
-ExperienceInput.propTypes = {
+ExperienceForm.propTypes = {
   closeModal: PropTypes.func,
   experienceItem: PropTypes.object,
   itemID: PropTypes.string,
@@ -91,7 +16,7 @@ ExperienceInput.propTypes = {
   validateInputSubmission: PropTypes.func,
 }
 
-class Experience extends Component {
+class ExperienceOverview extends Component {
   constructor(props) {
     super(props)
 
@@ -128,7 +53,7 @@ class Experience extends Component {
     this.setState({
       isModalActive: <EditInfoModal 
         closeModal={this.closeModal}
-        editForm={<ExperienceInput
+        editForm={<ExperienceForm
           closeModal={this.closeModal}
           experienceItem={experienceObj}
           formType='Edit'
@@ -147,7 +72,7 @@ class Experience extends Component {
         {this.state.isModalActive}
         <div className="experience-page-overview">
           {this.state.isModalActive}
-          <ExperienceInput 
+          <ExperienceForm 
             uploadExperienceInfo={this.props.uploadExperienceInfo}
             validateInput={this.props.validateInput}
             validateInputSubmission={this.props.validateInputSubmission}
@@ -164,7 +89,7 @@ class Experience extends Component {
   }
 }
 
-Experience.propTypes = {
+ExperienceOverview.propTypes = {
   closeModal: PropTypes.func,
   deleteFunc: PropTypes.func,
   editExperienceInfo: PropTypes.func,
@@ -176,5 +101,4 @@ Experience.propTypes = {
   validateInputSubmission: PropTypes.func
 }
 
-export default Experience
-export { ExperienceInput }
+export default ExperienceOverview
