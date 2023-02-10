@@ -1,3 +1,14 @@
+main {
+    align-items: center;
+    background-color: #13005A;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 49px;
+    min-height: calc(100vh - 192px);
+    padding-top: 40px;
+}
+
 .you-overview {
     align-items: center;
     display: flex;
