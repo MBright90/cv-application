@@ -1,0 +1,15 @@
+.avatar-edit-overview label {
+    background-color: #ffefef;
+    /* border-radius: 5px; */
+    color: #13005A;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+}
+
+.avatar-edit-overview label:hover {
+    background-color: #a8a0a0 !important;
+}
+
+.avatar-edit-overview input[type=file] {
+    display: none;
+}
