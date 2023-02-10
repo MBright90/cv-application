@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import PageNav from './PageNav'
+import './style.css'
+import PageNav from '../pageNav/PageNav'
 
 const Header = (props) => {
 

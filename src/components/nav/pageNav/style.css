@@ -1,0 +1,15 @@
+nav {
+    border-bottom: 1px solid #13005A;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    font-weight: bold;
+    justify-content: space-around;
+}
+
+li.active {
+    animation: nav-pulse 3s infinite;
+}

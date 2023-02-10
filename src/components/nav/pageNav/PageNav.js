@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './style.css'
+
 const NavItem = (props) => {
   let isActive = ''
   if (props.navText.toLowerCase() === props.currentPageShown) isActive = 'active'
