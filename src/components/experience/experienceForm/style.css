@@ -33,3 +33,9 @@ legend {
 .span-two {
     grid-column: span 2;
 }
+
+textarea {
+    max-height: 400px;
+    min-height: 45px;
+    resize: vertical;
+}
