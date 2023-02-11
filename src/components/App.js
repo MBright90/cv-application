@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import Header from './nav/Header'
-import Footer from './nav/Footer'
-import Home from './home/Home'
-import Education from './education/Education'
-import Experience from './experience/Experience'
-import You from './you/You'
-import CVTemplate from './home/CVTemplate'
+import Header from './nav/header/Header'
+import Footer from './nav/footer/Footer'
+import HomeOverview from './home/homeOverview/HomeOverview'
+import EducationOverview from './education/educationOverview/EducationOverview'
+import ExperienceOverview from './experience/experienceOverview/ExperienceOverview'
+import YouOverview from './you/youOverview/YouOverview'
+import CvTemplateOverview from './home/cvTemplate/cvTemplateOverview/CvTemplateOverview'
 
 import Server from '../modules/Server'
 
@@ -188,11 +188,11 @@ export default class App extends Component {
     const mainPage = this.state.currentPage
     let main
 
-    if (mainPage === 'home') main = <Home 
+    if (mainPage === 'home') main = <HomeOverview 
       changePageShown={this.changePageShown}
     />
 
-    else if (mainPage === 'experience') main = <Experience
+    else if (mainPage === 'experience') main = <ExperienceOverview
       closeModal={this.closeModal}
       deleteFunc={this.deleteInfo}
       editExperienceInfo={this.editInfo}
@@ -204,7 +204,7 @@ export default class App extends Component {
       validateInputSubmission={this.validateInputSubmission}
     />
 
-    else if (mainPage === 'education') main = <Education
+    else if (mainPage === 'education') main = <EducationOverview
       closeModal={this.closeModal}
       deleteFunc={this.deleteInfo}
       editEducationInfo={this.editInfo}
@@ -216,7 +216,7 @@ export default class App extends Component {
       validateInputSubmission={this.validateInputSubmission}
     />
 
-    else if (mainPage === 'you') main = <You 
+    else if (mainPage === 'you') main = <YouOverview 
       closeModal={this.closeModal}
       resetFunc={this.resetAllData}
       uploadAccountInfo={this.uploadAccountInfo}
@@ -226,7 +226,7 @@ export default class App extends Component {
       validateInput={this.validateCurrentInputValue}
       validateInputSubmission={this.validateInputSubmission}/>
 
-    else if (mainPage === 'cv-template') main = <CVTemplate 
+    else if (mainPage === 'cv-template') main = <CvTemplateOverview 
       userInfo={this.state.currentUser}
     />
 
