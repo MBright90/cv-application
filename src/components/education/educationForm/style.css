@@ -1,0 +1,29 @@
+.education-input-overview {
+    display: flex;
+    flex-direction: column;
+    width: max(50%, 400px)
+}
+
+.education-input-overview form {
+    width: 60%;
+}
+
+.education-input-overview fieldset div {
+    display: flex;
+    flex-direction: column;
+}
+
+.education-input-overview fieldset {
+    display: grid;
+    gap: 10px;
+    grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
+    padding: 0 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.span-two {
+    grid-column: span 2;
+}

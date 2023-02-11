@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import EducationList from './EducationList'
-import { SaveInfoButton} from '../utilities/Buttons'
-import { DeleteInfoModal, EditInfoModal } from '../utilities/Modals'
+import SaveInfoButton from '../../utilities/buttons/saveInfoButton/SaveInfoButton'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -21,31 +19,31 @@ const CertificateInput = (props) => {
     />
   )
 }
-
+  
 CertificateInput.propTypes = {
   currentCertificate: PropTypes.string,
   handleValueChange: PropTypes.func,
   inputIndex: PropTypes.number,
 }
 
-class EducationInput extends Component {
+export default class EducationForm extends Component {
   constructor(props) {
     super(props)
-
+  
     this.state = {
       certificateInputAmount: this.props.educationItem.certificates.length,
       currentCertificateValues: [...this.props.educationItem.certificates]
     }
-
+  
     this.handleInfoSave = this.handleInfoSave.bind(this)
     this.handleNewCertificate = this.handleNewCertificate.bind(this)
     this.handleValueChange = this.handleValueChange.bind(this)
   }
-
+  
   createCertificateInputs = () => {
     // Create an array of n from certificateInputAmount
     const indexArray = [...Array(this.state.certificateInputAmount).keys()]
-
+  
     // Map out array using each index to create a certificate input
     return indexArray.map((index) => {
       return (<CertificateInput 
@@ -57,28 +55,28 @@ class EducationInput extends Component {
       )
     })
   }
-
+  
   handleInfoSave(inputValues, infoID, infoType) {
     this.setState({
       certificateInputAmount: 1
     })
     this.props.uploadEducationInfo(inputValues, infoID, infoType)
   }
-
+  
   handleNewCertificate() {
     this.setState({
       certificateInputAmount: this.state.certificateInputAmount + 1
     })
   }
-
+  
   handleValueChange(e) {
     this.props.validateInput(e.target)
   }
-
+  
   render() {
     let closeModal
     if (this.props.closeModal) closeModal = this.props.closeModal
-
+  
     return (
       <form className='education-input-overview'>
         <fieldset>
@@ -136,8 +134,8 @@ class EducationInput extends Component {
     )
   }
 }
-
-EducationInput.defaultProps = {
+  
+EducationForm.defaultProps = {
   educationItem: {
     institutionName: '',
     dateFrom: new Date(1970).toISOString().substring(0, 10),
@@ -146,8 +144,8 @@ EducationInput.defaultProps = {
   },
   formType: 'Add',
 }
-
-EducationInput.propTypes = {
+  
+EducationForm.propTypes = {
   closeModal: PropTypes.func,
   educationItem: PropTypes.object,
   itemID: PropTypes.string,
@@ -156,90 +154,3 @@ EducationInput.propTypes = {
   validateInput: PropTypes.func,
   validateInputSubmission: PropTypes.func,
 }
-
-class Education extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isModalActive: false
-    }
-
-    this.closeModal = this.props.closeModal.bind(this)
-    this.showDeleteModal = this.showDeleteModal.bind(this)
-    this.showEducationModal = this.showEducationModal.bind(this)
-  }
-
-  showDeleteModal(e) {
-
-    const infoID = e.target.dataset.itemId
-
-    this.setState({
-      isModalActive: <DeleteInfoModal
-        closeModal={this.closeModal}
-        deleteFunc={this.props.deleteFunc}
-        itemID={infoID}
-        type='education'
-      />
-    })
-  }
-
-  showEducationModal(e) {
-    const infoID = e.target.dataset.itemId
-    const educationObj = Object.assign({}, this.props.requestInfoByID(infoID, 'education'))
-
-    educationObj.dateFrom = this.props.revertToDateObject(educationObj.dateFrom)
-    educationObj.dateTo = this.props.revertToDateObject(educationObj.dateTo)
-
-    this.setState({
-      isModalActive: <EditInfoModal 
-        closeModal={this.closeModal}
-        editForm={<EducationInput
-          closeModal={this.closeModal}
-          educationItem={educationObj}
-          formType='Edit'
-          itemID={infoID}
-          uploadEducationInfo={this.props.editEducationInfo}
-          validateInput={this.props.validateInput}
-          validateInputSubmission={this.props.validateInputSubmission}
-        />}
-      />
-    })
-  }
-
-  render() {
-    return (
-      <main>
-        <div className="education-page-overview">
-          {this.state.isModalActive}
-          <EducationInput 
-            uploadEducationInfo={this.props.uploadEducationInfo}
-            validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}
-          />
-          <EducationList
-            editable={true}
-            educationArray={this.props.userEducationArray}
-            editFunc={this.showEducationModal}
-            showDeleteFunc={this.showDeleteModal}
-          />
-        </div>
-      </main>
-    )
-  }
-}
-
-Education.propTypes = {
-  closeModal: PropTypes.func,
-  deleteFunc: PropTypes.func,
-  editEducationInfo: PropTypes.func,
-  requestInfoByID: PropTypes.func,
-  revertToDateObject: PropTypes.func,
-  uploadEducationInfo: PropTypes.func,
-  userEducationArray: PropTypes.array,
-  validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
-}
-
-export default Education
-export { EducationInput }
