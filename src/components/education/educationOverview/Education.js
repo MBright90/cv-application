@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './style.css'
 import EducationForm from '../educationForm/EducationForm'
 import EducationList from '../educationList/EducationList'
 import { DeleteInfoModal } from '../../utilities/modals/deleteInfoModal/DeleteInfoModal'
