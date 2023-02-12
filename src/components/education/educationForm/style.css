@@ -20,6 +20,14 @@
     padding: 0 20px;
 }
 
+input[type=text],
+input[type=date] {
+    border: none;
+    color: #13005A;
+    letter-spacing: 2px;
+    padding: 2px 3px;
+}
+
 label {
     font-weight: bold;
 }
@@ -28,11 +36,19 @@ label {
     grid-column: span 2;
 }
 
-.new-certificate-button {
-    bottom: 0px;
-    color: #13005A;
-    height: 25px;
-    position: absolute;
-    width: 25px;
+.certificate-input-container {
+    position: relative;
+}
 
+.certificate-input {
+    margin-bottom: 5px;
+}
+
+.new-certificate-button {
+    bottom: -40px;
+    color: #13005A;
+    position: absolute;
+    height: 30px;
+    text-align: center;
+    width: 30px;
 }

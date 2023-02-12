@@ -58,28 +58,6 @@ main {
     min-width: 80px;
 }
 
-.home-page-overview,
-.education-page-overview,
-.experience-page-overview,
-.you-page-overview,
-.avatar-edit-overview {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
-}
-
-input[type=text],
-input[type=date],
-textarea {
-    border: none;
-    color: #13005A;
-    letter-spacing: 2px;
-    padding: 2px 3px;
-}
-
 button {
     border: none;
 }

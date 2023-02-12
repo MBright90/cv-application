@@ -1,6 +1,14 @@
+.avatar-edit-overview {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
 .avatar-edit-overview label {
     background-color: #ffefef;
-    /* border-radius: 5px; */
     color: #13005A;
     margin-bottom: 20px;
     padding: 5px 10px;
