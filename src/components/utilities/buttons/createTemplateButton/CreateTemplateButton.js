@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './style.css'
 
-const TemplateSection = (props) => {
+const CreateTemplateButton = (props) => {
   return (
     <div className="template-container">
       <button
@@ -14,6 +14,8 @@ const TemplateSection = (props) => {
   )
 }
   
-TemplateSection.propTypes = {
+CreateTemplateButton.propTypes = {
   changePageShown: PropTypes.func,
 }
+
+export default CreateTemplateButton

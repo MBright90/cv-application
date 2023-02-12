@@ -27,3 +27,12 @@ label {
 .span-two {
     grid-column: span 2;
 }
+
+.new-certificate-button {
+    bottom: 0px;
+    color: #13005A;
+    height: 25px;
+    position: absolute;
+    width: 25px;
+
+}

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import './style.css'
 import EducationForm from '../educationForm/EducationForm'
 import EducationList from '../educationList/EducationList'
-import { DeleteInfoModal } from '../../utilities/modals/deleteInfoModal/DeleteInfoModal'
-import { EditInfoModal } from '../../utilities/modals/editInfoModal/EditInfoModal'
+import DeleteInfoModal from '../../utilities/modals/deleteInfoModal/DeleteInfoModal'
+import EditInfoModal from '../../utilities/modals/editInfoModal/EditInfoModal'
 
 export default class EducationOverview extends Component {
   constructor(props) {

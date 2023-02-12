@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import './style.css'
 import ExperienceForm from '../experienceForm/ExperienceForm'
 import ExperienceList from '../experienceList/ExperienceList'
-import { DeleteInfoModal, EditInfoModal } from '../utilities/Modals' 
+import DeleteInfoModal from '../../utilities/modals/deleteInfoModal/DeleteInfoModal'
+import EditInfoModal from '../../utilities/modals/editInfoModal/EditInfoModal'
 
 ExperienceForm.propTypes = {
   closeModal: PropTypes.func,

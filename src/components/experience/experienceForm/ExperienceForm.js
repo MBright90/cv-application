@@ -89,3 +89,5 @@ ExperienceForm.propTypes = {
   validateInput: PropTypes.func,
   validateInputSubmission: PropTypes.func,
 }
+
+export default ExperienceForm

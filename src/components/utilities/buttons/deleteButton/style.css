@@ -2,7 +2,7 @@ button i {
     pointer-events: none;
 }
 
-.edit-button {
+.delete-button {
     border: none;
     color: #13005A;
     position: absolute;
@@ -13,6 +13,6 @@ button i {
     width: 25px;
 }
 
-.edit-button:hover {
+.delete-button:hover {
     background-color: #a8a0a0 !important;
 }

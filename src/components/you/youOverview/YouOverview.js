@@ -6,8 +6,8 @@ import AccountAvatarUpload from '../accountAvatarUpload/AccountAvatarUpload'
 import AccountInfo from '../accountInfo/AccountInfo'
 import ReferenceInfo from '../referenceInfoInput/ReferenceInfoInput'
 
-import { ResetButton } from '../utilities/Buttons'
-import { ResetInfoModal } from '../utilities/Modals'
+import ResetButton from '../../utilities/buttons/resetButton/ResetButton'
+import ResetInfoModal from '../../utilities/modals/resetInfoModal/ResetInfoModal'
 
 export default class You extends Component {
   constructor(props) {

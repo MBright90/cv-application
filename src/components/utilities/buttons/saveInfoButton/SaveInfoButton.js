@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import './style'
+import './style.css'
 
 export default class SaveInfoButton extends Component {
   constructor(props) {

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 
 import './style.css'
 
-import CvTemplateAvatar from './cvTemplateAvatar/CvTemplateAvatar'
-import CvTemplateHeadlines from './cvTemplateHeadlines/CvTemplateHeadlines'
-import CvTemplateExtras from './cvTemplateExtras/CvTemplateExtras'
-import EducationList from '../../education/EducationList'
-import ExperienceList from '../../experience/ExperienceList'
+import CvTemplateAvatar from '../cvTemplateAvatar/CvTemplateAvatar'
+import CvTemplateHeadlines from '../cvTemplateHeadlines/CvTemplateHeadlines'
+import CvTemplateExtras from '../cvTemplateExtras/CvTemplateExtras'
+import EducationList from '../../../education/educationList/EducationList'
+import ExperienceList from '../../../experience/experienceList/ExperienceList'
 
 const CvTemplateOverview = (props) => {
   return (

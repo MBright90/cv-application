@@ -40,3 +40,5 @@ DeleteInfoModal.propTypes = {
   ]),
   type: PropTypes.string,
 }
+
+export default DeleteInfoModal

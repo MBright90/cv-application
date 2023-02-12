@@ -1,0 +1,95 @@
+@font-face {
+    font-family: "nobile";
+    src: url('../../assets/fonts/nobile-regular-webfont.woff') format('woff'),
+        url('../../assets/fonts/nobile-regular-webfont.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "nobile";
+    src: url('../../assets/fonts/nobile-bold-webfont.woff') format('woff'),
+        url('../../assets/fonts/nobile-bold-webfont.woff2') format('woff2');
+    font-style: normal;
+    font-weight: bold;
+}
+
+*, body, a, ul, li {
+    color: inherit;
+    list-style: none;
+    font-family: "nobile", sans-serif;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    user-select: none;
+}
+
+button i {
+    pointer-events: none;
+}
+
+.page-layout {
+    color: #ffefef;
+    min-height: 100vh;
+}
+
+main {
+    align-items: center;
+    background-color: #13005A;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 49px;
+    min-height: calc(100vh - 192px);
+    padding-top: 40px;
+}
+
+.banner {
+    width: 100%;
+}
+
+.template-container .create-template-btn,
+.modal .confirm-container button {
+    background-color: #ffefef;
+    color: #13005A;
+    font-weight: bold;
+    padding: 3px 5px;
+    min-width: 80px;
+}
+
+.home-page-overview,
+.education-page-overview,
+.experience-page-overview,
+.you-page-overview,
+.avatar-edit-overview {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+input[type=text],
+input[type=date],
+textarea {
+    border: none;
+    color: #13005A;
+    letter-spacing: 2px;
+    padding: 2px 3px;
+}
+
+button {
+    border: none;
+}
+
+.hover-button:hover {
+    background-color: #a8a0a0 !important;
+}
+
+.invalid-highlight,
+.invalid:focus {
+    background-color: #F48484;
+    outline-color: #820000;
+}
