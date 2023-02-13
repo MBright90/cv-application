@@ -35,3 +35,12 @@
 .modal input {
     border: 1px solid #13005A
 } 
+
+.modal .confirm-container button {
+    background-color: #ffefef;
+    border: none;
+    color: #13005A;
+    font-weight: bold;
+    padding: 3px 5px;
+    min-width: 80px;
+}
