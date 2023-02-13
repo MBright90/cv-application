@@ -6,6 +6,7 @@
 
 .save-button-container .save-button {
     background-color: #ffefef;
+    border: none;
     color: #13005A;
     font-weight: bold;
     padding: 3px 5px;
