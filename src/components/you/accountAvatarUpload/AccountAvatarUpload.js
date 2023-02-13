@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import './style.css'
 import Avatar from '../../utilities/avatar/Avatar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudUpload } from '@fortawesome/free-solid-svg-icons'
 
 const AccountAvatarUpload = (props) => {
   return (
@@ -14,7 +16,7 @@ const AccountAvatarUpload = (props) => {
           type="file"
           accept="image/png, image/jpeg, image/jpg, .svg"
           onChange={props.handleAvatarUpload}/>
-        <i className="fa fa-cloud-upload"></i> Change Image
+        <FontAwesomeIcon icon={faCloudUpload}/> Change Image
       </label>
       
     </div>

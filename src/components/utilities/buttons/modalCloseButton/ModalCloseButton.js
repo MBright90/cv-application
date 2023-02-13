@@ -2,13 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faX } from '@fortawesome/free-solid-svg-icons'
 
 const ModalCloseButton = (props) => {
   return (
     <button 
       className="modal-close-button"
       onClick={props.closeModal}>
-      <i className="fa-solid fa-x"></i>
+      <FontAwesomeIcon icon={faX}/>
     </button>
   )
 }
