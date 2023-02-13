@@ -25,10 +25,6 @@
     user-select: none;
 }
 
-button i {
-    pointer-events: none;
-}
-
 .page-layout {
     color: #ffefef;
     min-height: 100vh;
@@ -47,27 +43,4 @@ main {
 
 .banner {
     width: 100%;
-}
-
-.template-container .create-template-btn,
-.modal .confirm-container button {
-    background-color: #ffefef;
-    color: #13005A;
-    font-weight: bold;
-    padding: 3px 5px;
-    min-width: 80px;
-}
-
-button {
-    border: none;
-}
-
-.hover-button:hover {
-    background-color: #a8a0a0 !important;
-}
-
-.invalid-highlight,
-.invalid:focus {
-    background-color: #F48484;
-    outline-color: #820000;
 }
