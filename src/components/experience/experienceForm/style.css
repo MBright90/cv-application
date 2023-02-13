@@ -48,3 +48,9 @@ textarea {
     min-height: 45px;
     resize: vertical;
 }
+
+.invalid-highlight,
+.invalid:focus {
+    background-color: #F48484;
+    outline-color: #820000;
+}

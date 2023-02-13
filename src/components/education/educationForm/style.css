@@ -52,3 +52,9 @@ label {
     text-align: center;
     width: 30px;
 }
+
+.invalid-highlight,
+.invalid:focus {
+    background-color: #F48484;
+    outline-color: #820000;
+}
