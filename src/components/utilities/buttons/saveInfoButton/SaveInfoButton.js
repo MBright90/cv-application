@@ -78,6 +78,12 @@ export default class SaveInfoButton extends Component {
     }
   
   }
+
+  componentWillUnmount() {
+    // Clear any current timers if user changes tabs
+    clearTimeout(this.highlightTimerID)
+    clearTimeout(this.notificationTimerID)
+  }
     
   render() {
     return (
