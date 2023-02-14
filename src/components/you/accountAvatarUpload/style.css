@@ -1,23 +1,23 @@
 .avatar-edit-overview {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
 }
 
 .avatar-edit-overview label {
-    background-color: #ffefef;
-    color: #13005A;
-    margin-bottom: 20px;
-    padding: 5px 10px;
+  background-color: #ffefef;
+  color: #13005a;
+  margin-bottom: 20px;
+  padding: 5px 10px;
 }
 
 .avatar-edit-overview label:hover {
-    background-color: #a8a0a0 !important;
+  background-color: #a8a0a0 !important;
 }
 
-.avatar-edit-overview input[type=file] {
-    display: none;
+.avatar-edit-overview input[type='file'] {
+  display: none;
 }

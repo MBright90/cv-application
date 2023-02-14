@@ -17,7 +17,7 @@ export default class Server {
       reference: {
         name: '',
         position: '',
-        email: '',
+        email: ''
       }
     }
   }
@@ -34,8 +34,7 @@ export default class Server {
     let savedUser
     try {
       savedUser = await JSON.parse(localStorage.getItem('user'))
-    }
-    finally {
+    } finally {
       if (savedUser) this.user = savedUser
     }
   }
@@ -66,21 +65,23 @@ export default class Server {
   formatDate = (dateString) => {
     const dateSplitArray = dateString.split('-')
 
-    let monthIndex = (dateSplitArray[1] - 1) >= 0 ? dateSplitArray[1] - 1 : 12
+    let monthIndex = dateSplitArray[1] - 1 >= 0 ? dateSplitArray[1] - 1 : 12
 
     return `${months[monthIndex]} ${dateSplitArray[0]}`
   }
 
   removeEmptyFields = (array) => {
-    return array.filter((item) => {if (item != '') return item})
+    return array.filter((item) => {
+      if (item != '') return item
+    })
   }
 
   // Takes formatted date (MMM YYYY) where MMM is a three letter abbreviation and
-  // returns an ISO string to pass as default value to inputs 
+  // returns an ISO string to pass as default value to inputs
   revertDate = (dateString) => {
     const dateSplitArray = dateString.split(' ')
     const monthIndex = months.indexOf(dateSplitArray[0])
-    return new Date(dateSplitArray[1], monthIndex).toISOString().substring(0,10)
+    return new Date(dateSplitArray[1], monthIndex).toISOString().substring(0, 10)
   }
 
   // Takes the formatted date (MMM - yyyy) where MMM is a three letter abbreviation
@@ -109,7 +110,7 @@ export default class Server {
       // compare beginning dates
       const aStartDateSplit = a.dateFrom.split(' ')
       const bStartDateSplit = b.dateFrom.split(' ')
-      
+
       // Compare year beginning
       const aYearStart = parseInt(aStartDateSplit[1], 10)
       const bYearStart = parseInt(bStartDateSplit[1], 10)
@@ -141,7 +142,7 @@ export default class Server {
 
     if (infoID) {
       educationItem.ID = infoID
-      const infoIndex = this.user.education.map(item => item.ID).indexOf(infoID)
+      const infoIndex = this.user.education.map((item) => item.ID).indexOf(infoID)
       this.user.education[infoIndex] = educationItem
     } else {
       educationItem.ID = this.generateID(this.user.education)
@@ -162,7 +163,7 @@ export default class Server {
 
     if (infoID) {
       experienceItem.ID = infoID
-      const infoIndex = this.user.experience.map(item => item.ID).indexOf(infoID)
+      const infoIndex = this.user.experience.map((item) => item.ID).indexOf(infoID)
       this.user.experience[infoIndex] = experienceItem
     } else {
       experienceItem.ID = this.generateID(this.user.experience)
@@ -175,7 +176,6 @@ export default class Server {
     this.saveToStorage()
   }
 
-
   //*****************//
   // Reading methods //
   //*****************//
@@ -185,7 +185,6 @@ export default class Server {
   }
 
   getInfoByID(ID, type) {
-
     let foundObject = -1
     this.user[type]?.forEach((arrayItem) => {
       if (arrayItem.ID == ID) {
@@ -210,7 +209,7 @@ export default class Server {
 
     // Initiate fileReader and set to save result when loaded
     const fileReader = new FileReader()
-    fileReader.onload = async function(readerResult) {
+    fileReader.onload = async function (readerResult) {
       saveAvatarToStorage(readerResult.target.result)
     }
 
@@ -239,7 +238,7 @@ export default class Server {
   //******************//
 
   deleteInfo(infoID, type) {
-    const infoIndex = this.user[type].map(item => item.ID).indexOf(infoID)
+    const infoIndex = this.user[type].map((item) => item.ID).indexOf(infoID)
     this.user[type].splice(infoIndex, 1)
     this.saveToStorage()
   }
@@ -255,15 +254,15 @@ export default class Server {
   }
 
   validateDateComparison(dateInputArr) {
-    const dateFrom = dateInputArr.find(input => input.dataset.date === 'from')
-    const dateTo = dateInputArr.find(input => input.dataset.date === 'to')
+    const dateFrom = dateInputArr.find((input) => input.dataset.date === 'from')
+    const dateTo = dateInputArr.find((input) => input.dataset.date === 'to')
 
     return dateFrom.value < dateTo.value
   }
 
   validateEmailSubmission(emailInput) {
     const value = emailInput.value
-    if (!value.match(/^\w+([.-]?w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/)) 
+    if (!value.match(/^\w+([.-]?w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/))
       return 'Please enter a valid email address'
     return ''
   }

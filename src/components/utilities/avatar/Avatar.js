@@ -12,16 +12,12 @@ const Avatar = (props) => {
     avatarImg = Avatar.defaultProps.imgSource
   }
 
-  return (
-    <img 
-      className="avatar"
-      src={avatarImg}
-    />
-  )
+  return <img className="avatar" src={avatarImg} />
 }
 
 Avatar.defaultProps = {
-  imgSource: 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000'
+  imgSource:
+    'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000'
 }
 
 Avatar.propTypes = {

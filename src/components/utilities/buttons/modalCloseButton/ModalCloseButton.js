@@ -7,16 +7,14 @@ import { faX } from '@fortawesome/free-solid-svg-icons'
 
 const ModalCloseButton = (props) => {
   return (
-    <button 
-      className="modal-close-button"
-      onClick={props.closeModal}>
-      <FontAwesomeIcon icon={faX}/>
+    <button className="modal-close-button" onClick={props.closeModal}>
+      <FontAwesomeIcon icon={faX} />
     </button>
   )
 }
-  
+
 ModalCloseButton.propTypes = {
-  closeModal: PropTypes.func,
+  closeModal: PropTypes.func
 }
 
 export default ModalCloseButton

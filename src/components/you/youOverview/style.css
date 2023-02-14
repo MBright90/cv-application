@@ -1,19 +1,19 @@
 main {
-    align-items: center;
-    background-color: #13005A;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-bottom: 49px;
-    min-height: calc(100vh - 192px);
-    padding-top: 40px;
+  align-items: center;
+  background-color: #13005a;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 49px;
+  min-height: calc(100vh - 192px);
+  padding-top: 40px;
 }
 
 .you-page-overview {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    width: max(100%);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  width: max(100%);
 }

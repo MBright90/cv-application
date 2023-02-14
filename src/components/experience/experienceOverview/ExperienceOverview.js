@@ -14,7 +14,7 @@ ExperienceForm.propTypes = {
   formType: PropTypes.string,
   uploadExperienceInfo: PropTypes.func,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }
 
 class ExperienceOverview extends Component {
@@ -31,16 +31,17 @@ class ExperienceOverview extends Component {
   }
 
   showDeleteModal(e) {
-
     const infoID = e.target.dataset.itemId
 
     this.setState({
-      isModalActive: <DeleteInfoModal
-        closeModal={this.closeModal}
-        deleteFunc={this.props.deleteFunc}
-        itemID={infoID}
-        type='experience'
-      />
+      isModalActive: (
+        <DeleteInfoModal
+          closeModal={this.closeModal}
+          deleteFunc={this.props.deleteFunc}
+          itemID={infoID}
+          type="experience"
+        />
+      )
     })
   }
 
@@ -52,18 +53,22 @@ class ExperienceOverview extends Component {
     experienceObj.dateTo = this.props.revertToDateObject(experienceObj.dateTo)
 
     this.setState({
-      isModalActive: <EditInfoModal 
-        closeModal={this.closeModal}
-        editForm={<ExperienceForm
+      isModalActive: (
+        <EditInfoModal
           closeModal={this.closeModal}
-          experienceItem={experienceObj}
-          formType='Edit'
-          itemID={infoID}
-          uploadExperienceInfo={this.props.editExperienceInfo}
-          validateInput={this.props.validateInput}
-          validateInputSubmission={this.props.validateInputSubmission}
-        />}
-      />
+          editForm={
+            <ExperienceForm
+              closeModal={this.closeModal}
+              experienceItem={experienceObj}
+              formType="Edit"
+              itemID={infoID}
+              uploadExperienceInfo={this.props.editExperienceInfo}
+              validateInput={this.props.validateInput}
+              validateInputSubmission={this.props.validateInputSubmission}
+            />
+          }
+        />
+      )
     })
   }
 
@@ -73,12 +78,12 @@ class ExperienceOverview extends Component {
         {this.state.isModalActive}
         <div className="experience-page-overview">
           {this.state.isModalActive}
-          <ExperienceForm 
+          <ExperienceForm
             uploadExperienceInfo={this.props.uploadExperienceInfo}
             validateInput={this.props.validateInput}
             validateInputSubmission={this.props.validateInputSubmission}
           />
-          <ExperienceList 
+          <ExperienceList
             editable={true}
             experienceArray={this.props.userExperienceArray}
             editFunc={this.showExperienceModal}

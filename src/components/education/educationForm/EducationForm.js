@@ -20,81 +20,83 @@ const CertificateInput = (props) => {
     />
   )
 }
-  
+
 CertificateInput.propTypes = {
   currentCertificate: PropTypes.string,
   handleValueChange: PropTypes.func,
-  inputIndex: PropTypes.number,
+  inputIndex: PropTypes.number
 }
 
 export default class EducationForm extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
       certificateInputAmount: this.props.educationItem.certificates.length,
       currentCertificateValues: [...this.props.educationItem.certificates]
     }
-  
+
     this.handleInfoSave = this.handleInfoSave.bind(this)
     this.handleNewCertificate = this.handleNewCertificate.bind(this)
     this.handleValueChange = this.handleValueChange.bind(this)
   }
-  
+
   createCertificateInputs = () => {
     // Create an array of n from certificateInputAmount
     const indexArray = [...Array(this.state.certificateInputAmount).keys()]
-  
+
     // Map out array using each index to create a certificate input
     return indexArray.map((index) => {
-      return (<CertificateInput 
-        key={`certificate-${index}`}
-        inputIndex={index}
-        currentCertificate={this.state.currentCertificateValues[index]}
-        handleValueChange={this.handleValueChange}
-      />
+      return (
+        <CertificateInput
+          key={`certificate-${index}`}
+          inputIndex={index}
+          currentCertificate={this.state.currentCertificateValues[index]}
+          handleValueChange={this.handleValueChange}
+        />
       )
     })
   }
-  
+
   handleInfoSave(inputValues, infoID, infoType) {
     this.setState({
       certificateInputAmount: 1
     })
     this.props.uploadEducationInfo(inputValues, infoID, infoType)
   }
-  
+
   handleNewCertificate() {
     this.setState({
       certificateInputAmount: this.state.certificateInputAmount + 1
     })
   }
-  
+
   handleValueChange(e) {
     this.props.validateInput(e.target)
   }
-  
+
   render() {
     let closeModal
     if (this.props.closeModal) closeModal = this.props.closeModal
-  
+
     return (
-      <form className='education-input-overview'>
+      <form className="education-input-overview">
         <fieldset>
           <legend>{this.props.formType} New Certificate</legend>
           <div className="span-two">
             <label htmlFor="">Institution</label>
-            <input 
+            <input
               type="text"
               id="education-institution-input"
               minLength="3"
               onChange={this.handleValueChange}
               data-is-required={true}
-              defaultValue={this.props.educationItem.institutionName}/>
+              defaultValue={this.props.educationItem.institutionName}
+            />
           </div>
           <div>
             <label htmlFor="">Date From</label>
-            <input 
+            <input
               type="date"
               id="education-date-from-input"
               onChange={this.handleValueChange}
@@ -105,8 +107,8 @@ export default class EducationForm extends Component {
           </div>
           <div>
             <label htmlFor="">Date To</label>
-            <input 
-              type="date" 
+            <input
+              type="date"
               id="education-date-to-input"
               onChange={this.handleValueChange}
               data-is-required={true}
@@ -120,32 +122,34 @@ export default class EducationForm extends Component {
             <button
               className="new-certificate-button hover-button"
               type="button"
-              onClick={this.handleNewCertificate}>
+              onClick={this.handleNewCertificate}
+            >
               <FontAwesomeIcon icon={faPlus} />
             </button>
           </div>
           <SaveInfoButton
             closeModal={closeModal}
             itemID={this.props.itemID}
-            infoType='education'
+            infoType="education"
             uploadData={this.handleInfoSave}
-            validateInputSubmission={this.props.validateInputSubmission}/>
+            validateInputSubmission={this.props.validateInputSubmission}
+          />
         </fieldset>
       </form>
     )
   }
 }
-  
+
 EducationForm.defaultProps = {
   educationItem: {
     institutionName: '',
     dateFrom: new Date(1970).toISOString().substring(0, 10),
-    dateTo: new Date().toISOString().substring(0,10),
-    certificates: [''],
+    dateTo: new Date().toISOString().substring(0, 10),
+    certificates: ['']
   },
-  formType: 'Add',
+  formType: 'Add'
 }
-  
+
 EducationForm.propTypes = {
   closeModal: PropTypes.func,
   educationItem: PropTypes.object,
@@ -153,5 +157,5 @@ EducationForm.propTypes = {
   formType: PropTypes.string,
   uploadEducationInfo: PropTypes.func,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }

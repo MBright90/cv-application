@@ -1,18 +1,18 @@
 .delete-button svg {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .delete-button {
-    border: none;
-    color: #13005A;
-    position: absolute;
-    height: 25px;
-    right: 0;
-    text-align: center;
-    top: 35px;
-    width: 25px;
+  border: none;
+  color: #13005a;
+  position: absolute;
+  height: 25px;
+  right: 0;
+  text-align: center;
+  top: 35px;
+  width: 25px;
 }
 
 .delete-button:hover {
-    background-color: #a8a0a0 !important;
+  background-color: #a8a0a0 !important;
 }

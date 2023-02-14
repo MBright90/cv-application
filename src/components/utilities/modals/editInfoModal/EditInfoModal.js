@@ -14,10 +14,10 @@ const EditInfoModal = (props) => {
     </div>
   )
 }
-  
+
 EditInfoModal.propTypes = {
   closeModal: PropTypes.func,
-  editForm: PropTypes.object,
+  editForm: PropTypes.object
 }
 
 export default EditInfoModal

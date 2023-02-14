@@ -10,14 +10,24 @@ const CvTemplateExtras = (props) => {
     <div className="cv-template-extras">
       <div>
         <p className="bold">Contact</p>
-        <p>{props.userEmail} <FontAwesomeIcon icon={faEnvelope}/></p>
-        <p>{props.userContactNumber} <FontAwesomeIcon icon={faPhone} /></p>
+        <p>
+          {props.userEmail} <FontAwesomeIcon icon={faEnvelope} />
+        </p>
+        <p>
+          {props.userContactNumber} <FontAwesomeIcon icon={faPhone} />
+        </p>
       </div>
       <div>
         <p className="bold">Reference</p>
-        <p>{props.reference.name} <FontAwesomeIcon icon={faUser}/></p>
-        <p>{props.reference.position} <FontAwesomeIcon icon={faLocationDot}/></p>
-        <p>{props.reference.email} <FontAwesomeIcon icon={faEnvelope}/></p>
+        <p>
+          {props.reference.name} <FontAwesomeIcon icon={faUser} />
+        </p>
+        <p>
+          {props.reference.position} <FontAwesomeIcon icon={faLocationDot} />
+        </p>
+        <p>
+          {props.reference.email} <FontAwesomeIcon icon={faEnvelope} />
+        </p>
       </div>
     </div>
   )
@@ -26,7 +36,7 @@ const CvTemplateExtras = (props) => {
 CvTemplateExtras.propTypes = {
   reference: PropTypes.object,
   userContactNumber: PropTypes.string,
-  userEmail: PropTypes.string,
+  userEmail: PropTypes.string
 }
 
 export default CvTemplateExtras

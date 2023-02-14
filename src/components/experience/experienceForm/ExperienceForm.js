@@ -7,28 +7,29 @@ import SaveInfoButton from '@buttons/saveInfoButton/SaveInfoButton'
 const ExperienceForm = (props) => {
   let closeModal
   if (props.closeModal) closeModal = props.closeModal
-  
+
   const handleValueChange = (e) => {
     props.validateInput(e.target)
   }
-  
+
   return (
-    <form className='experience-input-overview'>
+    <form className="experience-input-overview">
       <fieldset>
         <legend>{props.formType} Workplace Experience</legend>
         <div className="span-two">
           <label>Workplace</label>
-          <input 
+          <input
             type="text"
             id="experience-workplace-input"
             minLength="3"
             onChange={handleValueChange}
             data-is-required={true}
-            defaultValue={props.experienceItem.workplaceName}/>
+            defaultValue={props.experienceItem.workplaceName}
+          />
         </div>
         <div>
           <label>Date From</label>
-          <input 
+          <input
             type="date"
             id="experience-date-from-input"
             onChange={handleValueChange}
@@ -39,8 +40,8 @@ const ExperienceForm = (props) => {
         </div>
         <div>
           <label>Date To</label>
-          <input 
-            type="date" 
+          <input
+            type="date"
             id="experience-date-to-input"
             onChange={handleValueChange}
             data-is-required={true}
@@ -62,24 +63,25 @@ const ExperienceForm = (props) => {
         <SaveInfoButton
           closeModal={closeModal}
           itemID={props.itemID}
-          infoType='experience'
+          infoType="experience"
           uploadData={props.uploadExperienceInfo}
-          validateInputSubmission={props.validateInputSubmission}/>
+          validateInputSubmission={props.validateInputSubmission}
+        />
       </fieldset>
     </form>
   )
 }
-  
+
 ExperienceForm.defaultProps = {
   experienceItem: {
     workplaceName: '',
     dateFrom: new Date(1970).toISOString().substring(0, 10),
-    dateTo: new Date().toISOString().substring(0,10),
+    dateTo: new Date().toISOString().substring(0, 10),
     experienceSummary: ''
   },
-  formType: 'Add',
+  formType: 'Add'
 }
-  
+
 ExperienceForm.propTypes = {
   closeModal: PropTypes.func,
   experienceItem: PropTypes.object,
@@ -87,7 +89,7 @@ ExperienceForm.propTypes = {
   formType: PropTypes.string,
   uploadExperienceInfo: PropTypes.func,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }
 
 export default ExperienceForm

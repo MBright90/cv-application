@@ -1,38 +1,38 @@
 .modal {
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1000;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 }
 
 .modal .modal-form-container {
-    align-items: center;
-    background-color: #fff;
-    display: flex;
-    left: 0;
-    justify-content: center;
-    padding: 40px 20px;
-    position: absolute;
-    right: 0;
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  left: 0;
+  justify-content: center;
+  padding: 40px 20px;
+  position: absolute;
+  right: 0;
 }
 
 .modal .modal-form-container label,
 .modal .modal-form-container legend {
-    color: #13005A;
+  color: #13005a;
 }
 
 .modal .modal-form-container button {
-    background-color: #13005A;
-    color: #fff;
+  background-color: #13005a;
+  color: #fff;
 }
 
 .modal input,
 .modal textarea {
-    border: 1px solid #13005A !important;
-} 
+  border: 1px solid #13005a !important;
+}

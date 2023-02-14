@@ -14,7 +14,7 @@ export default class You extends Component {
     super(props)
 
     this.state = {
-      isModalActive: false,
+      isModalActive: false
     }
 
     this.closeModal = this.props.closeModal.bind(this)
@@ -28,10 +28,9 @@ export default class You extends Component {
 
   showResetModal() {
     this.setState({
-      isModalActive: <ResetInfoModal 
-        closeModal={this.closeModal}
-        resetFunc={this.props.resetFunc}
-      />
+      isModalActive: (
+        <ResetInfoModal closeModal={this.closeModal} resetFunc={this.props.resetFunc} />
+      )
     })
   }
 
@@ -42,19 +41,21 @@ export default class You extends Component {
         <div className="you-page-overview">
           <AccountAvatarUpload
             imgSource={this.props.userInfo.avatarImg}
-            handleAvatarUpload={this.handleAvatarUpload}/>
-          <AccountInfo 
+            handleAvatarUpload={this.handleAvatarUpload}
+          />
+          <AccountInfo
             uploadAccountInfo={this.props.uploadAccountInfo}
             userInfo={this.props.userInfo}
             validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}/>
-          <ReferenceInfo 
+            validateInputSubmission={this.props.validateInputSubmission}
+          />
+          <ReferenceInfo
             reference={this.props.userInfo.reference}
             uploadReferenceInfo={this.props.uploadReferenceInfo}
             validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}/>
-          <ResetButton 
-            showResetModal={this.showResetModal}/>
+            validateInputSubmission={this.props.validateInputSubmission}
+          />
+          <ResetButton showResetModal={this.showResetModal} />
         </div>
       </main>
     )
@@ -69,5 +70,5 @@ You.propTypes = {
   uploadReferenceInfo: PropTypes.func,
   userInfo: PropTypes.object,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }

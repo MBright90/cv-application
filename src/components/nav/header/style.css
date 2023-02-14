@@ -1,17 +1,17 @@
 header {
-    align-items: center;
-    background-color: #fff;
-    color: #13005A;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5px;
+  align-items: center;
+  background-color: #fff;
+  color: #13005a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
 }
 
 header h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .active {
-    animation: nav-pulse 3s infinite;
+  animation: nav-pulse 3s infinite;
 }

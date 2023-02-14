@@ -8,7 +8,9 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-link">
-        <a href="https://github.com/MBright90/cv-application"><FontAwesomeIcon icon={faGithub} size="lg"/> MBright90</a>
+        <a href="https://github.com/MBright90/cv-application">
+          <FontAwesomeIcon icon={faGithub} size="lg" /> MBright90
+        </a>
       </div>
     </footer>
   )

@@ -4,19 +4,15 @@ import PropTypes from 'prop-types'
 import './style.css'
 
 const ResetButton = (props) => {
-
   return (
-    <button
-      className="reset-data-button"
-      type="button"
-      onClick={props.showResetModal}>
-            Reset Site Data
+    <button className="reset-data-button" type="button" onClick={props.showResetModal}>
+      Reset Site Data
     </button>
   )
 }
-  
+
 ResetButton.propTypes = {
-  showResetModal: PropTypes.func,
+  showResetModal: PropTypes.func
 }
 
 export default ResetButton

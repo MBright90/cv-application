@@ -1,56 +1,56 @@
 .experience-input-overview {
-    display: flex;
-    flex-direction: column;
-    width: max(50%, 400px)
+  display: flex;
+  flex-direction: column;
+  width: max(50%, 400px);
 }
 
 .experience-input-overview form {
-    width: 60%;
+  width: 60%;
 }
 
 .experience-input-overview fieldset div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .experience-input-overview fieldset {
-    display: grid;
-    gap: 10px;
-    grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
-    padding: 0 20px;
+  display: grid;
+  gap: 10px;
+  grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
+  padding: 0 20px;
 }
 
-input[type=text],
-input[type=date],
+input[type='text'],
+input[type='date'],
 textarea {
-    border: none;
-    color: #13005A;
-    letter-spacing: 2px;
-    padding: 2px 3px;
+  border: none;
+  color: #13005a;
+  letter-spacing: 2px;
+  padding: 2px 3px;
 }
 
 label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 legend {
-    font-weight: bold;
-    margin: 0 10px;
-    padding: 0 10px;
+  font-weight: bold;
+  margin: 0 10px;
+  padding: 0 10px;
 }
 
 .span-two {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
 textarea {
-    max-height: 400px;
-    min-height: 45px;
-    resize: vertical;
+  max-height: 400px;
+  min-height: 45px;
+  resize: vertical;
 }
 
 .invalid-highlight,
 .invalid:focus {
-    background-color: #F48484;
-    outline-color: #820000;
+  background-color: #f48484;
+  outline-color: #820000;
 }

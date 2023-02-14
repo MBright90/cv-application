@@ -8,9 +8,7 @@ const NavItem = (props) => {
   if (props.navText.toLowerCase() === props.currentPageShown) isActive = 'active'
 
   return (
-    <li 
-      className={isActive}
-      onClick={props.onClickFunc}>
+    <li className={isActive} onClick={props.onClickFunc}>
       {props.navText}
     </li>
   )
@@ -19,7 +17,7 @@ const NavItem = (props) => {
 NavItem.propTypes = {
   currentPageShown: PropTypes.string,
   onClickFunc: PropTypes.func,
-  navText: PropTypes.string,
+  navText: PropTypes.string
 }
 
 export default class PageNav extends Component {
@@ -34,12 +32,15 @@ export default class PageNav extends Component {
     const navItems = ['HOME', 'EXPERIENCE', 'EDUCATION', 'YOU']
 
     return navItems.map((navItem) => {
-      return <NavItem 
-        currentPageShown={currentPage}
-        onClickFunc={(e) => this.handleNavClick(e)}
-        navText={navItem}
-        key={navItem.toLowerCase()}
-      />})
+      return (
+        <NavItem
+          currentPageShown={currentPage}
+          onClickFunc={(e) => this.handleNavClick(e)}
+          navText={navItem}
+          key={navItem.toLowerCase()}
+        />
+      )
+    })
   }
 
   handleNavClick(e) {
@@ -49,9 +50,7 @@ export default class PageNav extends Component {
   render() {
     return (
       <nav>
-        <ul>
-          {this.navArray}
-        </ul>
+        <ul>{this.navArray}</ul>
       </nav>
     )
   }
@@ -59,5 +58,5 @@ export default class PageNav extends Component {
 
 PageNav.propTypes = {
   changePageShown: PropTypes.func,
-  currentPageShown: PropTypes.string,
+  currentPageShown: PropTypes.string
 }

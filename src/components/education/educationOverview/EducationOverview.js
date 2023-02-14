@@ -21,16 +21,17 @@ export default class EducationOverview extends Component {
   }
 
   showDeleteModal(e) {
-
     const infoID = e.target.dataset.itemId
 
     this.setState({
-      isModalActive: <DeleteInfoModal
-        closeModal={this.closeModal}
-        deleteFunc={this.props.deleteFunc}
-        itemID={infoID}
-        type='education'
-      />
+      isModalActive: (
+        <DeleteInfoModal
+          closeModal={this.closeModal}
+          deleteFunc={this.props.deleteFunc}
+          itemID={infoID}
+          type="education"
+        />
+      )
     })
   }
 
@@ -42,18 +43,22 @@ export default class EducationOverview extends Component {
     educationObj.dateTo = this.props.revertToDateObject(educationObj.dateTo)
 
     this.setState({
-      isModalActive: <EditInfoModal 
-        closeModal={this.closeModal}
-        editForm={<EducationForm
+      isModalActive: (
+        <EditInfoModal
           closeModal={this.closeModal}
-          educationItem={educationObj}
-          formType='Edit'
-          itemID={infoID}
-          uploadEducationInfo={this.props.editEducationInfo}
-          validateInput={this.props.validateInput}
-          validateInputSubmission={this.props.validateInputSubmission}
-        />}
-      />
+          editForm={
+            <EducationForm
+              closeModal={this.closeModal}
+              educationItem={educationObj}
+              formType="Edit"
+              itemID={infoID}
+              uploadEducationInfo={this.props.editEducationInfo}
+              validateInput={this.props.validateInput}
+              validateInputSubmission={this.props.validateInputSubmission}
+            />
+          }
+        />
+      )
     })
   }
 
@@ -62,7 +67,7 @@ export default class EducationOverview extends Component {
       <main>
         <div className="education-page-overview">
           {this.state.isModalActive}
-          <EducationForm 
+          <EducationForm
             uploadEducationInfo={this.props.uploadEducationInfo}
             validateInput={this.props.validateInput}
             validateInputSubmission={this.props.validateInputSubmission}
@@ -88,5 +93,5 @@ EducationOverview.propTypes = {
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }

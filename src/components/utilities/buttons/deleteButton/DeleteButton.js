@@ -11,15 +11,16 @@ const DeleteButton = (props) => {
       className="delete-button"
       type="button"
       data-item-id={props.itemID}
-      onClick={props.showDeleteFunc}>
+      onClick={props.showDeleteFunc}
+    >
       <FontAwesomeIcon icon={faTrashCan} />
     </button>
   )
 }
-  
+
 DeleteButton.propTypes = {
   itemID: PropTypes.string,
-  showDeleteFunc: PropTypes.func,
+  showDeleteFunc: PropTypes.func
 }
 
 export default DeleteButton

@@ -7,8 +7,7 @@ import Avatar from '@components/utilities/avatar/Avatar'
 const CvTemplateAvatar = (props) => {
   return (
     <div className="cv-template-avatar">
-      <Avatar 
-        imgSource={props.imgSource}/>
+      <Avatar imgSource={props.imgSource} />
     </div>
   )
 }

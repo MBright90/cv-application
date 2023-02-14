@@ -5,11 +5,10 @@ import './style.css'
 import SaveInfoButton from '../../utilities/buttons/saveInfoButton/SaveInfoButton'
 
 const ReferenceInfo = (props) => {
-
   const handleValueChange = (e) => {
     props.validateInput(e.target)
   }
-  
+
   return (
     <form className="reference-input-overview">
       <fieldset>
@@ -44,20 +43,21 @@ const ReferenceInfo = (props) => {
             defaultValue={props.reference.email}
           />
         </div>
-        <SaveInfoButton 
+        <SaveInfoButton
           setToClear={false}
           uploadData={props.uploadReferenceInfo}
-          validateInputSubmission={props.validateInputSubmission}/>
+          validateInputSubmission={props.validateInputSubmission}
+        />
       </fieldset>
     </form>
   )
 }
-  
+
 ReferenceInfo.defaultProps = {
   reference: {
     name: '',
     position: '',
-    email: '',
+    email: ''
   }
 }
 
@@ -65,7 +65,7 @@ ReferenceInfo.propTypes = {
   reference: PropTypes.object,
   uploadReferenceInfo: PropTypes.func,
   validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func,
+  validateInputSubmission: PropTypes.func
 }
 
 export default ReferenceInfo

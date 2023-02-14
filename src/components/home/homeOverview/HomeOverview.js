@@ -6,13 +6,11 @@ import CreateTemplateButton from '@buttons/createTemplateButton/CreateTemplateBu
 import Welcome from '@components/home/welcome/Welcome'
 
 const HomeOverview = (props) => {
-
   return (
     <main>
       <div className="home-page-overview">
         <Welcome />
-        <CreateTemplateButton 
-          changePageShown={props.changePageShown}/>
+        <CreateTemplateButton changePageShown={props.changePageShown} />
       </div>
     </main>
   )

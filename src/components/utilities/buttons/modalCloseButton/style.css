@@ -1,13 +1,13 @@
 .modal .modal-form-container .modal-close-button {
-    background-color: inherit;
-    border: none;
-    color: #13005A;
-    font-size: 20px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+  background-color: inherit;
+  border: none;
+  color: #13005a;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .modal-close-button svg {
-    pointer-events: none;
+  pointer-events: none;
 }

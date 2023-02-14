@@ -5,22 +5,18 @@ import experienceBackground from '../assets/images/experience.jpg'
 
 const EducationBanner = () => {
   return (
-    <div 
-      className="banner"
-      style={{ backgroundImage: `url(${educationBackground})` }}>
-      <p>EDUCATION</p>   
+    <div className="banner" style={{ backgroundImage: `url(${educationBackground})` }}>
+      <p>EDUCATION</p>
     </div>
   )
 }
 
 const ExperienceBanner = () => {
   return (
-    <div
-      className="banner"
-      style={{ backgroundImage: `url(${experienceBackground})` }}>
+    <div className="banner" style={{ backgroundImage: `url(${experienceBackground})` }}>
       <p>EXPERIENCE</p>
     </div>
   )
 }
 
-export  { EducationBanner, ExperienceBanner }
+export { EducationBanner, ExperienceBanner }

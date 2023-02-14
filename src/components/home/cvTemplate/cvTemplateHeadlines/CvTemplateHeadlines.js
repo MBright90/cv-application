@@ -6,7 +6,9 @@ import './style.css'
 const CvTemplateHeadlines = (props) => {
   return (
     <div className="cv-template-headlines">
-      <p>{props.firstName} <span className="bold">{props.surname}</span></p>
+      <p>
+        {props.firstName} <span className="bold">{props.surname}</span>
+      </p>
       <p>{props.profession}</p>
     </div>
   )

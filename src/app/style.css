@@ -1,46 +1,50 @@
 @font-face {
-    font-family: "nobile";
-    src: url('@assets/fonts/nobile-regular-webfont.woff') format('woff'),
-        url('@assets/fonts/nobile-regular-webfont.woff2') format('woff2');
-    font-style: normal;
-    font-weight: normal;
+  font-family: 'nobile';
+  src: url('@assets/fonts/nobile-regular-webfont.woff') format('woff'),
+    url('@assets/fonts/nobile-regular-webfont.woff2') format('woff2');
+  font-style: normal;
+  font-weight: normal;
 }
 
 @font-face {
-    font-family: "nobile";
-    src: url('@assets/fonts/nobile-bold-webfont.woff') format('woff'),
-        url('@assets/fonts/nobile-bold-webfont.woff2') format('woff2');
-    font-style: normal;
-    font-weight: bold;
+  font-family: 'nobile';
+  src: url('@assets/fonts/nobile-bold-webfont.woff') format('woff'),
+    url('@assets/fonts/nobile-bold-webfont.woff2') format('woff2');
+  font-style: normal;
+  font-weight: bold;
 }
 
-*, body, a, ul, li {
-    color: inherit;
-    list-style: none;
-    font-family: "nobile", sans-serif;
-    letter-spacing: 1px;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    user-select: none;
+*,
+body,
+a,
+ul,
+li {
+  color: inherit;
+  list-style: none;
+  font-family: 'nobile', sans-serif;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  user-select: none;
 }
 
 .page-layout {
-    color: #ffefef;
-    min-height: 100vh;
+  color: #ffefef;
+  min-height: 100vh;
 }
 
 main {
-    align-items: center;
-    background-color: #13005A;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-bottom: 49px;
-    min-height: calc(100vh - 192px);
-    padding-top: 40px;
+  align-items: center;
+  background-color: #13005a;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 49px;
+  min-height: calc(100vh - 192px);
+  padding-top: 40px;
 }
 
 .banner {
-    width: 100%;
+  width: 100%;
 }

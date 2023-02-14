@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   changePageShown(navChoice) {
-    this.setState({currentPage: navChoice.toLowerCase()})
+    this.setState({ currentPage: navChoice.toLowerCase() })
 
     const navItems = document.querySelectorAll('nav ul li')
     navItems.forEach((navItem) => {
@@ -71,26 +71,26 @@ export default class App extends Component {
       surname: inputValues[1],
       email: inputValues[2],
       contactNumber: inputValues[3],
-      profession: inputValues[4],
+      profession: inputValues[4]
     }
     server.updateAccountInfo(accountInfoObj)
     this.updateCurrentUser()
   }
 
   async uploadAvatarChange(newImage) {
-    await server.updateAvatarChange(newImage)
+    await server
+      .updateAvatarChange(newImage)
       // Add 1ms delay server to save user object
       .then(() => setTimeout(this.updateCurrentUser, 1))
   }
 
   uploadEducationInfo(inputValues, infoID) {
-
     const certificateSplice = server.removeEmptyFields(inputValues.slice(3))
     const educationObj = {
       institutionName: inputValues[0],
       dateFrom: inputValues[1],
       dateTo: inputValues[2],
-      certificates: certificateSplice,
+      certificates: certificateSplice
     }
 
     server.createEducationInfo(educationObj, infoID)
@@ -150,7 +150,6 @@ export default class App extends Component {
   // Validation passing functions
 
   validateCurrentInputValue(inputEl) {
-
     const checkMinLength = (value, minLength) => {
       if (value.length >= parseInt(minLength, 10)) return true
     }
@@ -163,9 +162,7 @@ export default class App extends Component {
         errorMessage = `Please include at least ${inputEl.minLength} characters`
         isValid = false
       }
-    }
-
-    else if (inputEl.type === 'date'){
+    } else if (inputEl.type === 'date') {
       if (!Date.parse(inputEl.value)) {
         errorMessage = 'This date is required'
         isValid = false
@@ -189,53 +186,54 @@ export default class App extends Component {
     const mainPage = this.state.currentPage
     let main
 
-    if (mainPage === 'home') main = <HomeOverview 
-      changePageShown={this.changePageShown}
-    />
-
-    else if (mainPage === 'experience') main = <ExperienceOverview
-      closeModal={this.closeModal}
-      deleteFunc={this.deleteInfo}
-      editExperienceInfo={this.editInfo}
-      requestInfoByID={this.requestInfoByID}
-      revertToDateObject={this.revertToDateObject}
-      uploadExperienceInfo={this.uploadExperienceInfo}
-      userExperienceArray={this.state.currentUser.experience}
-      validateInput={this.validateCurrentInputValue}
-      validateInputSubmission={this.validateInputSubmission}
-    />
-
-    else if (mainPage === 'education') main = <EducationOverview
-      closeModal={this.closeModal}
-      deleteFunc={this.deleteInfo}
-      editEducationInfo={this.editInfo}
-      requestInfoByID={this.requestInfoByID}
-      revertToDateObject={this.revertToDateObject}
-      uploadEducationInfo={this.uploadEducationInfo}
-      userEducationArray={this.state.currentUser.education}
-      validateInput={this.validateCurrentInputValue}
-      validateInputSubmission={this.validateInputSubmission}
-    />
-
-    else if (mainPage === 'you') main = <YouOverview 
-      closeModal={this.closeModal}
-      resetFunc={this.resetAllData}
-      uploadAccountInfo={this.uploadAccountInfo}
-      uploadAvatarChange={this.uploadAvatarChange}
-      uploadReferenceInfo={this.uploadReferenceInfo}
-      userInfo={this.state.currentUser}
-      validateInput={this.validateCurrentInputValue}
-      validateInputSubmission={this.validateInputSubmission}/>
-
-    else if (mainPage === 'cv-template') main = <CvTemplateOverview 
-      userInfo={this.state.currentUser}
-    />
+    if (mainPage === 'home') main = <HomeOverview changePageShown={this.changePageShown} />
+    else if (mainPage === 'experience')
+      main = (
+        <ExperienceOverview
+          closeModal={this.closeModal}
+          deleteFunc={this.deleteInfo}
+          editExperienceInfo={this.editInfo}
+          requestInfoByID={this.requestInfoByID}
+          revertToDateObject={this.revertToDateObject}
+          uploadExperienceInfo={this.uploadExperienceInfo}
+          userExperienceArray={this.state.currentUser.experience}
+          validateInput={this.validateCurrentInputValue}
+          validateInputSubmission={this.validateInputSubmission}
+        />
+      )
+    else if (mainPage === 'education')
+      main = (
+        <EducationOverview
+          closeModal={this.closeModal}
+          deleteFunc={this.deleteInfo}
+          editEducationInfo={this.editInfo}
+          requestInfoByID={this.requestInfoByID}
+          revertToDateObject={this.revertToDateObject}
+          uploadEducationInfo={this.uploadEducationInfo}
+          userEducationArray={this.state.currentUser.education}
+          validateInput={this.validateCurrentInputValue}
+          validateInputSubmission={this.validateInputSubmission}
+        />
+      )
+    else if (mainPage === 'you')
+      main = (
+        <YouOverview
+          closeModal={this.closeModal}
+          resetFunc={this.resetAllData}
+          uploadAccountInfo={this.uploadAccountInfo}
+          uploadAvatarChange={this.uploadAvatarChange}
+          uploadReferenceInfo={this.uploadReferenceInfo}
+          userInfo={this.state.currentUser}
+          validateInput={this.validateCurrentInputValue}
+          validateInputSubmission={this.validateInputSubmission}
+        />
+      )
+    else if (mainPage === 'cv-template')
+      main = <CvTemplateOverview userInfo={this.state.currentUser} />
 
     return (
       <div className="page-layout">
-        <Header
-          currentPageShown={this.state.currentPage} 
-          changePageShown={this.changePageShown}/>
+        <Header currentPageShown={this.state.currentPage} changePageShown={this.changePageShown} />
         {main}
         <Footer />
       </div>

@@ -1,30 +1,30 @@
 .education-page-overview > .education-list-overview {
-    display: flex;
-    flex-direction: column;
-    width: max(50%, 400px)
+  display: flex;
+  flex-direction: column;
+  width: max(50%, 400px);
 }
 
 .list-item-headline {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .list-item-dates {
-    font-style: italic;
-    margin-bottom: 5px;
+  font-style: italic;
+  margin-bottom: 5px;
 }
 
 .list-item {
-    position: relative;
-    margin: 10px 0;
-    padding-right: 30px;
-    width: 100%;
+  position: relative;
+  margin: 10px 0;
+  padding-right: 30px;
+  width: 100%;
 }
 
 .education-page-overview .list-item {
-    width: calc(100% - 30px)
+  width: calc(100% - 30px);
 }
 
 .education-page-overview .list-item:not(:first-of-type) {
-    border-top: 1px solid #ffefef;
+  border-top: 1px solid #ffefef;
 }
