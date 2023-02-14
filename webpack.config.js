@@ -48,5 +48,14 @@ module.exports = {
         },
       },
     ]
-  }
+  },
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@buttons': path.resolve(__dirname, 'src/components/utilities/buttons'),
+      '@modals': path.resolve(__dirname, 'src/components/utilities/modals'),
+      '@modules': path.resolve(__dirname, 'src/modules')
+    },
+  },
 }
