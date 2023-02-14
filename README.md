@@ -1,2 +1,4 @@
 # cv-application
-An app for users to add details and create an online CV which they can locally save
+An app for users to add details and create an online CV which they can use to keep track of all of their experience and education, in addition to seeing an example template of how it might look when being sent out.
+
+This application has been made from scratch using React and its purpose has been to familiarize myself with the creation process. For this app, I have avoided using create-react-app to try and understand all the different modules and technologies involved. This included manually installing and setting up ESLint, Prettier, Webpack, Babel and various other dependencies required for the static site to run.
