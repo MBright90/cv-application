@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
-import CreateTemplateButton from '../../utilities/buttons/createTemplateButton/CreateTemplateButton'
-import Welcome from '../welcome/Welcome'
+import CreateTemplateButton from '@buttons/createTemplateButton/CreateTemplateButton'
+import Welcome from '@components/home/welcome/Welcome'
 
 const HomeOverview = (props) => {
 

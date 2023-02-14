@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
-import SaveInfoButton from '../../utilities/buttons/saveInfoButton/SaveInfoButton'
+import SaveInfoButton from '@buttons/saveInfoButton/SaveInfoButton'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'

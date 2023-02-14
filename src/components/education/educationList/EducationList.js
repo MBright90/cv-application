@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
-import EditButton from '../../utilities/buttons/editButton/EditButton'
-import DeleteButton from '../../utilities/buttons/deleteButton/DeleteButton'
+import EditButton from '@buttons/editButton/EditButton'
+import DeleteButton from '@buttons/deleteButton/DeleteButton'
 
 const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {

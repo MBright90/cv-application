@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
-import Avatar from '../../../utilities/avatar/Avatar'
+import Avatar from '@components/utilities/avatar/Avatar'
 
 const CvTemplateAvatar = (props) => {
   return (

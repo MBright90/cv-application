@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
-import ExperienceForm from '../experienceForm/ExperienceForm'
-import ExperienceList from '../experienceList/ExperienceList'
-import DeleteInfoModal from '../../utilities/modals/deleteInfoModal/DeleteInfoModal'
-import EditInfoModal from '../../utilities/modals/editInfoModal/EditInfoModal'
+import ExperienceForm from '@components/experience/experienceForm/ExperienceForm'
+import ExperienceList from '@components/experience/experienceList/ExperienceList'
+import DeleteInfoModal from '@modals/deleteInfoModal/DeleteInfoModal'
+import EditInfoModal from '@modals/editInfoModal/EditInfoModal'
 
 ExperienceForm.propTypes = {
   closeModal: PropTypes.func,
