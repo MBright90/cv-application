@@ -134,6 +134,18 @@ export default class Server {
   // If an infoID is supplied, alters the current information object with that ID.
   // Otherwise it creates a new information object and generates a random ID
 
+
+  /**
+ * Creates or updates an education object in the user's education array.
+ * @param {Object} educationObj - The education object to be created or updated.
+ * This object should have the following properties:
+ * - institution: string
+ * - dateFrom: string (formatted as YYYY-MM)
+ * - dateTo: string (formatted as YYYY-MM)
+ * - certificates: array
+ * @param {string} [infoID] - (Optional) The ID of the education object to be updated. If
+ * not provided, a new education object will be created.
+ */
   createEducationInfo(educationObj, infoID) {
     const educationItem = educationObj
 
@@ -155,6 +167,18 @@ export default class Server {
     this.saveToStorage()
   }
 
+  /**
+ * Creates or updates an experience object in the user's experience array.
+ *  @param {Object} experienceObj: A JavaScript object representing an experience, with the following properties:
+ * title (string): The title of the experience.
+ * company (string): The name of the company where the experience took place.
+ * location (string): The location of the company.
+ * dateFrom (string): The starting date of the experience, in the format "YYYY-MM-DD".
+ * dateTo (string): The ending date of the experience, in the format "YYYY-MM-DD".
+ * description (string): A description of the experience.
+ * @param {String} infoID - (Optional): A string representing the ID of an existing experience. If 
+ * not provided, a new experience object will be created.
+ */
   createExperienceInfo(experienceObj, infoID) {
     const experienceItem = experienceObj
 
@@ -310,6 +334,4 @@ export default class Server {
 
     return [validCheck, invalidInput]
   }
-
-  // TODO: Clear all data
 }
