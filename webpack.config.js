@@ -6,13 +6,13 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'main.js',
-    clean: true,
+    clean: true
   },
   plugins: [
     new HTMLWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
-      title: 'The CV',
+      title: 'The CV'
     })
   ],
   module: {
@@ -21,7 +21,7 @@ module.exports = {
         test: /\.js$/i,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader'
         }
       },
       {
@@ -30,23 +30,25 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|svg)$/i,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 25000,
-          },
-        }],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 25000
+            }
+          }
+        ],
         generator: {
-          filename: './assets/images/[name][ext]',
-        },
+          filename: './assets/images/[name][ext]'
+        }
       },
       {
         test: /\.(woff(2)?|ttf|eot)$/i,
         type: 'asset/resource',
         generator: {
-          filename: './assets/fonts/[name][ext]',
-        },
-      },
+          filename: './assets/fonts/[name][ext]'
+        }
+      }
     ]
   },
   resolve: {
@@ -56,6 +58,6 @@ module.exports = {
       '@buttons': path.resolve(__dirname, 'src/components/utilities/buttons'),
       '@modals': path.resolve(__dirname, 'src/components/utilities/modals'),
       '@modules': path.resolve(__dirname, 'src/modules')
-    },
-  },
+    }
+  }
 }
