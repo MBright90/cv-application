@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 
 import './style.css'
-import Header from '../nav/header/Header'
-import Footer from '../nav/footer/Footer'
-import HomeOverview from '../home/homeOverview/HomeOverview'
-import EducationOverview from '../education/educationOverview/EducationOverview'
-import ExperienceOverview from '../experience/experienceOverview/ExperienceOverview'
-import YouOverview from '../you/youOverview/YouOverview'
-import CvTemplateOverview from '../home/cvTemplate/cvTemplateOverview/CvTemplateOverview'
+import Header from '@components/nav/header/Header'
+import Footer from '@components/nav/footer/Footer'
+import HomeOverview from '@components/home/homeOverview/HomeOverview'
+import EducationOverview from '@components/education/educationOverview/EducationOverview'
+import ExperienceOverview from '@components/experience/experienceOverview/ExperienceOverview'
+import YouOverview from '@components/you/youOverview/YouOverview'
+import CvTemplateOverview from '@components/home/cvTemplate/cvTemplateOverview/CvTemplateOverview'
 
-import Server from '../../modules/Server'
+import Server from '@modules/Server'
 
 const server = new Server()
 server.loadFromStorage()
