@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+// import PropTypes from 'prop-types'
 
 import './style.css'
 import EducationForm from '@components/education/educationForm/EducationForm'
@@ -7,81 +7,67 @@ import EducationList from '@components/education/educationList/EducationList'
 import DeleteInfoModal from '@modals/deleteInfoModal/DeleteInfoModal'
 import EditInfoModal from '@modals/editInfoModal/EditInfoModal'
 
-export default class EducationOverview extends Component {
-  constructor(props) {
-    super(props)
+export default function EducationOverview(props) {
+  const [activeModal, setActiveModal] = useState(null)
 
-    this.state = {
-      isModalActive: false
-    }
-
-    this.closeModal = this.props.closeModal.bind(this)
-    this.showDeleteModal = this.showDeleteModal.bind(this)
-    this.showEducationModal = this.showEducationModal.bind(this)
+  const handleCloseModal = () => {
+    setActiveModal(null)
   }
 
-  showDeleteModal(e) {
-    const infoID = e.target.dataset.itemId
-
-    this.setState({
-      isModalActive: (
-        <DeleteInfoModal
-          closeModal={this.closeModal}
-          deleteFunc={this.props.deleteFunc}
-          itemID={infoID}
-          type="education"
-        />
-      )
-    })
-  }
-
-  showEducationModal(e) {
-    const infoID = e.target.dataset.itemId
-    const educationObj = Object.assign({}, this.props.requestInfoByID(infoID, 'education'))
-
-    educationObj.dateFrom = this.props.revertToDateObject(educationObj.dateFrom)
-    educationObj.dateTo = this.props.revertToDateObject(educationObj.dateTo)
-
-    this.setState({
-      isModalActive: (
-        <EditInfoModal
-          closeModal={this.closeModal}
-          editForm={
-            <EducationForm
-              closeModal={this.closeModal}
-              educationItem={educationObj}
-              formType="Edit"
-              itemID={infoID}
-              uploadEducationInfo={this.props.editEducationInfo}
-              validateInput={this.props.validateInput}
-              validateInputSubmission={this.props.validateInputSubmission}
-            />
-          }
-        />
-      )
-    })
-  }
-
-  render() {
-    return (
-      <main>
-        <div className="education-page-overview">
-          {this.state.isModalActive}
-          <EducationForm
-            uploadEducationInfo={this.props.uploadEducationInfo}
-            validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}
-          />
-          <EducationList
-            editable={true}
-            educationArray={this.props.userEducationArray}
-            editFunc={this.showEducationModal}
-            showDeleteFunc={this.showDeleteModal}
-          />
-        </div>
-      </main>
+  const handleDeleteClick = (e) => {
+    setActiveModal(
+      <DeleteInfoModal
+        closeModal={handleCloseModal}
+        deleteFunc={props.deleteFunc}
+        itemID={e.target.dataset.itemId}
+        type="education"
+      />
     )
   }
+
+  const handleEditClick = (e) => {
+    const infoID = e.target.dataset.itemId
+    const educationObj = Object.assign({}, props.requestInfoByID(infoID, 'education'))
+
+    educationObj.dateFrom = props.revertToDateObject(educationObj.dateFrom)
+    educationObj.dateTo = props.revertToDateObject(educationObj.dateTo)
+
+    setActiveModal(
+      <EditInfoModal
+        closeModal={handleCloseModal}
+        editForm={
+          <EducationForm
+            closeModal={handleCloseModal}
+            educationItem={educationObj}
+            formType="Edit"
+            itemID={infoID}
+            uploadEducationInfo={props.editEducationInfo}
+            validateInput={props.validateInput}
+            validateInputSubmission={props.validateInputSubmission}
+          />
+        }
+      />
+    )
+  }
+
+  return (
+    <main>
+      <div className="education-page-overview">
+        {activeModal}
+        <EducationForm
+          uploadEducationInfo={props.uploadEducationInfo}
+          validateInput={props.validateInput}
+          validateInputSubmission={props.validateInputSubmission}
+        />
+        <EducationList
+          editable={true}
+          educationArray={props.userEducationArray}
+          editFunc={handleEditClick}
+          showDeleteFunc={handleDeleteClick}
+        />
+      </div>
+    </main>
+  )
 }
 
 EducationOverview.propTypes = {
