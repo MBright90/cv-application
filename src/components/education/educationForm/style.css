@@ -46,6 +46,7 @@ label {
 
 .new-certificate-button {
   bottom: -40px;
+  border: none;
   color: #13005a;
   position: absolute;
   height: 30px;
