@@ -2,7 +2,7 @@
 
 This is a CV (curriculum vitae) building web application created using React. Users can fill in their personal information, educational background, work experience and references, and generate a professional-looking CV.
 
-# Getting Started
+## Getting Started
 ### Installation
 To get started with the app, follow these steps:
 
@@ -24,7 +24,7 @@ Clean and modern design: The app has been designed with a clean and modern inter
 User Information Privacy
 To use the app, users need to open the dist/index.html file in the browser of their choice. The application uses local storage and as a result, information is persistent across sessions only when using the same browser on the same device and is inaccessible to the app creator or any other external agencies.
 
-# Creating a CV
+## Creating a CV
 To create a CV, users need to fill in the following information:
 
 Personal information
@@ -48,4 +48,4 @@ CSS
 HTML
 
 ## License
-This app is licensed under the MIT license. See the LICENSE file for more information.
+This app is licensed under the MIT license.
