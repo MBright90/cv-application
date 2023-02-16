@@ -10,9 +10,7 @@ import EditInfoModal from '@modals/editInfoModal/EditInfoModal'
 export default function EducationOverview(props) {
   const [activeModal, setActiveModal] = useState(null)
 
-  const handleCloseModal = () => {
-    setActiveModal(null)
-  }
+  const handleCloseModal = () => setActiveModal(null)
 
   const handleDeleteClick = (e) => {
     setActiveModal(
