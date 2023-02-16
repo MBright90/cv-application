@@ -5,8 +5,6 @@ import './style.css'
 import SaveInfoButton from '@buttons/saveInfoButton/SaveInfoButton'
 
 const ExperienceForm = (props) => {
-  let closeModal
-  if (props.closeModal) closeModal = props.closeModal
 
   const handleValueChange = (e) => {
     props.validateInput(e.target)
@@ -61,7 +59,7 @@ const ExperienceForm = (props) => {
           ></textarea>
         </div>
         <SaveInfoButton
-          closeModal={closeModal}
+          closeModal={props.closeModal}
           itemID={props.itemID}
           infoType="experience"
           uploadData={props.uploadExperienceInfo}
@@ -79,6 +77,7 @@ ExperienceForm.defaultProps = {
     dateTo: new Date().toISOString().substring(0, 10),
     experienceSummary: ''
   },
+  closeModal: () => {},
   formType: 'Add'
 }
 
