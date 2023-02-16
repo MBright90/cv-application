@@ -5,7 +5,6 @@ import './style.css'
 import SaveInfoButton from '@buttons/saveInfoButton/SaveInfoButton'
 
 const ExperienceForm = (props) => {
-
   const handleValueChange = (e) => {
     props.validateInput(e.target)
   }

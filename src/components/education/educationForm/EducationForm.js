@@ -28,7 +28,9 @@ CertificateInput.propTypes = {
 }
 
 export default function EducationForm(props) {
-  const [certificateInputAmount, setCertificateInputAmount] = useState(props.educationItem.certificates.length)
+  const [certificateInputAmount, setCertificateInputAmount] = useState(
+    props.educationItem.certificates.length
+  )
   const currentCertificateValues = [...props.educationItem.certificates]
 
   const createCertificateInputs = () => {

@@ -51,7 +51,7 @@ export default function ExperienceOverview(props) {
   return (
     <main>
       <div className="experience-page-overview">
-      {activeModal}
+        {activeModal}
         <ExperienceForm
           uploadExperienceInfo={props.uploadExperienceInfo}
           validateInput={props.validateInput}
@@ -66,7 +66,6 @@ export default function ExperienceOverview(props) {
       </div>
     </main>
   )
-
 }
 
 // class ExperienceOverview extends Component {
