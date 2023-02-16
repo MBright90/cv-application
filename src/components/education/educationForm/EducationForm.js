@@ -55,13 +55,9 @@ export default function EducationForm(props) {
     props.uploadEducationInfo(inputValues, infoID, infoType)
   }
 
-  const handleNewCertificate = () => {
-    setCertificateInputAmount(certificateInputAmount + 1)
-  }
+  const handleNewCertificate = () => setCertificateInputAmount(certificateInputAmount + 1)
 
-  const handleValueChange = (e) => {
-    props.validateInput(e.target)
-  }
+  const handleValueChange = (e) => props.validateInput(e.target)
 
   return (
     <form className="education-input-overview">
