@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import './style.css'
@@ -9,61 +9,44 @@ import ReferenceInfo from '../referenceInfoInput/ReferenceInfoInput'
 import ResetButton from '../../utilities/buttons/resetButton/ResetButton'
 import ResetInfoModal from '../../utilities/modals/resetInfoModal/ResetInfoModal'
 
-export default class You extends Component {
-  constructor(props) {
-    super(props)
+export default function YouOverview(props) {
+  const [activeModal, setActiveModal] = useState(null)
 
-    this.state = {
-      isModalActive: false
-    }
+  const closeModal = () => setActiveModal(null)
 
-    this.closeModal = this.props.closeModal.bind(this)
-    this.handleAvatarUpload = this.handleAvatarUpload.bind(this)
-    this.showResetModal = this.showResetModal.bind(this)
+  const showResetModal = () => {
+    setActiveModal(<ResetInfoModal closeModal={closeModal} resetFunc={props.resetFunc} />)
   }
 
-  handleAvatarUpload(e) {
-    this.props.uploadAvatarChange(e.target.files[0])
-  }
+  const handleAvatarUpload = (e) => props.uploadAvatarChange(e.target.files[0])
 
-  showResetModal() {
-    this.setState({
-      isModalActive: (
-        <ResetInfoModal closeModal={this.closeModal} resetFunc={this.props.resetFunc} />
-      )
-    })
-  }
-
-  render() {
-    return (
-      <main>
-        {this.state.isModalActive}
-        <div className="you-page-overview">
-          <AccountAvatarUpload
-            imgSource={this.props.userInfo.avatarImg}
-            handleAvatarUpload={this.handleAvatarUpload}
-          />
-          <AccountInfo
-            uploadAccountInfo={this.props.uploadAccountInfo}
-            userInfo={this.props.userInfo}
-            validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}
-          />
-          <ReferenceInfo
-            reference={this.props.userInfo.reference}
-            uploadReferenceInfo={this.props.uploadReferenceInfo}
-            validateInput={this.props.validateInput}
-            validateInputSubmission={this.props.validateInputSubmission}
-          />
-          <ResetButton showResetModal={this.showResetModal} />
-        </div>
-      </main>
-    )
-  }
+  return (
+    <main>
+      {activeModal}
+      <div className="you-page-overview">
+        <AccountAvatarUpload
+          imgSource={props.userInfo.avatarImg}
+          handleAvatarUpload={handleAvatarUpload}
+        />
+        <AccountInfo
+          uploadAccountInfo={props.uploadAccountInfo}
+          userInfo={props.userInfo}
+          validateInput={props.validateInput}
+          validateInputSubmission={props.validateInputSubmission}
+        />
+        <ReferenceInfo
+          reference={props.userInfo.reference}
+          uploadReferenceInfo={props.uploadReferenceInfo}
+          validateInput={props.validateInput}
+          validateInputSubmission={props.validateInputSubmission}
+        />
+        <ResetButton showResetModal={showResetModal} />
+      </div>
+    </main>
+  )
 }
 
-You.propTypes = {
-  closeModal: PropTypes.func,
+YouOverview.propTypes = {
   resetFunc: PropTypes.func,
   uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
