@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import SaveInfoButton from '../../utilities/buttons/saveInfoButton/SaveInfoButton'
 
-const ReferenceInfo = (props) => {
+export default function ReferenceInfo(props) {
   const handleValueChange = (e) => {
     props.validateInput(e.target)
   }
@@ -67,5 +67,3 @@ ReferenceInfo.propTypes = {
   validateInput: PropTypes.func,
   validateInputSubmission: PropTypes.func
 }
-
-export default ReferenceInfo

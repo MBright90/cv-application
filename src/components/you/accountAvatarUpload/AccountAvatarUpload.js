@@ -6,7 +6,7 @@ import Avatar from '../../utilities/avatar/Avatar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUpload } from '@fortawesome/free-solid-svg-icons'
 
-const AccountAvatarUpload = (props) => {
+export default function AccountAvatarUpload(props) {
   return (
     <div className="avatar-edit-overview">
       <Avatar imgSource={props.imgSource} />
@@ -27,5 +27,3 @@ AccountAvatarUpload.propTypes = {
   handleAvatarUpload: PropTypes.func,
   imgSource: PropTypes.string
 }
-
-export default AccountAvatarUpload

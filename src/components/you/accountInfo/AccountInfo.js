@@ -32,7 +32,7 @@ AccountInput.propTypes = {
   validateInput: PropTypes.func
 }
 
-const AccountInfo = (props) => {
+export default function AccountInfo(props) {
   return (
     <form className="account-info-overview">
       <AccountInput
@@ -80,5 +80,3 @@ AccountInfo.propTypes = {
   validateInput: PropTypes.func,
   validateInputSubmission: PropTypes.func
 }
-
-export default AccountInfo
