@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import ModalCloseButton from '../../buttons/modalCloseButton/ModalCloseButton'
 
-const EditInfoModal = (props) => {
+export default function EditInfoModal(props) {
   return (
     <div className="modal">
       <div className="modal-form-container">
@@ -19,5 +19,3 @@ EditInfoModal.propTypes = {
   closeModal: PropTypes.func,
   editForm: PropTypes.object
 }
-
-export default EditInfoModal

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import ModalCloseButton from '../../buttons/modalCloseButton/ModalCloseButton'
 
-const ResetInfoModal = (props) => {
+export default function ResetInfoModal(props) {
   const handleResetClick = () => {
     props.resetFunc()
     props.closeModal()
@@ -27,5 +27,3 @@ ResetInfoModal.propTypes = {
   closeModal: PropTypes.func,
   resetFunc: PropTypes.func
 }
-
-export default ResetInfoModal

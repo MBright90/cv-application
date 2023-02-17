@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import ModalCloseButton from '../../buttons/modalCloseButton/ModalCloseButton'
 
-const DeleteInfoModal = (props) => {
+export default function DeleteInfoModal(props) {
   const handleDeleteClick = (e) => {
     const infoID = e.target.dataset.itemId
     const infoType = e.target.dataset.type
@@ -34,5 +34,3 @@ DeleteInfoModal.propTypes = {
   itemID: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.string
 }
-
-export default DeleteInfoModal
