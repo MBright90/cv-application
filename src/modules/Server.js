@@ -290,6 +290,12 @@ export default class Server {
     return ''
   }
 
+  /**
+   * Validates input submission by checking various criteria for each input element in the inputElementArr parameter.
+   * @param {Array} inputElementArr - An array of HTML input elements to be validated
+   * @returns {String} - An error message if any validation criteria fail, or an empty string if all inputs are valid.
+   * If an error message is returned, the input element which failed validation is also assigned to the variable invalidInput.
+   */
   validateInputSubmission(inputElementArr) {
     let validCheck = ''
     let invalidInput = false
@@ -310,7 +316,7 @@ export default class Server {
     if (validCheck === '') {
       const dateInputArr = inputElementArr.filter((input) => input.type === 'date')
 
-      // If there are multiple date inputs:
+      // If there are multiple "date from" and "date to" inputs:
       if (dateInputArr.length > 1 && !this.validateDateComparison(dateInputArr)) {
         validCheck = 'Ensure "Date From" comes before "Date To"'
         invalidInput = dateInputArr[0]
