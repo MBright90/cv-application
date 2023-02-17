@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
 import './style.css'
 import Header from '@components/nav/header/Header'
@@ -14,32 +14,12 @@ import Server from '@modules/Server'
 const server = new Server()
 server.loadFromStorage()
 
-export default class App extends Component {
-  constructor(props) {
-    super(props)
+export default function App(props) {
+  const [activePage, setActivePage] = useState('home')
+  const [activeUser, setActiveUser] = useState(server.getCurrentInfo())
 
-    this.state = {
-      currentPage: 'home',
-      currentUser: server.getCurrentInfo()
-    }
-
-    this.changePageShown = this.changePageShown.bind(this)
-    this.deleteInfo = this.deleteInfo.bind(this)
-    this.editInfo = this.editInfo.bind(this)
-    this.resetAllData = this.resetAllData.bind(this)
-    this.requestInfoByID = this.requestInfoByID.bind(this)
-    this.revertToDateObject = this.revertToDateObject.bind()
-    this.updateCurrentUser = this.updateCurrentUser.bind(this)
-    this.uploadAccountInfo = this.uploadAccountInfo.bind(this)
-    this.uploadAvatarChange = this.uploadAvatarChange.bind(this)
-    this.uploadEducationInfo = this.uploadEducationInfo.bind(this)
-    this.uploadExperienceInfo = this.uploadExperienceInfo.bind(this)
-    this.uploadReferenceInfo = this.uploadReferenceInfo.bind(this)
-    this.validateInputSubmission = this.validateInputSubmission.bind(this)
-  }
-
-  changePageShown(navChoice) {
-    this.setState({ currentPage: navChoice.toLowerCase() })
+  const changePageShown = (navChoice) => {
+    setActivePage(navChoice.toLowerCase())
 
     const navItems = document.querySelectorAll('nav ul li')
     navItems.forEach((navItem) => {
@@ -51,21 +31,19 @@ export default class App extends Component {
 
   // info retrieval functions //
 
-  requestInfoByID(ID, type) {
+  const requestInfoByID = (ID, type) => {
     const info = server.getInfoByID(ID, type)
     return info
   }
 
-  updateCurrentUser() {
+  const updateActiveUser = () => {
     const newUserState = server.getCurrentInfo()
-    this.setState({
-      currentUser: newUserState
-    })
+    setActiveUser(newUserState)
   }
 
   // info upload functions //
 
-  uploadAccountInfo(inputValues) {
+  const uploadAccountInfo = (inputValues) => {
     const accountInfoObj = {
       firstName: inputValues[0],
       surname: inputValues[1],
@@ -74,17 +52,17 @@ export default class App extends Component {
       profession: inputValues[4]
     }
     server.updateAccountInfo(accountInfoObj)
-    this.updateCurrentUser()
+    updateActiveUser()
   }
 
-  async uploadAvatarChange(newImage) {
+  async function uploadAvatarChange(newImage) {
     await server
       .updateAvatarChange(newImage)
       // Add 1ms delay server to save user object
-      .then(() => setTimeout(this.updateCurrentUser, 1))
+      .then(() => setTimeout(updateActiveUser, 1))
   }
 
-  uploadEducationInfo(inputValues, infoID) {
+  const uploadEducationInfo = (inputValues, infoID) => {
     const certificateSplice = server.removeEmptyFields(inputValues.slice(3))
     const educationObj = {
       institutionName: inputValues[0],
@@ -94,10 +72,10 @@ export default class App extends Component {
     }
 
     server.createEducationInfo(educationObj, infoID)
-    this.updateCurrentUser()
+    updateActiveUser()
   }
 
-  uploadExperienceInfo(inputValues, infoID) {
+  const uploadExperienceInfo = (inputValues, infoID) => {
     const experienceObj = {
       workplaceName: inputValues[0],
       dateFrom: inputValues[1],
@@ -106,10 +84,10 @@ export default class App extends Component {
     }
 
     server.createExperienceInfo(experienceObj, infoID)
-    this.updateCurrentUser()
+    updateActiveUser()
   }
 
-  uploadReferenceInfo(inputValues) {
+  const uploadReferenceInfo = (inputValues) => {
     const referenceObj = {
       name: inputValues[0],
       position: inputValues[1],
@@ -120,36 +98,28 @@ export default class App extends Component {
 
   // Edit and delete button functions //
 
-  deleteInfo(infoID, type) {
+  const deleteInfo = (infoID, type) => {
     server.deleteInfo(infoID, type)
-    this.updateCurrentUser()
+    updateActiveUser()
   }
 
-  editInfo(inputValues, infoID, type) {
-    if (type === 'education') this.uploadEducationInfo(inputValues, infoID)
-    else this.uploadExperienceInfo(inputValues, infoID)
-    this.closeModal()
+  const editInfo = (inputValues, infoID, type) => {
+    if (type === 'education') uploadEducationInfo(inputValues, infoID)
+    else uploadExperienceInfo(inputValues, infoID)
   }
 
-  revertToDateObject(formattedDate) {
+  const revertToDateObject = (formattedDate) => {
     return server.revertDate(formattedDate)
   }
 
-  resetAllData() {
+  const resetAllData = () => {
     server.clearStorage()
-    this.updateCurrentUser()
-  }
-
-  // Unbound function passed to be bound and close modals
-  closeModal() {
-    this.setState({
-      isModalActive: false
-    })
+    updateActiveUser()
   }
 
   // Validation passing functions
 
-  validateCurrentInputValue(inputEl) {
+  const validateCurrentInputValue = (inputEl) => {
     const checkMinLength = (value, minLength) => {
       if (value.length >= parseInt(minLength, 10)) return true
     }
@@ -178,65 +148,57 @@ export default class App extends Component {
     }
   }
 
-  validateInputSubmission(inputElementArr) {
+  const validateInputSubmission = (inputElementArr) => {
     return server.validateInputSubmission(inputElementArr)
   }
 
-  render() {
-    const mainPage = this.state.currentPage
-    let main
-
-    if (mainPage === 'home') main = <HomeOverview changePageShown={this.changePageShown} />
-    else if (mainPage === 'experience')
-      main = (
-        <ExperienceOverview
-          closeModal={this.closeModal}
-          deleteFunc={this.deleteInfo}
-          editExperienceInfo={this.editInfo}
-          requestInfoByID={this.requestInfoByID}
-          revertToDateObject={this.revertToDateObject}
-          uploadExperienceInfo={this.uploadExperienceInfo}
-          userExperienceArray={this.state.currentUser.experience}
-          validateInput={this.validateCurrentInputValue}
-          validateInputSubmission={this.validateInputSubmission}
-        />
-      )
-    else if (mainPage === 'education')
-      main = (
-        <EducationOverview
-          closeModal={this.closeModal}
-          deleteFunc={this.deleteInfo}
-          editEducationInfo={this.editInfo}
-          requestInfoByID={this.requestInfoByID}
-          revertToDateObject={this.revertToDateObject}
-          uploadEducationInfo={this.uploadEducationInfo}
-          userEducationArray={this.state.currentUser.education}
-          validateInput={this.validateCurrentInputValue}
-          validateInputSubmission={this.validateInputSubmission}
-        />
-      )
-    else if (mainPage === 'you')
-      main = (
-        <YouOverview
-          closeModal={this.closeModal}
-          resetFunc={this.resetAllData}
-          uploadAccountInfo={this.uploadAccountInfo}
-          uploadAvatarChange={this.uploadAvatarChange}
-          uploadReferenceInfo={this.uploadReferenceInfo}
-          userInfo={this.state.currentUser}
-          validateInput={this.validateCurrentInputValue}
-          validateInputSubmission={this.validateInputSubmission}
-        />
-      )
-    else if (mainPage === 'cv-template')
-      main = <CvTemplateOverview userInfo={this.state.currentUser} />
-
-    return (
-      <div className="page-layout">
-        <Header currentPageShown={this.state.currentPage} changePageShown={this.changePageShown} />
-        {main}
-        <Footer />
-      </div>
+  let main
+  if (activePage === 'home') main = <HomeOverview changePageShown={changePageShown} />
+  else if (activePage === 'experience')
+    main = (
+      <ExperienceOverview
+        deleteFunc={deleteInfo}
+        editExperienceInfo={editInfo}
+        requestInfoByID={requestInfoByID}
+        revertToDateObject={revertToDateObject}
+        uploadExperienceInfo={uploadExperienceInfo}
+        userExperienceArray={activeUser.experience}
+        validateInput={validateCurrentInputValue}
+        validateInputSubmission={validateInputSubmission}
+      />
     )
-  }
+  else if (activePage === 'education')
+    main = (
+      <EducationOverview
+        deleteFunc={deleteInfo}
+        editEducationInfo={editInfo}
+        requestInfoByID={requestInfoByID}
+        revertToDateObject={revertToDateObject}
+        uploadEducationInfo={uploadEducationInfo}
+        userEducationArray={activeUser.education}
+        validateInput={validateCurrentInputValue}
+        validateInputSubmission={validateInputSubmission}
+      />
+    )
+  else if (activePage === 'you')
+    main = (
+      <YouOverview
+        resetFunc={resetAllData}
+        uploadAccountInfo={uploadAccountInfo}
+        uploadAvatarChange={uploadAvatarChange}
+        uploadReferenceInfo={uploadReferenceInfo}
+        userInfo={activeUser}
+        validateInput={validateCurrentInputValue}
+        validateInputSubmission={validateInputSubmission}
+      />
+    )
+  else if (activePage === 'cv-template') main = <CvTemplateOverview userInfo={activeUser} />
+
+  return (
+    <div className="page-layout">
+      <Header currentPageShown={activePage} changePageShown={changePageShown} />
+      {main}
+      <Footer />
+    </div>
+  )
 }
