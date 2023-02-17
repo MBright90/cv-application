@@ -20,22 +20,17 @@ NavItem.propTypes = {
   navText: PropTypes.string
 }
 
-export default class PageNav extends Component {
-  constructor(props) {
-    super(props)
-    this.navArray = this.#createNavArray(props.currentPageShown)
+export default function PageNav(props) {
+  const handleNavClick = (e) => props.changePageShown(e.target.textContent)
 
-    this.handleNavClick = this.handleNavClick.bind(this)
-  }
-
-  #createNavArray(currentPage) {
+  const createNavArray = (currentPage) => {
     const navItems = ['HOME', 'EXPERIENCE', 'EDUCATION', 'YOU']
 
     return navItems.map((navItem) => {
       return (
         <NavItem
           currentPageShown={currentPage}
-          onClickFunc={(e) => this.handleNavClick(e)}
+          onClickFunc={handleNavClick}
           navText={navItem}
           key={navItem.toLowerCase()}
         />
@@ -43,17 +38,11 @@ export default class PageNav extends Component {
     })
   }
 
-  handleNavClick(e) {
-    this.props.changePageShown(e.target.textContent)
-  }
-
-  render() {
-    return (
-      <nav>
-        <ul>{this.navArray}</ul>
-      </nav>
-    )
-  }
+  return (
+    <nav>
+      <ul>{createNavArray(props.currentPageShown)}</ul>
+    </nav>
+  )
 }
 
 PageNav.propTypes = {
