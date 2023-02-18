@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 
 import { appContext } from '@app'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function EducationOverview(props) {
   const { 
@@ -58,7 +58,7 @@ export default function EducationOverview(props) {
 
   return (
     <main>
-      <div className="education-page-overview">
+      <div className={style.educationPageOverview}>
         {activeModal}
         <EducationForm
           uploadEducationInfo={props.uploadEducationInfo}

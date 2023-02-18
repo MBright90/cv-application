@@ -2,13 +2,13 @@ import { DeleteButton, EditButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 const EducationItem = (props) => {
   const certificateParaArray = (certificateArray) => {
     return certificateArray.map((certificate) => {
       return (
-        <p key={certificate} className="list-item-details">
+        <p key={certificate} className={style.listItemDetails}>
           {certificate}
         </p>
       )
@@ -32,9 +32,9 @@ const EducationItem = (props) => {
   }
 
   return (
-    <div className="list-item">
-      <p className="list-item-headline">{props.educationItem.institutionName.toUpperCase()}</p>
-      <p className="list-item-dates">
+    <div className={style.listItem}>
+      <p className={style.listItem-headline}>{props.educationItem.institutionName.toUpperCase()}</p>
+      <p className={style.listItemDates}>
         {props.educationItem.dateFrom} - {props.educationItem.dateTo}
       </p>
       {certificateParaArray(props.educationItem.certificates)}
@@ -65,7 +65,7 @@ export default function EducationList(props) {
     })
   }
 
-  return <div className="education-list-overview">{createEducationList()}</div>
+  return <div className={style.educationListOverview}>{createEducationList()}</div>
 }
 
 EducationList.defaultProps = {

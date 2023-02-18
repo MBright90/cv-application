@@ -2,16 +2,16 @@ import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function ExperienceForm(props) {
   const handleValueChange = (e) => props.validateInput(e.target)
 
   return (
-    <form className="experience-input-overview">
+    <form className={style.experienceInputOverview}>
       <fieldset>
         <legend>{props.formType} Workplace Experience</legend>
-        <div className="span-two">
+        <div className={style.spanTwo}>
           <label>Workplace</label>
           <input
             type="text"
@@ -44,7 +44,7 @@ export default function ExperienceForm(props) {
             defaultValue={props.experienceItem.dateTo}
           />
         </div>
-        <div className="span-two">
+        <div className={style.spanTwo}>
           <label>Summary</label>
           <textarea
             type="text"

@@ -5,7 +5,7 @@ import React, { useContext, useState } from 'react'
 
 import { appContext } from '@app'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function ExperienceOverview(props) {
   const { 
@@ -58,7 +58,7 @@ export default function ExperienceOverview(props) {
 
   return (
     <main>
-      <div className="experience-page-overview">
+      <div className={style.experiencePageOverview}>
         {activeModal}
         <ExperienceForm
           uploadExperienceInfo={props.uploadExperienceInfo}

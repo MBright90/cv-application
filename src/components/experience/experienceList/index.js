@@ -22,12 +22,12 @@ const ExperienceItem = (props) => {
   }
 
   return (
-    <div className="list-item">
-      <p className="list-item-headline">{props.experienceItem.workplaceName.toUpperCase()}</p>
-      <p className="list-item-dates">
+    <div className={style.listItem}>
+      <p className={style.listItemHeadline}>{props.experienceItem.workplaceName.toUpperCase()}</p>
+      <p className={style.listItemDates}>
         {props.experienceItem.dateFrom} - {props.experienceItem.dateTo}
       </p>
-      <p className="list-item-details">{props.experienceItem.experienceSummary}</p>
+      <p className={style.listItemDetails}>{props.experienceItem.experienceSummary}</p>
       {editableButtons}
     </div>
   )
@@ -55,7 +55,7 @@ export default function ExperienceList(props) {
     })
   }
 
-  return <div className="experience-list-overview">{createExperienceList()}</div>
+  return <div className={style.experienceListOverview}>{createExperienceList()}</div>
 }
 
 ExperienceList.defaultProps = {

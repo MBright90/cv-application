@@ -4,16 +4,16 @@
   width: max(50%, 400px);
 }
 
-.experience-input-overview form {
+.experienceInputOverview form {
   width: 60%;
 }
 
-.experience-input-overview fieldset div {
+.experienceInputOverview fieldset div {
   display: flex;
   flex-direction: column;
 }
 
-.experience-input-overview fieldset {
+.experienceInputOverview fieldset {
   display: grid;
   gap: 10px;
   grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
@@ -39,7 +39,7 @@ legend {
   padding: 0 10px;
 }
 
-.span-two {
+.spanTwo {
   grid-column: span 2;
 }
 
@@ -49,7 +49,7 @@ textarea {
   resize: vertical;
 }
 
-.invalid-highlight,
+.invalidHighlight,
 .invalid:focus {
   background-color: #f48484;
   outline-color: #820000;
