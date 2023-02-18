@@ -1,10 +1,10 @@
-import React from 'react'
+import { faCloudUpload } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Avatar from '@utilities/avatar'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import Avatar from '@utilities/avatar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCloudUpload } from '@fortawesome/free-solid-svg-icons'
 
 export default function AccountAvatarUpload(props) {
   return (

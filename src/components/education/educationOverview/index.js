@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-
-import './style.css'
 import { EducationForm, EducationList } from '@components/education'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+
+import './style.css'
 
 export default function EducationOverview(props) {
   const [activeModal, setActiveModal] = useState(null)

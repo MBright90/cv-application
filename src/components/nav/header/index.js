@@ -1,8 +1,8 @@
-import React from 'react'
+import { PageNav } from '@components/nav'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { PageNav } from '@components/nav'
 
 export default function Header(props) {
   return (

@@ -1,9 +1,9 @@
-import React from 'react'
+import { faX } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faX } from '@fortawesome/free-solid-svg-icons'
 
 export default function ModalCloseButton(props) {
   return (

@@ -1,9 +1,9 @@
-import React from 'react'
+import { Welcome } from '@components/home'
+import { CreateTemplateButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { CreateTemplateButton } from '@utilities/buttons'
-import { Welcome } from '@components/home'
 
 export default function HomeOverview(props) {
   return (

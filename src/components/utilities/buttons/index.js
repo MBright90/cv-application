@@ -5,4 +5,11 @@ import ModalCloseButton from '@utilities/buttons/modalCloseButton'
 import ResetButton from '@utilities/buttons/resetButton'
 import SaveInfoButton from '@utilities/buttons/saveInfoButton'
 
-export { CreateTemplateButton, DeleteButton, EditButton, ModalCloseButton, ResetButton, SaveInfoButton }
+export {
+  CreateTemplateButton,
+  DeleteButton,
+  EditButton,
+  ModalCloseButton,
+  ResetButton,
+  SaveInfoButton
+}

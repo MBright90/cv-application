@@ -1,6 +1,6 @@
 {
-  "importOrder": ["^components/(.*)$", "^[./]" ],
-  "importOrderSeparation": true, 
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "semi": false,
   "tabWidth": 2,

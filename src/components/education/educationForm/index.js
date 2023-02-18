@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 
 import './style.css'
-import { SaveInfoButton } from '@utilities/buttons'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const CertificateInput = (props) => {
   return (

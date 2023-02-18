@@ -1,8 +1,8 @@
-import React from 'react'
+import Avatar from '@utilities/avatar'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import Avatar from '@utilities/avatar'
 
 export default function CvTemplateAvatar(props) {
   return (

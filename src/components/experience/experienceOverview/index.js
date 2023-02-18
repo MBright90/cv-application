@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react'
-import PropTypes from 'prop-types'
-
-import './style.css'
 import { ExperienceForm, ExperienceList } from '@components/experience'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
+import PropTypes from 'prop-types'
+import React, { Component, useState } from 'react'
+
+import './style.css'
 
 export default function ExperienceOverview(props) {
   const [activeModal, setActiveModal] = useState(null)

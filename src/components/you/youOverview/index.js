@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-
-import './style.css'
 import { AccountAvatarUpload, AccountInfo, ReferenceInfo } from '@components/you'
-
 import { ResetButton } from '@utilities/buttons'
 import { ResetInfoModal } from '@utilities/modals'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+
+import './style.css'
 
 export default function YouOverview(props) {
   const [activeModal, setActiveModal] = useState(null)

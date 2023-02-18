@@ -1,11 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
-import './style.css'
-
-import { CvTemplateAvatar, CvTemplateHeadlines, CvTemplateExtras } from '@components/home/cvTemplate'
 import { EducationList } from '@components/education'
 import { ExperienceList } from '@components/experience'
+import {
+  CvTemplateAvatar,
+  CvTemplateExtras,
+  CvTemplateHeadlines
+} from '@components/home/cvTemplate'
+import PropTypes from 'prop-types'
+import React from 'react'
+
+import './style.css'
 
 export default function CvTemplateOverview(props) {
   return (

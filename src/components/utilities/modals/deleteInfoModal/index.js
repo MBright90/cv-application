@@ -1,8 +1,8 @@
-import React from 'react'
+import { ModalCloseButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { ModalCloseButton } from '@utilities/buttons'
 
 export default function DeleteInfoModal(props) {
   const handleDeleteClick = (e) => {

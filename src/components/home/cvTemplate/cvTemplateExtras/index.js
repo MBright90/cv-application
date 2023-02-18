@@ -1,9 +1,9 @@
-import React from 'react'
+import { faEnvelope, faLocationDot, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faPhone, faUser, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 export default function CvTemplateExtras(props) {
   return (

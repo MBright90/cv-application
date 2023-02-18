@@ -1,10 +1,10 @@
-import React from 'react'
+import { DeleteButton, EditButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { EditButton, DeleteButton } from '@utilities/buttons'
 
-ExperienceItem = (props) => {
+const ExperienceItem = (props) => {
   let editableButtons = []
   if (props.editable) {
     editableButtons = [

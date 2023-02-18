@@ -1,8 +1,8 @@
-import React from 'react'
+import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import './style.css'
-import { SaveInfoButton } from '@utilities/buttons'
 
 const AccountInput = (props) => {
   const handleValueChange = (e) => {

@@ -1,13 +1,12 @@
+import EducationOverview from '@components/education'
+import ExperienceOverview from '@components/experience'
+import HomeOverview, { CvTemplateOverview } from '@components/home'
+import { Footer, Header } from '@components/nav'
+import YouOverview from '@components/you'
+import Server from '@modules/Server'
 import React, { useState } from 'react'
 
 import './style.css'
-import { Header, Footer } from '@components/nav'
-import HomeOverview, { CvTemplateOverview } from '@components/home'
-import EducationOverview from '@components/education'
-import ExperienceOverview from '@components/experience'
-import YouOverview from '@components/you'
-
-import Server from '@modules/Server'
 
 const server = new Server()
 server.loadFromStorage()
