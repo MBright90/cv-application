@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function CreateTemplateButton(props) {
   return (
-    <div className="template-container">
+    <div className={style.templateContainer}>
       <button
-        className="create-template-btn hover-button"
+        className={style.createTemplateBtn}
         onClick={() => props.changePageShown('cv-template')}
       >
         Create Template

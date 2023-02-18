@@ -4,11 +4,11 @@ import Avatar from '@utilities/avatar'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function AccountAvatarUpload(props) {
   return (
-    <div className="avatar-edit-overview">
+    <div className={style.avatarEditOverview}>
       <Avatar imgSource={props.imgSource} />
       <label htmlFor="avatar-img-upload">
         <input

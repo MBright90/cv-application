@@ -33,7 +33,7 @@ const EducationItem = (props) => {
 
   return (
     <div className={style.listItem}>
-      <p className={style.listItem-headline}>{props.educationItem.institutionName.toUpperCase()}</p>
+      <p className={style.listItemHeadline}>{props.educationItem.institutionName.toUpperCase()}</p>
       <p className={style.listItemDates}>
         {props.educationItem.dateFrom} - {props.educationItem.dateTo}
       </p>

@@ -1,4 +1,4 @@
-.educationPageOverview > .educationListOverview {
+.educationListOverview {
   display: flex;
   flex-direction: column;
   width: max(50%, 400px);
@@ -18,12 +18,12 @@
   position: relative;
   margin: 10px 0;
   padding-right: 30px;
-  width: 100%;
-}
-
-.educationPageOverview .listItem {
   width: calc(100% - 30px);
 }
+
+/* .educationPageOverview .listItem {
+  width: calc(100% - 30px);
+} */
 
 .educationPageOverview .listItem:not(:first-of-type) {
   border-top: 1px solid #ffefef;

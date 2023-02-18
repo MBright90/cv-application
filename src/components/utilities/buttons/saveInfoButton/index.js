@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function SaveInfoButton(props) {
   const [activeMessage, setActiveMessage] = useState('')
@@ -12,12 +12,12 @@ export default function SaveInfoButton(props) {
   const removeInvalidHighlight = (inputElement) => {
     // Clear the invalid highlighting after three seconds
     highlightTimerID = setTimeout(() => {
-      inputElement.classList.remove('invalid-highlight')
+      inputElement.classList.remove(style[invalidHighlight])
     }, 3000)
   }
 
   const highlightInvalidField = (inputElement) => {
-    inputElement.classList.add('invalid-highlight')
+    inputElement.classList.add(style[invalidHighlight])
     removeInvalidHighlight(inputElement)
   }
 
@@ -76,9 +76,9 @@ export default function SaveInfoButton(props) {
   }, [])
 
   return (
-    <div className="save-button-container span-two">
+    <div className={`${style.saveButtonContainer} ${style.spanTwo}`}>
       <button
-        className="save-button hover-button"
+        className={style.saveButton}
         type="submit"
         data-item-id={props.itemID}
         data-info-type={props.infoType}

@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function ModalCloseButton(props) {
   return (
-    <button className="modal-close-button" onClick={props.closeModal}>
+    <button className={style.modalCloseButton} onClick={props.closeModal}>
       <FontAwesomeIcon icon={faX} />
     </button>
   )

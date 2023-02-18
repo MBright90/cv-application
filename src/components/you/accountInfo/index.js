@@ -2,7 +2,7 @@ import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 const AccountInput = (props) => {
   const handleValueChange = (e) => {
@@ -10,7 +10,7 @@ const AccountInput = (props) => {
   }
 
   return (
-    <div className="account-info-input">
+    <div className={style.accountInfoInput}>
       <label htmlFor={props.inputName}>{props.labelText}</label>
       <input
         type="text"
@@ -34,7 +34,7 @@ AccountInput.propTypes = {
 
 export default function AccountInfo(props) {
   return (
-    <form className="account-info-overview">
+    <form className={style.accountInfoOverview}>
       <AccountInput
         inputName="account-input-first-name"
         labelText="First Name(s) "

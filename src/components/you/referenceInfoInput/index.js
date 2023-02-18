@@ -2,7 +2,7 @@ import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function ReferenceInfo(props) {
   const handleValueChange = (e) => {
@@ -10,7 +10,7 @@ export default function ReferenceInfo(props) {
   }
 
   return (
-    <form className="reference-input-overview">
+    <form className={style.referenceInputOverview}>
       <fieldset>
         <legend>Add Reference</legend>
         <div>

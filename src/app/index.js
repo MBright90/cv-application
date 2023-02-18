@@ -6,7 +6,7 @@ import YouOverview from '@components/you'
 import Server from '@modules/Server'
 import React, { createContext, useState } from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 const server = new Server()
 server.loadFromStorage()
@@ -189,7 +189,7 @@ export default function App() {
   else if (activePage === 'cv-template') main = <CvTemplateOverview />
 
   return (
-    <div className="page-layout">
+    <div className={style.pageLayout}>
       <Header currentPageShown={activePage} changePageShown={changePageShown} />
         <appContext.Provider value={contextValue}>
           {main}

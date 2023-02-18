@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function ResetButton(props) {
   return (
-    <button className="reset-data-button" type="button" onClick={props.showResetModal}>
+    <button className={style.resetDataButton} type="button" onClick={props.showResetModal}>
       Reset Site Data
     </button>
   )
