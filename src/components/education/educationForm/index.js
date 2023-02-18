@@ -4,12 +4,12 @@ import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 const CertificateInput = (props) => {
   return (
     <input
-      className="certificate-input"
+      className={style.certificateInput}
       type="text"
       id={`certificate${props.inputIndex}`}
       defaultValue={props.currentCertificate}
@@ -59,10 +59,10 @@ export default function EducationForm(props) {
   const handleValueChange = (e) => props.validateInput(e.target)
 
   return (
-    <form className="education-input-overview">
+    <form className={style.educationInputOverview}>
       <fieldset>
         <legend>{props.formType} New Certificate</legend>
-        <div className="span-two">
+        <div className={style.spanTwo}>
           <label htmlFor="">Institution</label>
           <input
             type="text"
@@ -95,11 +95,11 @@ export default function EducationForm(props) {
             defaultValue={props.educationItem.dateTo}
           />
         </div>
-        <div className="certificate-input-container span-two">
+        <div className={`${style.certificateInputContainer} ${style.spanTwo}`}>
           <label htmlFor="certificates">Certificate(s)</label>
           {createCertificateInputs()}
           <button
-            className="new-certificate-button hover-button"
+            className={style.newCertificateButton}
             type="button"
             onClick={handleNewCertificate}
           >

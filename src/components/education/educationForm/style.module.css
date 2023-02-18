@@ -1,19 +1,19 @@
-.education-input-overview {
+.educationInputOverview {
   display: flex;
   flex-direction: column;
   width: max(50%, 400px);
 }
 
-.education-input-overview form {
+.educationInputOverview form {
   width: 60%;
 }
 
-.education-input-overview fieldset div {
+.educationInputOverview fieldset div {
   display: flex;
   flex-direction: column;
 }
 
-.education-input-overview fieldset {
+.educationInputOverview fieldset {
   display: grid;
   gap: 10px;
   grid-template: repeat(2, 1fr) auto auto / repeat(2, 1fr);
@@ -28,23 +28,23 @@ input[type='date'] {
   padding: 2px 3px;
 }
 
-label {
+.educationInputOverview label {
   font-weight: bold;
 }
 
-.span-two {
+.spanTwo {
   grid-column: span 2;
 }
 
-.certificate-input-container {
+.certificateInputContainer {
   position: relative;
 }
 
-.certificate-input {
+.certificateInput {
   margin-bottom: 5px;
 }
 
-.new-certificate-button {
+.newCertificateButton {
   bottom: -40px;
   border: none;
   color: #13005a;
@@ -54,7 +54,11 @@ label {
   width: 30px;
 }
 
-.invalid-highlight,
+.newCertificateButton:hover {
+  background-color: #a8a0a0 !important;;
+}
+
+.invalidHighlight,
 .invalid:focus {
   background-color: #f48484;
   outline-color: #820000;
