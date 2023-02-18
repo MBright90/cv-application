@@ -1,11 +1,21 @@
 import { EducationForm, EducationList } from '@components/education'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+
+import { appContext } from '@app'
 
 import './style.css'
 
 export default function EducationOverview(props) {
+  const { 
+    activeUser,
+    deleteFunc,
+    requestInfoByID,
+    revertToDateObject,
+    validateCurrentInputValue,
+    validateInputSubmission
+  } = useContext(appContext)
   const [activeModal, setActiveModal] = useState(null)
 
   const handleCloseModal = () => setActiveModal(null)
@@ -14,7 +24,7 @@ export default function EducationOverview(props) {
     setActiveModal(
       <DeleteInfoModal
         closeModal={handleCloseModal}
-        deleteFunc={props.deleteFunc}
+        deleteFunc={deleteFunc}
         itemID={e.target.dataset.itemId}
         type="education"
       />
@@ -23,10 +33,10 @@ export default function EducationOverview(props) {
 
   const handleEditClick = (e) => {
     const infoID = e.target.dataset.itemId
-    const educationObj = Object.assign({}, props.requestInfoByID(infoID, 'education'))
+    const educationObj = Object.assign({}, requestInfoByID(infoID, 'education'))
 
-    educationObj.dateFrom = props.revertToDateObject(educationObj.dateFrom)
-    educationObj.dateTo = props.revertToDateObject(educationObj.dateTo)
+    educationObj.dateFrom = revertToDateObject(educationObj.dateFrom)
+    educationObj.dateTo = revertToDateObject(educationObj.dateTo)
 
     setActiveModal(
       <EditInfoModal
@@ -38,8 +48,8 @@ export default function EducationOverview(props) {
             formType="Edit"
             itemID={infoID}
             uploadEducationInfo={props.editEducationInfo}
-            validateInput={props.validateInput}
-            validateInputSubmission={props.validateInputSubmission}
+            validateInput={validateCurrentInputValue}
+            validateInputSubmission={validateInputSubmission}
           />
         }
       />
@@ -52,12 +62,12 @@ export default function EducationOverview(props) {
         {activeModal}
         <EducationForm
           uploadEducationInfo={props.uploadEducationInfo}
-          validateInput={props.validateInput}
-          validateInputSubmission={props.validateInputSubmission}
+          validateInput={validateCurrentInputValue}
+          validateInputSubmission={validateInputSubmission}
         />
         <EducationList
           editable={true}
-          educationArray={props.userEducationArray}
+          educationArray={activeUser.education}
           editFunc={handleEditClick}
           showDeleteFunc={handleDeleteClick}
         />
@@ -67,13 +77,7 @@ export default function EducationOverview(props) {
 }
 
 EducationOverview.propTypes = {
-  closeModal: PropTypes.func,
-  deleteFunc: PropTypes.func,
   editEducationInfo: PropTypes.func,
-  requestInfoByID: PropTypes.func,
-  revertToDateObject: PropTypes.func,
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array,
-  validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func
 }

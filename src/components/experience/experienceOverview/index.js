@@ -1,11 +1,21 @@
 import { ExperienceForm, ExperienceList } from '@components/experience'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
 import PropTypes from 'prop-types'
-import React, { Component, useState } from 'react'
+import React, { useContext, useState } from 'react'
+
+import { appContext } from '@app'
 
 import './style.css'
 
 export default function ExperienceOverview(props) {
+  const { 
+    activeUser,
+    deleteFunc,
+    requestInfoByID,
+    revertToDateObject,
+    validateCurrentInputValue,
+    validateInputSubmission
+  } = useContext(appContext)
   const [activeModal, setActiveModal] = useState(null)
 
   const handleCloseModal = () => setActiveModal(null)
@@ -14,7 +24,7 @@ export default function ExperienceOverview(props) {
     setActiveModal(
       <DeleteInfoModal
         closeModal={handleCloseModal}
-        deleteFunc={props.deleteFunc}
+        deleteFunc={deleteFunc}
         itemID={e.target.dataset.infoID}
         type="experience"
       />
@@ -23,10 +33,10 @@ export default function ExperienceOverview(props) {
 
   const handleEditClick = (e) => {
     const infoID = e.target.dataset.itemId
-    const experienceObj = Object.assign({}, props.requestInfoByID(infoID, 'experience'))
+    const experienceObj = Object.assign({}, requestInfoByID(infoID, 'experience'))
 
-    experienceObj.dateFrom = props.revertToDateObject(experienceObj.dateFrom)
-    experienceObj.dateTo = props.revertToDateObject(experienceObj.dateTo)
+    experienceObj.dateFrom = revertToDateObject(experienceObj.dateFrom)
+    experienceObj.dateTo = revertToDateObject(experienceObj.dateTo)
 
     setActiveModal(
       <EditInfoModal
@@ -38,8 +48,8 @@ export default function ExperienceOverview(props) {
             formType="Edit"
             itemID={infoID}
             uploadExperienceInfo={props.editExperienceInfo}
-            validateInput={props.validateInput}
-            validateInputSubmission={props.validateInputSubmission}
+            validateInput={validateCurrentInputValue}
+            validateInputSubmission={validateInputSubmission}
           />
         }
       />
@@ -52,12 +62,12 @@ export default function ExperienceOverview(props) {
         {activeModal}
         <ExperienceForm
           uploadExperienceInfo={props.uploadExperienceInfo}
-          validateInput={props.validateInput}
-          validateInputSubmission={props.validateInputSubmission}
+          validateInput={validateCurrentInputValue}
+          validateInputSubmission={validateInputSubmission}
         />
         <ExperienceList
           editable={true}
-          experienceArray={props.userExperienceArray}
+          experienceArray={activeUser.experience}
           editFunc={handleEditClick}
           showDeleteFunc={handleDeleteClick}
         />
@@ -67,13 +77,7 @@ export default function ExperienceOverview(props) {
 }
 
 ExperienceOverview.propTypes = {
-  closeModal: PropTypes.func,
-  deleteFunc: PropTypes.func,
   editExperienceInfo: PropTypes.func,
-  requestInfoByID: PropTypes.func,
-  revertToDateObject: PropTypes.func,
   uploadExperienceInfo: PropTypes.func,
   userExperienceArray: PropTypes.array,
-  validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func
 }
