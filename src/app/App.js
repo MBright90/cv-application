@@ -1,13 +1,11 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 
 import './style.css'
-import Header from '@components/nav/header/Header'
-import Footer from '@components/nav/footer/Footer'
-import HomeOverview from '@components/home/homeOverview/HomeOverview'
-import EducationOverview from '@components/education/educationOverview/EducationOverview'
-import ExperienceOverview from '@components/experience/experienceOverview/ExperienceOverview'
-import YouOverview from '@components/you/youOverview/YouOverview'
-import CvTemplateOverview from '@components/home/cvTemplate/cvTemplateOverview/CvTemplateOverview'
+import { Header, Footer } from '@components/nav'
+import HomeOverview, { CvTemplateOverview } from '@components/home'
+import EducationOverview from '@components/education'
+import ExperienceOverview from '@components/experience'
+import YouOverview from '@components/you'
 
 import Server from '@modules/Server'
 
