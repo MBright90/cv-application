@@ -4,14 +4,16 @@ import HomeOverview, { CvTemplateOverview } from '@components/home'
 import { Footer, Header } from '@components/nav'
 import YouOverview from '@components/you'
 import Server from '@modules/Server'
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 
 import './style.css'
 
 const server = new Server()
 server.loadFromStorage()
 
-export default function App(props) {
+export const appContext = createContext()
+
+export default function App() {
   const [activePage, setActivePage] = useState('home')
   const [activeUser, setActiveUser] = useState(server.getCurrentInfo())
 
@@ -149,32 +151,30 @@ export default function App(props) {
     return server.validateInputSubmission(inputElementArr)
   }
 
+  // Pass multi-use functions to context
+  const contextValue = {
+    activeUser,
+    deleteInfo,
+    requestInfoByID,
+    revertToDateObject,
+    validateCurrentInputValue,
+    validateInputSubmission,
+  }
+
   let main
   if (activePage === 'home') main = <HomeOverview changePageShown={changePageShown} />
   else if (activePage === 'experience')
     main = (
       <ExperienceOverview
-        deleteFunc={deleteInfo}
         editExperienceInfo={editInfo}
-        requestInfoByID={requestInfoByID}
-        revertToDateObject={revertToDateObject}
         uploadExperienceInfo={uploadExperienceInfo}
-        userExperienceArray={activeUser.experience}
-        validateInput={validateCurrentInputValue}
-        validateInputSubmission={validateInputSubmission}
       />
     )
   else if (activePage === 'education')
     main = (
       <EducationOverview
-        deleteFunc={deleteInfo}
         editEducationInfo={editInfo}
-        requestInfoByID={requestInfoByID}
-        revertToDateObject={revertToDateObject}
         uploadEducationInfo={uploadEducationInfo}
-        userEducationArray={activeUser.education}
-        validateInput={validateCurrentInputValue}
-        validateInputSubmission={validateInputSubmission}
       />
     )
   else if (activePage === 'you')
@@ -184,17 +184,16 @@ export default function App(props) {
         uploadAccountInfo={uploadAccountInfo}
         uploadAvatarChange={uploadAvatarChange}
         uploadReferenceInfo={uploadReferenceInfo}
-        userInfo={activeUser}
-        validateInput={validateCurrentInputValue}
-        validateInputSubmission={validateInputSubmission}
       />
     )
-  else if (activePage === 'cv-template') main = <CvTemplateOverview userInfo={activeUser} />
+  else if (activePage === 'cv-template') main = <CvTemplateOverview />
 
   return (
     <div className="page-layout">
       <Header currentPageShown={activePage} changePageShown={changePageShown} />
-      {main}
+        <appContext.Provider value={contextValue}>
+          {main}
+        </appContext.Provider>
       <Footer />
     </div>
   )
