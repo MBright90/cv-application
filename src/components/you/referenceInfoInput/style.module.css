@@ -1,0 +1,11 @@
+.referenceInputOverview,
+.referenceInputOverview div {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px;
+}
+
+.referenceInputOverview {
+  text-align: left;
+  width: max(200px, 30%);
+}

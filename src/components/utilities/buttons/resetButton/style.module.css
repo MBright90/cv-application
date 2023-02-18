@@ -1,0 +1,13 @@
+.resetDataButton {
+  background-color: #ffefef;
+  border: none;
+  color: #13005a;
+  font-weight: bold;
+  margin-bottom: 20px;
+  min-width: 80px;
+  padding: 3px 5px;
+}
+
+.resetDataButton:hover {
+  background-color: #a8a0a0 !important;
+}

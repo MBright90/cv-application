@@ -1,0 +1,18 @@
+.templateContainer {
+  align-items: center;
+  display: flex;
+}
+
+.templateContainer .createTemplateBtn {
+  background-color: #ffefef;
+  border: none;
+  color: #13005a;
+  font-weight: bold;
+  padding: 3px 5px;
+  min-width: 80px;
+  width: auto;
+}
+
+.createTemplateBtn:hover {
+  background-color: #a8a0a0 !important;
+}

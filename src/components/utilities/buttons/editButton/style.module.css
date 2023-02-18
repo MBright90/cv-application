@@ -1,0 +1,18 @@
+.editButton svg {
+  pointer-events: none;
+}
+
+.editButton {
+  border: none;
+  color: #13005a;
+  position: absolute;
+  height: 25px;
+  right: 0;
+  text-align: center;
+  top: 5px;
+  width: 25px;
+}
+
+.editButton:hover {
+  background-color: #a8a0a0 !important;
+}

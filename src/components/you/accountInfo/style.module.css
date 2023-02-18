@@ -1,0 +1,10 @@
+.accountInfoOverview {
+  text-align: left;
+  width: max(200px, 30%);
+}
+
+.accountInfoInput {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}

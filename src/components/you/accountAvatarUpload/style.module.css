@@ -1,0 +1,23 @@
+.avatarEditOverview {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.avatarEditOverview label {
+  background-color: #ffefef;
+  color: #13005a;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+}
+
+.avatarEditOverview label:hover {
+  background-color: #a8a0a0 !important;
+}
+
+.avatarEditOverview input[type='file'] {
+  display: none;
+}
