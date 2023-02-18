@@ -17,6 +17,5 @@ export default function HomeOverview(props) {
 }
 
 HomeOverview.propTypes = {
-  changePageShown: PropTypes.func,
-  user: PropTypes.object
+  changePageShown: PropTypes.func
 }

@@ -10,7 +10,7 @@ import './style.css'
 export default function EducationOverview(props) {
   const { 
     activeUser,
-    deleteFunc,
+    deleteInfo,
     requestInfoByID,
     revertToDateObject,
     validateCurrentInputValue,
@@ -24,7 +24,7 @@ export default function EducationOverview(props) {
     setActiveModal(
       <DeleteInfoModal
         closeModal={handleCloseModal}
-        deleteFunc={deleteFunc}
+        deleteFunc={deleteInfo}
         itemID={e.target.dataset.itemId}
         type="education"
       />

@@ -10,7 +10,7 @@ import './style.css'
 export default function ExperienceOverview(props) {
   const { 
     activeUser,
-    deleteFunc,
+    deleteInfo,
     requestInfoByID,
     revertToDateObject,
     validateCurrentInputValue,
@@ -24,7 +24,7 @@ export default function ExperienceOverview(props) {
     setActiveModal(
       <DeleteInfoModal
         closeModal={handleCloseModal}
-        deleteFunc={deleteFunc}
+        deleteFunc={deleteInfo}
         itemID={e.target.dataset.infoID}
         type="experience"
       />

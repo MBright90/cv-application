@@ -6,38 +6,38 @@ import {
   CvTemplateHeadlines
 } from '@components/home/cvTemplate'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { appContext } from '../../../../app'
 
 import './style.css'
 
 export default function CvTemplateOverview(props) {
+  const activeUser = useContext(appContext)
+
   return (
     <main>
       <div className="cv-template-overview">
-        <CvTemplateAvatar imgSource={props.userInfo.avatarImg} />
+        <CvTemplateAvatar imgSource={activeUser.avatarImg} />
         <CvTemplateHeadlines
-          firstName={props.userInfo.firstName}
-          profession={props.userInfo.profession}
-          surname={props.userInfo.surname}
+          firstName={activeUser.firstName}
+          profession={activeUser.profession}
+          surname={activeUser.surname}
         />
         <CvTemplateExtras
-          reference={props.userInfo.reference}
-          userContactNumber={props.userInfo.contactNumber}
-          userEmail={props.userInfo.email}
+          reference={activeUser.reference}
+          userContactNumber={activeUser.contactNumber}
+          userEmail={activeUser.email}
         />
         <div>
           <p className="bold cv-template-list-title">Experience</p>
-          <ExperienceList experienceArray={props.userInfo.experience} />
+          <ExperienceList experienceArray={activeUser.experience} />
         </div>
         <div>
           <p className="bold cv-template-list-title">Education</p>
-          <EducationList educationArray={props.userInfo.education} />
+          <EducationList educationArray={activeUser.education} />
         </div>
       </div>
     </main>
   )
-}
-
-CvTemplateOverview.propTypes = {
-  userInfo: PropTypes.object
 }
