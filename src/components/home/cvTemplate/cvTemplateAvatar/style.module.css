@@ -1,5 +1,9 @@
-.cv-template-avatar {
+.cvTemplateAvatar {
   align-items: center;
   display: flex;
   justify-content: end;
+}
+
+.bold {
+  font-weight: bold;
 }

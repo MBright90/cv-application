@@ -1,19 +1,19 @@
-.welcome-container {
+.welcomeContainer {
   display: flex;
   flex-direction: column;
   width: max(50%, 400px);
 }
 
-.welcome-container h1 {
+.welcomeContainer h1 {
   margin-bottom: 20px;
   text-align: center;
 }
 
-.welcome-container p {
+.welcomeContainer p {
   line-height: 30px;
   text-align: justify;
 }
 
-.welcome-container p:not(:last-of-type) {
+.welcomeContainer p:not(:last-of-type) {
   margin-bottom: 20px;
 }

@@ -1,20 +1,24 @@
-.cv-template-headlines {
+.cvTemplateHeadlines {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.cv-template-headlines p,
-.cv-template-headlines p span {
+.cvTemplateHeadlines p,
+.cvTemplateHeadlines p span {
   letter-spacing: 20px;
   text-align: center;
 }
 
-.cv-template-headlines p:first-of-type {
+.cvTemplateHeadlines p:first-of-type {
   font-size: 52px;
 }
 
-.cv-template-headlines p:last-of-type {
+.cvTemplateHeadlines p:last-of-type {
   font-size: 32px;
+}
+
+.bold {
+  font-weight: bold;
 }

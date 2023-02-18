@@ -2,7 +2,7 @@
   font-weight: bold;
 }
 
-.cv-template-overview {
+.cvTemplateOverview {
   column-gap: 20px;
   display: grid;
   width: max(75%, 400px);
@@ -10,12 +10,12 @@
   row-gap: 10px;
 }
 
-.cv-template-overview p,
-.cv-template-overview span {
+.cvTemplateOverview p,
+.cvTemplateOverview span {
   letter-spacing: 2px;
 }
 
-.cv-template-list-title {
+.cvTemplateListTitle {
   border-bottom: 2px solid #fff;
   font-size: 24px;
 }

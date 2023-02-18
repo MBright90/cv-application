@@ -2,11 +2,11 @@ import Avatar from '@utilities/avatar'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style..module.css'
 
 export default function CvTemplateAvatar(props) {
   return (
-    <div className="cv-template-avatar">
+    <div className={style.cvTemplateAvatar}>
       <Avatar imgSource={props.imgSource} />
     </div>
   )

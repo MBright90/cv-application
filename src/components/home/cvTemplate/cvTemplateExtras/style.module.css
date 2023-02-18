@@ -12,3 +12,7 @@
 .cv-template-extras > div:nth-of-type(2) {
   margin-top: 30px;
 }
+
+.bold {
+  font-weight: bold;
+}

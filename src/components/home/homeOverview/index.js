@@ -3,12 +3,12 @@ import { CreateTemplateButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function HomeOverview(props) {
   return (
     <main>
-      <div className="home-page-overview">
+      <div className={style.homePageOverview}>
         <Welcome />
         <CreateTemplateButton changePageShown={props.changePageShown} />
       </div>

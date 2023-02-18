@@ -5,19 +5,18 @@ import {
   CvTemplateExtras,
   CvTemplateHeadlines
 } from '@components/home/cvTemplate'
-import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 
 import { appContext } from '../../../../app'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function CvTemplateOverview(props) {
   const activeUser = useContext(appContext)
 
   return (
     <main>
-      <div className="cv-template-overview">
+      <div className={style.cvTemplateOverview}>
         <CvTemplateAvatar imgSource={activeUser.avatarImg} />
         <CvTemplateHeadlines
           firstName={activeUser.firstName}
@@ -30,11 +29,11 @@ export default function CvTemplateOverview(props) {
           userEmail={activeUser.email}
         />
         <div>
-          <p className="bold cv-template-list-title">Experience</p>
+          <p className={`${style.cvTemplateListTitle} ${style.bold}`}>Experience</p>
           <ExperienceList experienceArray={activeUser.experience} />
         </div>
         <div>
-          <p className="bold cv-template-list-title">Education</p>
+          <p className={`${style.cvTemplateListTitle} ${style.bold}`}>Education</p>
           <EducationList educationArray={activeUser.education} />
         </div>
       </div>

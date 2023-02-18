@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function Welcome() {
   return (
-    <div className="welcome-container">
+    <div className={style.welcomeContainer}>
       <h1>Welcome to Your CV</h1>
       <p>
         This is an online space to keep track of all of your experience and certificates. When

@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import './style.css'
+import style from './style.module.css'
 
 export default function CvTemplateExtras(props) {
   return (
-    <div className="cv-template-extras">
+    <div className={style.cvTemplateExtras}>
       <div>
-        <p className="bold">Contact</p>
+        <p className={style.bold}>Contact</p>
         <p>
           {props.userEmail} <FontAwesomeIcon icon={faEnvelope} />
         </p>
@@ -18,7 +18,7 @@ export default function CvTemplateExtras(props) {
         </p>
       </div>
       <div>
-        <p className="bold">Reference</p>
+        <p className={style.bold}>Reference</p>
         <p>
           {props.reference.name} <FontAwesomeIcon icon={faUser} />
         </p>
