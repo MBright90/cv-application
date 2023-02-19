@@ -1,4 +1,5 @@
 import EducationOverview from '@components/education'
+import ErrorPage from '@utilities/error'
 import ExperienceOverview from '@components/experience'
 import HomeOverview, { CvTemplateOverview } from '@components/home'
 import { Footer, Header } from '@components/nav'
@@ -187,6 +188,7 @@ export default function App() {
       />
     )
   else if (activePage === 'cv-template') main = <CvTemplateOverview />
+  else main = <ErrorPage />
 
   return (
     <div className={style.pageLayout}>
