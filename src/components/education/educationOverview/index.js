@@ -11,6 +11,7 @@ export default function EducationOverview(props) {
   const { 
     activeUser,
     deleteInfo,
+    editInfo,
     requestInfoByID,
     revertToDateObject,
     validateCurrentInputValue,
@@ -47,7 +48,7 @@ export default function EducationOverview(props) {
             educationItem={educationObj}
             formType="Edit"
             itemID={infoID}
-            uploadEducationInfo={props.editEducationInfo}
+            uploadEducationInfo={editInfo}
             validateInput={validateCurrentInputValue}
             validateInputSubmission={validateInputSubmission}
           />
@@ -77,7 +78,6 @@ export default function EducationOverview(props) {
 }
 
 EducationOverview.propTypes = {
-  editEducationInfo: PropTypes.func,
   uploadEducationInfo: PropTypes.func,
   userEducationArray: PropTypes.array,
 }

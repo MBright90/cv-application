@@ -11,6 +11,7 @@ export default function ExperienceOverview(props) {
   const { 
     activeUser,
     deleteInfo,
+    editInfo,
     requestInfoByID,
     revertToDateObject,
     validateCurrentInputValue,
@@ -47,7 +48,7 @@ export default function ExperienceOverview(props) {
             experienceItem={experienceObj}
             formType="Edit"
             itemID={infoID}
-            uploadExperienceInfo={props.editExperienceInfo}
+            uploadExperienceInfo={editInfo}
             validateInput={validateCurrentInputValue}
             validateInputSubmission={validateInputSubmission}
           />
@@ -77,7 +78,6 @@ export default function ExperienceOverview(props) {
 }
 
 ExperienceOverview.propTypes = {
-  editExperienceInfo: PropTypes.func,
   uploadExperienceInfo: PropTypes.func,
   userExperienceArray: PropTypes.array,
 }
