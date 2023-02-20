@@ -1,40 +1,38 @@
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
-import { appContext } from '@app'
+import { appContext } from '@app/appContext'
 
-import './style.module.css'
+import style from './style.module.css'
 
 const NavItem = (props) => {
-  const {activePage, changePageShown} = useContext(appContext)
-
-  if (props.navText.toLowerCase() === activePage) 
-    return (
-      <li className={style.active} onClick={(e) => changePageShown(e.target.textContent)}>
-      {props.navText}
-    </li>
-    ) 
-
   return (
-    <li onClick={(e) => changePageShown(e.target.textContent)}>
+    <li 
+      className={props.isActive? style.active : null}
+      onClick={props.handleNavClick}>
       {props.navText}
     </li>
   )
 }
 
 NavItem.propTypes = {
+  handleNavClick: PropTypes.func,
+  isActive: PropTypes.bool,
   navText: PropTypes.string
 }
 
-export default function PageNav(props) {
+export default function PageNav() {
+  const { activePage, changePageShown } = useContext(appContext)
 
   const createNavArray = () => {
-    const navItems = ['HOME', 'EXPERIENCE', 'EDUCATION', 'YOU']
+    const navItems = ['HOME', 'experience', 'education', 'you']
 
     return navItems.map((navItem) => {
       return (
         <NavItem
-          navText={navItem}
-          key={navItem.toLowerCase()}
+          handleNavClick={(e) => changePageShown(e.target.textContent)}
+          isActive={navItem === activePage}
+          navText={navItem.toUpperCase()}
+          key={navItem}
         />
       )
     })
