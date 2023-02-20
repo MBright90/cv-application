@@ -6,11 +6,12 @@ import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
 
-import { appContext } from '@app'
+import { appContext } from '@app/appContext'
 
 export default function YouOverview(props) {
   const {
     activeUser,
+    resetAllData,
     validateCurrentInputValue,
     validateInputSubmission
   } = useContext(appContext)
@@ -19,7 +20,7 @@ export default function YouOverview(props) {
   const closeModal = () => setActiveModal(null)
 
   const showResetModal = () => {
-    setActiveModal(<ResetInfoModal resetFunc={props.resetFunc} />)
+    setActiveModal(<ResetInfoModal resetFunc={resetAllData} />)
   }
 
   const handleAvatarUpload = (e) => props.uploadAvatarChange(e.target.files[0])
@@ -51,7 +52,6 @@ export default function YouOverview(props) {
 }
 
 YouOverview.propTypes = {
-  resetFunc: PropTypes.func,
   uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
   uploadReferenceInfo: PropTypes.func,
