@@ -3,7 +3,7 @@ import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
 import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 
-import { appContext } from '@app'
+import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
