@@ -7,23 +7,92 @@ import React, { useState } from 'react'
 import style from './style.module.css'
 
 const CertificateInput = (props) => {
+
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
   return (
     <input
-      className={style.certificateInput}
+      className={`${style.certificateInput} ${isValid ? null : style.invalid}`}
       type="text"
       id={`certificate${props.inputIndex}`}
       defaultValue={props.currentCertificate}
       data-input-index={props.inputIndex}
       minLength="3"
-      onChange={props.handleValueChange}
+      onChange={handleValueChange}
     />
   )
 }
 
 CertificateInput.propTypes = {
   currentCertificate: PropTypes.string,
-  handleValueChange: PropTypes.func,
+  checkValidity: PropTypes.func,
   inputIndex: PropTypes.number
+}
+
+const TextInput = (props) => {
+
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
+  return (
+    <div className={style.spanTwo}>
+      <label htmlFor="">Institution</label>
+      <input
+      className={isValid ? null : style.invalid}
+        type="text"
+        id={`education-${props.identifier}-input`}
+        minLength="3"
+        onChange={handleValueChange}
+        data-is-required={true}
+        defaultValue={props.defaultValue}
+      />
+    </div>
+  )
+}
+
+TextInput.propTypes = {
+  checkValidity: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired,
+}
+
+const DateInput = (props) => {
+
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
+  return (
+    <div>
+      <label htmlFor="">{props.inputLabel}</label>
+      <input
+        className={isValid ? null : style.invalid}
+        type="date"
+        id={`education-${props.identifier}-input`}
+        onChange={handleValueChange}
+        data-is-required={true}
+        data-date={props.identifier.split('-')[1]}
+        defaultValue={props.defaultValue}
+      />
+    </div>
+  )
+}
+
+DateInput.propTypes = {
+  checkValidity: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string,
+  inputLabel: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
 }
 
 export default function EducationForm(props) {
@@ -43,7 +112,7 @@ export default function EducationForm(props) {
           key={`certificate-${index}`}
           inputIndex={index}
           currentCertificate={currentCertificateValues[index]}
-          handleValueChange={handleValueChange}
+          checkValidity={CheckValidity}
         />
       )
     })
@@ -51,50 +120,38 @@ export default function EducationForm(props) {
 
   const handleInfoSave = (inputValues, infoID, infoType) => {
     setCertificateInputAmount(1)
+
+    console.log(props.uploadEducationInfo)
+
     props.uploadEducationInfo(inputValues, infoID, infoType)
   }
 
   const handleNewCertificate = () => setCertificateInputAmount(certificateInputAmount + 1)
 
-  const handleValueChange = (e) => props.validateInput(e.target)
+  const CheckValidity = (inputElement) => props.validateInput(inputElement)
 
   return (
     <form className={style.educationInputOverview}>
       <fieldset>
         <legend>{props.formType} New Certificate</legend>
-        <div className={style.spanTwo}>
-          <label htmlFor="">Institution</label>
-          <input
-            type="text"
-            id="education-institution-input"
-            minLength="3"
-            onChange={handleValueChange}
-            data-is-required={true}
-            defaultValue={props.educationItem.institutionName}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Date From</label>
-          <input
-            type="date"
-            id="education-date-from-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="from"
-            defaultValue={props.educationItem.dateFrom}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Date To</label>
-          <input
-            type="date"
-            id="education-date-to-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="to"
-            defaultValue={props.educationItem.dateTo}
-          />
-        </div>
+        <TextInput 
+          checkValidity={props.validateInput}
+          defaultValue={props.educationItem.institutionName}
+          identifier='institution'
+          inputLabel='Institution'
+        />
+        <DateInput
+          checkValidity={props.validateInput}
+          defaultValue={props.educationItem.dateFrom}
+          identifier='date-from'
+          inputLabel='Date From'
+        />
+        <DateInput
+          checkValidity={props.validateInput}
+          defaultValue={props.educationItem.dateTo}
+          identifier='date-to'
+          inputLabel='Date To'
+        />
         <div className={`${style.certificateInputContainer} ${style.spanTwo}`}>
           <label htmlFor="certificates">Certificate(s)</label>
           {createCertificateInputs()}
