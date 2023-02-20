@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
 export default function CreateTemplateButton(props) {
+
+  const changePageShown = useContext(appContext)
+
   return (
     <div className={style.templateContainer}>
       <button
         className={style.createTemplateBtn}
-        onClick={() => props.changePageShown('cv-template')}
+        onClick={() => changePageShown('cv-template')}
       >
         Create Template
       </button>
     </div>
   )
-}
-
-CreateTemplateButton.propTypes = {
-  changePageShown: PropTypes.func
 }
