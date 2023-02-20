@@ -1,6 +1,6 @@
 import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 
 import style from './style.module.css'
 
@@ -30,7 +30,7 @@ const AccountInput = (props) => {
 }
 
 AccountInput.propTypes = {
-  checkValidity: propTypes.func.isRequired,
+  checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   inputName: PropTypes.string.isRequired,
   inputLabel: PropTypes.string.isRequired,

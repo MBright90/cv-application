@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 
 import style from './style.module.css'
 
-const TextInput = () => {
+const TextInput = (props) => {
   const [isValid, setValidity] = useState(true)  
 
-  handleValueChange = (e) => {
+  const handleValueChange = (e) => {
     props.checkValidity(e.target) ? setValidity(true) : setValidity(false)
   }
 
@@ -29,9 +29,9 @@ const TextInput = () => {
 
 TextInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
-  defaultValue: propTypes.func.string,
+  defaultValue: PropTypes.string,
   identifier: PropTypes.string.isRequired,
-  inputLabel: propTypes.string.isRequired
+  inputLabel: PropTypes.string.isRequired
 }
 
 export default function ReferenceInfo(props) {
