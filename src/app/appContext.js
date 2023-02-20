@@ -1,6 +1,6 @@
 import App from '@app'
-import React, { createContext, useState } from 'react'
 import Server from '@modules/Server'
+import React, { createContext, useState } from 'react'
 
 export const appContext = createContext()
 
@@ -8,8 +8,8 @@ const server = new Server()
 server.loadFromStorage()
 
 export const AppProvider = (children) => {
-    const [activePage, setActivePage] = useState('home')
-    const [activeUser, setActiveUser] = useState(server.getCurrentInfo())
+  const [activePage, setActivePage] = useState('home')
+  const [activeUser, setActiveUser] = useState(server.getCurrentInfo())
 
   // Pass multi-use functions to context
 
@@ -50,7 +50,7 @@ export const AppProvider = (children) => {
     updateActiveUser()
   }
 
-// Validation passing functions
+  // Validation passing functions
 
   const validateCurrentInputValue = (inputEl) => {
     const checkMinLength = (value, minLength) => {
@@ -84,12 +84,12 @@ export const AppProvider = (children) => {
     revertToDateObject,
     updateActiveUser,
     validateCurrentInputValue,
-    validateInputSubmission,
+    validateInputSubmission
   }
 
   return (
     <appContext.Provider value={contextValue}>
-        <App />
+      <App />
     </appContext.Provider>
   )
 }
