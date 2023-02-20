@@ -1,60 +1,131 @@
 import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 
 import style from './style.module.css'
 
-export default function ExperienceForm(props) {
-  const handleValueChange = (e) => props.validateInput(e.target)
+const TextInput = (props) => {
 
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
+  return (
+    <div className={style.spanTwo}>
+      <label htmlFor="">{props.inputLabel}</label>
+      <input
+      className={isValid ? null : style.invalid}
+        type="text"
+        id={`experience-${props.identifier}-input`}
+        minLength="3"
+        onChange={handleValueChange}
+        data-is-required={true}
+        defaultValue={props.defaultValue}
+      />
+    </div>
+  )
+}
+
+TextInput.propTypes = {
+  checkValidity: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired,
+}
+
+const DateInput = (props) => {
+
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
+  return (
+    <div>
+      <label htmlFor="">{props.inputLabel}</label>
+      <input
+        className={isValid ? null : style.invalid}
+        type="date"
+        id={`experience-${props.identifier}-input`}
+        onChange={handleValueChange}
+        data-is-required={true}
+        data-date={props.identifier.split('-')[1]}
+        defaultValue={props.defaultValue}
+      />
+    </div>
+  )
+}
+
+DateInput.propTypes = {
+  checkValidity: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string,
+  inputLabel: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
+}
+
+const TextareaInput = (props) => {
+
+  const [isValid, setIsValid] = useState(false)
+
+  const handleValueChange = (e) => {
+    props.checkValidity(e.target) ? setIsValid(true) : setIsValid(false)
+  }
+
+  return (
+    <div className={style.spanTwo}>
+      <label htmlFor="">{props.inputLabel}</label>
+      <textarea
+      className={isValid ? null : style.invalid}
+        type="text"
+        id={`experience-${props.identifier}-input`}
+        minLength="20"
+        onChange={handleValueChange}
+        data-is-required={true}
+        defaultValue={props.defaultValue}
+      ></textarea>
+    </div>
+  )
+}
+
+TextInput.propTypes = {
+  checkValidity: PropTypes.func.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired,
+}
+
+export default function ExperienceForm(props) {
   return (
     <form className={style.experienceInputOverview}>
       <fieldset>
         <legend>{props.formType} Workplace Experience</legend>
-        <div className={style.spanTwo}>
-          <label>Workplace</label>
-          <input
-            type="text"
-            id="experience-workplace-input"
-            minLength="3"
-            onChange={handleValueChange}
-            data-is-required={true}
-            defaultValue={props.experienceItem.workplaceName}
-          />
-        </div>
-        <div>
-          <label>Date From</label>
-          <input
-            type="date"
-            id="experience-date-from-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="from"
-            defaultValue={props.experienceItem.dateFrom}
-          />
-        </div>
-        <div>
-          <label>Date To</label>
-          <input
-            type="date"
-            id="experience-date-to-input"
-            onChange={handleValueChange}
-            data-is-required={true}
-            data-date="to"
-            defaultValue={props.experienceItem.dateTo}
-          />
-        </div>
-        <div className={style.spanTwo}>
-          <label>Summary</label>
-          <textarea
-            type="text"
-            id="experience-summary-input"
-            minLength="20"
-            onChange={handleValueChange}
-            data-is-required={true}
-            defaultValue={props.experienceItem.experienceSummary}
-          ></textarea>
-        </div>
+        <TextInput 
+          checkValidity={props.validateInput}
+          defaultValue={props.experienceItem.workplaceName}
+          identifier='workplace'
+          inputLabel='Workplace'
+        />
+        <DateInput
+          checkValidity={props.validateInput}
+          defaultValue={props.experienceItem.dateFrom}
+          identifier='date-from'
+          inputLabel='Date From'
+        />
+        <DateInput
+          checkValidity={props.validateInput}
+          defaultValue={props.experienceItem.dateTo}
+          identifier='date-to'
+          inputLabel='Date To'
+        />
+        <TextareaInput
+          checkValidity={props.validateInput}
+          defaultValue={props.experienceItem.experienceSummary}
+          identifier='summary'
+          inputLabel='Summary'
+        />
         <SaveInfoButton
           closeModal={props.closeModal}
           itemID={props.itemID}
