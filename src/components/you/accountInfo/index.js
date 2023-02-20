@@ -23,7 +23,7 @@ const AccountInput = (props) => {
         id={props.inputName}
         name={props.inputName}
         onChange={handleValueChange}
-        defaultValue={props.currentInfo}
+        defaultValue={props.defaultValue}
       />
     </div>
   )
@@ -31,7 +31,7 @@ const AccountInput = (props) => {
 
 AccountInput.propTypes = {
   checkValidity: propTypes.func.isRequired,
-  currentInfo: PropTypes.string,
+  defaultValue: PropTypes.string,
   inputName: PropTypes.string.isRequired,
   inputLabel: PropTypes.string.isRequired,
 }
@@ -42,32 +42,32 @@ export default function AccountInfo(props) {
       <AccountInput
         inputName="account-input-first-name"
         inputLabel="First Name(s) "
-        validateInput={props.validateInput}
-        currentInfo={props.userInfo.firstName}
+        checkValidity={props.validateInput}
+        defaultValue={props.userInfo.firstName}
       />
       <AccountInput
         inputName="account-input-surname"
         inputLabel="Surname "
-        validateInput={props.validateInput}
-        currentInfo={props.userInfo.surname}
+        checkValidity={props.validateInput}
+        defaultValue={props.userInfo.surname}
       />
       <AccountInput
         inputName="account-input-email"
         inputLabel="Email "
-        validateInput={props.validateInput}
-        currentInfo={props.userInfo.email}
+        checkValidity={props.validateInput}
+        defaultValue={props.userInfo.email}
       />
       <AccountInput
         inputName="account-input-number"
         inputLabel="Contact Number "
-        validateInput={props.validateInput}
-        currentInfo={props.userInfo.contactNumber}
+        checkValidity={props.validateInput}
+        defaultValue={props.userInfo.contactNumber}
       />
       <AccountInput
         inputName="account-input-profession"
         inputLabel="Profession "
-        validateInput={props.validateInput}
-        currentInfo={props.userInfo.profession}
+        checkValidity={props.validateInput}
+        defaultValue={props.userInfo.profession}
       />
       <SaveInfoButton
         setToClear={false}

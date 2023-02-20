@@ -35,9 +35,6 @@ TextInput.propTypes = {
 }
 
 export default function ReferenceInfo(props) {
-  const handleValueChange = (e) => {
-    props.validateInput(e.target)
-  }
 
   return (
     <form className={style.referenceInputOverview}>
