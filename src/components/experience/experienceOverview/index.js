@@ -1,14 +1,13 @@
+import { appContext } from '@app/appContext'
 import { ExperienceForm, ExperienceList } from '@components/experience'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
 import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 
-import { appContext } from '@app/appContext'
-
 import style from './style.module.css'
 
 export default function ExperienceOverview(props) {
-  const { 
+  const {
     activeUser,
     deleteInfo,
     editInfo,
@@ -79,5 +78,4 @@ export default function ExperienceOverview(props) {
 
 ExperienceOverview.propTypes = {
   uploadExperienceInfo: PropTypes.func,
-  userExperienceArray: PropTypes.array,
 }
