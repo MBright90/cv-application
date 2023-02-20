@@ -1,14 +1,12 @@
+import { appContext } from '@app/appContext'
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
-import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
 const NavItem = (props) => {
   return (
-    <li 
-      className={props.isActive? style.active : null}
-      onClick={props.handleNavClick}>
+    <li className={props.isActive ? style.active : null} onClick={props.handleNavClick}>
       {props.navText}
     </li>
   )
