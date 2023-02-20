@@ -1,21 +1,16 @@
 import EducationOverview from '@components/education'
-import ErrorPage from '@utilities/error'
 import ExperienceOverview from '@components/experience'
 import HomeOverview, { CvTemplateOverview } from '@components/home'
 import { Footer, Header } from '@components/nav'
 import YouOverview from '@components/you'
+import ErrorPage from '@utilities/error'
 import React, { useContext } from 'react'
 
 import { appContext } from './appContext'
 import style from './style.module.css'
 
 export default function App() {
-  const {
-    activePage,
-    changePageShown,
-    server,
-    updateActiveUser,
-  } = useContext(appContext)
+  const { activePage, changePageShown, server, updateActiveUser } = useContext(appContext)
 
   // info upload functions //
 
@@ -40,7 +35,7 @@ export default function App() {
       .then(setTimeout(updateActiveUser, 1))
   }
 
-  const uploadEducationInfo = (inputValues, infoID) => {
+  async function uploadEducationInfo(inputValues, infoID) {
     const certificateSplice = server.removeEmptyFields(inputValues.slice(3))
     const educationObj = {
       institutionName: inputValues[0],
@@ -77,17 +72,9 @@ export default function App() {
   let main
   if (activePage === 'home') main = <HomeOverview changePageShown={changePageShown} />
   else if (activePage === 'experience')
-    main = (
-      <ExperienceOverview
-        uploadExperienceInfo={uploadExperienceInfo}
-      />
-    )
+    main = <ExperienceOverview uploadExperienceInfo={uploadExperienceInfo} />
   else if (activePage === 'education')
-    main = (
-      <EducationOverview
-        uploadEducationInfo={uploadEducationInfo}
-      />
-    )
+    main = <EducationOverview uploadEducationInfo={uploadEducationInfo} />
   else if (activePage === 'you')
     main = (
       <YouOverview
