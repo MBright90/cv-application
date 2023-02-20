@@ -5,14 +5,18 @@ import React from 'react'
 import style from './style.module.css'
 
 const AccountInput = (props) => {
+
+  const [isValid, setValidity] = useState(true)
+
   const handleValueChange = (e) => {
-    props.validateInput(e.target)
+    props.checkValidity(e.target) ? setValidity(true) : setValidity(false)
   }
 
   return (
     <div className={style.accountInfoInput}>
-      <label htmlFor={props.inputName}>{props.labelText}</label>
+      <label htmlFor={props.inputName}>{props.inputLabel}</label>
       <input
+      className={isValid ? null : style.invalid}
         type="text"
         maxLength="40"
         minLength="3"
@@ -26,10 +30,10 @@ const AccountInput = (props) => {
 }
 
 AccountInput.propTypes = {
+  checkValidity: propTypes.func.isRequired,
   currentInfo: PropTypes.string,
-  inputName: PropTypes.string,
-  labelText: PropTypes.string,
-  validateInput: PropTypes.func
+  inputName: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired,
 }
 
 export default function AccountInfo(props) {
@@ -37,31 +41,31 @@ export default function AccountInfo(props) {
     <form className={style.accountInfoOverview}>
       <AccountInput
         inputName="account-input-first-name"
-        labelText="First Name(s) "
+        inputLabel="First Name(s) "
         validateInput={props.validateInput}
         currentInfo={props.userInfo.firstName}
       />
       <AccountInput
         inputName="account-input-surname"
-        labelText="Surname "
+        inputLabel="Surname "
         validateInput={props.validateInput}
         currentInfo={props.userInfo.surname}
       />
       <AccountInput
         inputName="account-input-email"
-        labelText="Email "
+        inputLabel="Email "
         validateInput={props.validateInput}
         currentInfo={props.userInfo.email}
       />
       <AccountInput
         inputName="account-input-number"
-        labelText="Contact Number "
+        inputLabel="Contact Number "
         validateInput={props.validateInput}
         currentInfo={props.userInfo.contactNumber}
       />
       <AccountInput
         inputName="account-input-profession"
-        labelText="Profession "
+        inputLabel="Profession "
         validateInput={props.validateInput}
         currentInfo={props.userInfo.profession}
       />

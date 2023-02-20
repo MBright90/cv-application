@@ -9,3 +9,9 @@
   text-align: left;
   width: max(200px, 30%);
 }
+
+.invalidHighlight,
+.invalid:focus {
+  background-color: #f48484;
+  outline-color: #820000;
+}

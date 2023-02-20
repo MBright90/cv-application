@@ -8,3 +8,9 @@
   flex-direction: column;
   margin-bottom: 10px;
 }
+
+.invalidHighlight,
+.invalid:focus {
+  background-color: #f48484;
+  outline-color: #820000;
+}
