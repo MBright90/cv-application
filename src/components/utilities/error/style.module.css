@@ -1,26 +1,26 @@
 .errorPageOverview {
-    align-items: center;
-display: flex;
-flex-direction: column;
-flex-grow: 1;
-gap: 10px;
-height: 100%;
-justify-content: center;
-position: relative;
-width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .errorPageOverview > svg {
-    font-size: 120px;
-    position: relative;
-    margin-top: -10%;
+  font-size: 120px;
+  position: relative;
+  margin-top: -10%;
 }
 
 .errorTitle {
-    font-size: 48px;
+  font-size: 48px;
 }
 
 .errorMessage {
-    font-size: 16px;
-    text-align: center;
+  font-size: 16px;
+  text-align: center;
 }

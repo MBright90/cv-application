@@ -31,3 +31,9 @@
   background-color: #13005a;
   color: #fff;
 }
+
+.invalidHighlight,
+.invalid:focus {
+  background-color: #f48484;
+  outline-color: #820000;
+}
