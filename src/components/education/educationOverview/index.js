@@ -1,15 +1,13 @@
+import { appContext } from '@app/appContext'
 import { EducationForm, EducationList } from '@components/education'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
 import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 
-import { appContext } from '@app/appContext'
-
 import style from './style.module.css'
 
 export default function EducationOverview(props) {
-  const { 
-    activeUser,
+  const {
     deleteInfo,
     editInfo,
     requestInfoByID,
@@ -68,7 +66,6 @@ export default function EducationOverview(props) {
         />
         <EducationList
           editable={true}
-          educationArray={activeUser.education}
           editFunc={handleEditClick}
           showDeleteFunc={handleDeleteClick}
         />
@@ -78,6 +75,5 @@ export default function EducationOverview(props) {
 }
 
 EducationOverview.propTypes = {
-  uploadEducationInfo: PropTypes.func,
-  userEducationArray: PropTypes.array,
+  uploadEducationInfo: PropTypes.func
 }

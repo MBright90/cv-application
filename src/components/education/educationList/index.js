@@ -1,6 +1,8 @@
 import { DeleteButton, EditButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
@@ -51,8 +53,11 @@ EducationItem.propTypes = {
 }
 
 export default function EducationList(props) {
+
+  const { activeUser } = useContext(appContext)
+
   const createEducationList = () => {
-    return props.educationArray.map((educationItem) => {
+    return activeUser.education.map((educationItem) => {
       return (
         <EducationItem
           key={`${educationItem.institutionName}${educationItem.dateFrom}`}
@@ -77,6 +82,5 @@ EducationList.defaultProps = {
 EducationList.propTypes = {
   editable: PropTypes.bool,
   editFunc: PropTypes.func,
-  educationArray: PropTypes.array,
   showDeleteFunc: PropTypes.func
 }

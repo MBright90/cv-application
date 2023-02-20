@@ -120,9 +120,6 @@ export default function EducationForm(props) {
 
   const handleInfoSave = (inputValues, infoID, infoType) => {
     setCertificateInputAmount(1)
-
-    console.log(props.uploadEducationInfo)
-
     props.uploadEducationInfo(inputValues, infoID, infoType)
   }
 
