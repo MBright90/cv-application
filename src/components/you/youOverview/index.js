@@ -1,3 +1,4 @@
+import { appContext } from '@app/appContext'
 import { AccountAvatarUpload, AccountInfo, ReferenceInfo } from '@components/you'
 import { ResetButton } from '@utilities/buttons'
 import { ResetInfoModal } from '@utilities/modals'
@@ -6,15 +7,9 @@ import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
 
-import { appContext } from '@app/appContext'
-
 export default function YouOverview(props) {
-  const {
-    activeUser,
-    resetAllData,
-    validateCurrentInputValue,
-    validateInputSubmission
-  } = useContext(appContext)
+  const { activeUser, resetAllData, validateCurrentInputValue, validateInputSubmission } =
+    useContext(appContext)
   const [activeModal, setActiveModal] = useState(null)
 
   const closeModal = () => setActiveModal(null)
@@ -54,5 +49,5 @@ export default function YouOverview(props) {
 YouOverview.propTypes = {
   uploadAccountInfo: PropTypes.func,
   uploadAvatarChange: PropTypes.func,
-  uploadReferenceInfo: PropTypes.func,
+  uploadReferenceInfo: PropTypes.func
 }
