@@ -12,12 +12,12 @@ export default function SaveInfoButton(props) {
   const removeInvalidHighlight = (inputElement) => {
     // Clear the invalid highlighting after three seconds
     highlightTimerID = setTimeout(() => {
-      inputElement.classList.remove(style[invalidHighlight])
+      inputElement.classList.remove(style.invalidHighlight)
     }, 3000)
   }
 
   const highlightInvalidField = (inputElement) => {
-    inputElement.classList.add(style[invalidHighlight])
+    inputElement.classList.add(style.invalidHighlight)
     removeInvalidHighlight(inputElement)
   }
 
