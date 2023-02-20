@@ -5,7 +5,6 @@ import React from 'react'
 import style from './style.module.css'
 
 export default function HomeOverview(props) {
-
   return (
     <main>
       <div className={style.homePageOverview}>
@@ -15,4 +14,3 @@ export default function HomeOverview(props) {
     </main>
   )
 }
-

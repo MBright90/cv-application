@@ -1,3 +1,4 @@
+import { appContext } from '@app/appContext'
 import { EducationList } from '@components/education'
 import { ExperienceList } from '@components/experience'
 import {
@@ -6,8 +7,6 @@ import {
   CvTemplateHeadlines
 } from '@components/home/cvTemplate'
 import React, { useContext } from 'react'
-
-import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
