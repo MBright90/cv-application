@@ -7,7 +7,7 @@ export const appContext = createContext()
 const server = new Server()
 server.loadFromStorage()
 
-export const AppProvider = (children) => {
+export const AppProvider = () => {
   const [activePage, setActivePage] = useState('home')
   const [activeUser, setActiveUser] = useState(server.getCurrentInfo())
 
@@ -26,7 +26,7 @@ export const AppProvider = (children) => {
 
   const updateActiveUser = () => {
     const newUserState = server.getCurrentInfo()
-    setActiveUser(newUserState)
+    setActiveUser({...newUserState})
   }
 
   // Edit and delete button functions //
