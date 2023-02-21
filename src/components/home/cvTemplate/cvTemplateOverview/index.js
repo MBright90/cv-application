@@ -10,8 +10,8 @@ import React, { useContext } from 'react'
 
 import style from './style.module.css'
 
-export default function CvTemplateOverview(props) {
-  const activeUser = useContext(appContext)
+export default function CvTemplateOverview() {
+  const { activeUser } = useContext(appContext)
 
   return (
     <main>
