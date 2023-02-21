@@ -1,22 +1,23 @@
+import { appContext } from '@app/appContext'
 import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
 
 const AccountInput = (props) => {
-
+  const { validateInput } = useContext(appContext)
   const [isValid, setValidity] = useState(true)
 
   const handleValueChange = (e) => {
-    props.checkValidity(e.target) ? setValidity(true) : setValidity(false)
+    validateInput(e.target) ? setValidity(true) : setValidity(false)
   }
 
   return (
     <div className={style.accountInfoInput}>
       <label htmlFor={props.inputName}>{props.inputLabel}</label>
       <input
-      className={isValid ? null : style.invalid}
+        className={isValid ? null : style.invalid}
         type="text"
         maxLength="40"
         minLength="3"
@@ -30,57 +31,46 @@ const AccountInput = (props) => {
 }
 
 AccountInput.propTypes = {
-  checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   inputName: PropTypes.string.isRequired,
-  inputLabel: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired
 }
 
-export default function AccountInfo(props) {
+export default function AccountInfo() {
+  const { activeUser, uploadAccountInfo, validateInputSubmission } = useContext(appContext)
+
   return (
     <form className={style.accountInfoOverview}>
       <AccountInput
         inputName="account-input-first-name"
         inputLabel="First Name(s) "
-        checkValidity={props.validateInput}
-        defaultValue={props.userInfo.firstName}
+        defaultValue={activeUser.firstName}
       />
       <AccountInput
         inputName="account-input-surname"
         inputLabel="Surname "
-        checkValidity={props.validateInput}
-        defaultValue={props.userInfo.surname}
+        defaultValue={activeUser.surname}
       />
       <AccountInput
         inputName="account-input-email"
         inputLabel="Email "
-        checkValidity={props.validateInput}
-        defaultValue={props.userInfo.email}
+        defaultValue={activeUser.email}
       />
       <AccountInput
         inputName="account-input-number"
         inputLabel="Contact Number "
-        checkValidity={props.validateInput}
-        defaultValue={props.userInfo.contactNumber}
+        defaultValue={activeUser.contactNumber}
       />
       <AccountInput
         inputName="account-input-profession"
         inputLabel="Profession "
-        checkValidity={props.validateInput}
-        defaultValue={props.userInfo.profession}
+        defaultValue={activeUser.profession}
       />
       <SaveInfoButton
         setToClear={false}
-        uploadData={props.uploadAccountInfo}
-        validateInputSubmission={props.validateInputSubmission}
+        uploadData={uploadAccountInfo}
+        validateInputSubmission={validateInputSubmission}
       />
     </form>
   )
-}
-
-AccountInfo.propTypes = {
-  uploadAccountInfo: PropTypes.func,
-  userInfo: PropTypes.object,
-  validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func
 }

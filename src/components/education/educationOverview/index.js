@@ -1,7 +1,6 @@
 import { appContext } from '@app/appContext'
 import { EducationForm, EducationList } from '@components/education'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
-import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
@@ -12,6 +11,7 @@ export default function EducationOverview(props) {
     editInfo,
     requestInfoByID,
     revertToDateObject,
+    uploadEducationInfo,
     validateCurrentInputValue,
     validateInputSubmission
   } = useContext(appContext)
@@ -60,7 +60,7 @@ export default function EducationOverview(props) {
       <div className={style.educationPageOverview}>
         {activeModal}
         <EducationForm
-          uploadEducationInfo={props.uploadEducationInfo}
+          uploadEducationInfo={uploadEducationInfo}
           validateInput={validateCurrentInputValue}
           validateInputSubmission={validateInputSubmission}
         />
@@ -72,8 +72,4 @@ export default function EducationOverview(props) {
       </div>
     </main>
   )
-}
-
-EducationOverview.propTypes = {
-  uploadEducationInfo: PropTypes.func
 }

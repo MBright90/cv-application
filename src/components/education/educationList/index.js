@@ -1,8 +1,7 @@
+import { appContext } from '@app/appContext'
 import { DeleteButton, EditButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
-
-import { appContext } from '@app/appContext'
 
 import style from './style.module.css'
 
@@ -53,7 +52,6 @@ EducationItem.propTypes = {
 }
 
 export default function EducationList(props) {
-
   const { activeUser } = useContext(appContext)
 
   const createEducationList = () => {

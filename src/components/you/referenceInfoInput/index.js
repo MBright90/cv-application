@@ -1,21 +1,23 @@
+import { appContext } from '@app/appContext'
 import { SaveInfoButton } from '@utilities/buttons'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
 
 const TextInput = (props) => {
-  const [isValid, setValidity] = useState(true)  
+  const { validateInput } = useContext(appContext)
+  const [isValid, setValidity] = useState(true)
 
   const handleValueChange = (e) => {
-    props.checkValidity(e.target) ? setValidity(true) : setValidity(false)
+    validateInput(e.target) ? setValidity(true) : setValidity(false)
   }
 
   return (
     <div>
       <label>{props.inputLabel}</label>
       <input
-        className={isValid ? null : style.invalid }
+        className={isValid ? null : style.invalid}
         type="text"
         maxLength="40"
         id={`reference-${props.identifier}-input`}
@@ -24,61 +26,36 @@ const TextInput = (props) => {
       />
     </div>
   )
-
 }
 
 TextInput.propTypes = {
-  checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   identifier: PropTypes.string.isRequired,
   inputLabel: PropTypes.string.isRequired
 }
 
-export default function ReferenceInfo(props) {
+export default function ReferenceInfo() {
+  const { activeUser, uploadReferenceInfo, validateInputSubmission } = useContext(appContext)
+
+  const reference = activeUser.reference || {
+    name: '',
+    position: '',
+    email: ''
+  }
 
   return (
     <form className={style.referenceInputOverview}>
       <fieldset>
         <legend>Add Reference</legend>
-        <TextInput
-          checkValidity={props.validateInput}
-          defaultValue={props.reference.name}
-          identifier='name'
-          inputLabel='Name'
-        />
-        <TextInput
-          checkValidity={props.validateInput}
-          defaultValue={props.reference.position}
-          identifier='position'
-          inputLabel='Position'
-        />
-        <TextInput
-          checkValidity={props.validateInput}
-          defaultValue={props.reference.email}
-          identifier='email'
-          inputLabel='Email'
-        />
+        <TextInput defaultValue={reference.name} identifier="name" inputLabel="Name" />
+        <TextInput defaultValue={reference.position} identifier="position" inputLabel="Position" />
+        <TextInput defaultValue={reference.email} identifier="email" inputLabel="Email" />
         <SaveInfoButton
           setToClear={false}
-          uploadData={props.uploadReferenceInfo}
-          validateInputSubmission={props.validateInputSubmission}
+          uploadData={uploadReferenceInfo}
+          validateInputSubmission={validateInputSubmission}
         />
       </fieldset>
     </form>
   )
-}
-
-ReferenceInfo.defaultProps = {
-  reference: {
-    name: '',
-    position: '',
-    email: ''
-  }
-}
-
-ReferenceInfo.propTypes = {
-  reference: PropTypes.object,
-  uploadReferenceInfo: PropTypes.func,
-  validateInput: PropTypes.func,
-  validateInputSubmission: PropTypes.func
 }

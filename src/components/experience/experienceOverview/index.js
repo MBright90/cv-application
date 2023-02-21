@@ -1,7 +1,6 @@
 import { appContext } from '@app/appContext'
 import { ExperienceForm, ExperienceList } from '@components/experience'
 import { DeleteInfoModal, EditInfoModal } from '@utilities/modals'
-import PropTypes from 'prop-types'
 import React, { useContext, useState } from 'react'
 
 import style from './style.module.css'
@@ -13,6 +12,7 @@ export default function ExperienceOverview(props) {
     editInfo,
     requestInfoByID,
     revertToDateObject,
+    uploadExperienceInfo,
     validateCurrentInputValue,
     validateInputSubmission
   } = useContext(appContext)
@@ -61,7 +61,7 @@ export default function ExperienceOverview(props) {
       <div className={style.experiencePageOverview}>
         {activeModal}
         <ExperienceForm
-          uploadExperienceInfo={props.uploadExperienceInfo}
+          uploadExperienceInfo={uploadExperienceInfo}
           validateInput={validateCurrentInputValue}
           validateInputSubmission={validateInputSubmission}
         />
@@ -74,8 +74,4 @@ export default function ExperienceOverview(props) {
       </div>
     </main>
   )
-}
-
-ExperienceOverview.propTypes = {
-  uploadExperienceInfo: PropTypes.func,
 }

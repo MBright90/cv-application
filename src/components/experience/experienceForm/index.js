@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import style from './style.module.css'
 
 const TextInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -16,7 +15,7 @@ const TextInput = (props) => {
     <div className={style.spanTwo}>
       <label htmlFor="">{props.inputLabel}</label>
       <input
-      className={isValid ? null : style.invalid}
+        className={isValid ? null : style.invalid}
         type="text"
         id={`experience-${props.identifier}-input`}
         minLength="3"
@@ -32,11 +31,10 @@ TextInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string.isRequired,
   identifier: PropTypes.string.isRequired,
-  inputLabel: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired
 }
 
 const DateInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -63,11 +61,10 @@ DateInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   inputLabel: PropTypes.string.isRequired,
-  identifier: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired
 }
 
 const TextareaInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -78,7 +75,7 @@ const TextareaInput = (props) => {
     <div className={style.spanTwo}>
       <label htmlFor="">{props.inputLabel}</label>
       <textarea
-      className={isValid ? null : style.invalid}
+        className={isValid ? null : style.invalid}
         type="text"
         id={`experience-${props.identifier}-input`}
         minLength="20"
@@ -94,7 +91,7 @@ TextInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string.isRequired,
   identifier: PropTypes.string.isRequired,
-  inputLabel: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired
 }
 
 export default function ExperienceForm(props) {
@@ -102,29 +99,29 @@ export default function ExperienceForm(props) {
     <form className={style.experienceInputOverview}>
       <fieldset>
         <legend>{props.formType} Workplace Experience</legend>
-        <TextInput 
+        <TextInput
           checkValidity={props.validateInput}
           defaultValue={props.experienceItem.workplaceName}
-          identifier='workplace'
-          inputLabel='Workplace'
+          identifier="workplace"
+          inputLabel="Workplace"
         />
         <DateInput
           checkValidity={props.validateInput}
           defaultValue={props.experienceItem.dateFrom}
-          identifier='date-from'
-          inputLabel='Date From'
+          identifier="date-from"
+          inputLabel="Date From"
         />
         <DateInput
           checkValidity={props.validateInput}
           defaultValue={props.experienceItem.dateTo}
-          identifier='date-to'
-          inputLabel='Date To'
+          identifier="date-to"
+          inputLabel="Date To"
         />
         <TextareaInput
           checkValidity={props.validateInput}
           defaultValue={props.experienceItem.experienceSummary}
-          identifier='summary'
-          inputLabel='Summary'
+          identifier="summary"
+          inputLabel="Summary"
         />
         <SaveInfoButton
           closeModal={props.closeModal}

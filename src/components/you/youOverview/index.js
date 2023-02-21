@@ -8,8 +8,15 @@ import React, { useContext, useState } from 'react'
 import style from './style.module.css'
 
 export default function YouOverview(props) {
-  const { activeUser, resetAllData, validateCurrentInputValue, validateInputSubmission } =
-    useContext(appContext)
+  const {
+    activeUser,
+    resetAllData,
+    uploadAccountInfo,
+    uploadAvatarChange,
+    uploadReferenceInfo,
+    validateCurrentInputValue,
+    validateInputSubmission
+  } = useContext(appContext)
   const [activeModal, setActiveModal] = useState(null)
 
   const closeModal = () => setActiveModal(null)
@@ -18,22 +25,12 @@ export default function YouOverview(props) {
     setActiveModal(<ResetInfoModal resetFunc={resetAllData} />)
   }
 
-  const handleAvatarUpload = (e) => props.uploadAvatarChange(e.target.files[0])
-
   return (
     <main>
       {activeModal}
       <div className={style.youPageOverview}>
-        <AccountAvatarUpload
-          imgSource={activeUser.avatarImg}
-          handleAvatarUpload={handleAvatarUpload}
-        />
-        <AccountInfo
-          uploadAccountInfo={props.uploadAccountInfo}
-          userInfo={activeUser}
-          validateInput={validateCurrentInputValue}
-          validateInputSubmission={validateInputSubmission}
-        />
+        <AccountAvatarUpload />
+        <AccountInfo />
         <ReferenceInfo
           reference={activeUser.reference}
           uploadReferenceInfo={props.uploadReferenceInfo}
@@ -44,10 +41,4 @@ export default function YouOverview(props) {
       </div>
     </main>
   )
-}
-
-YouOverview.propTypes = {
-  uploadAccountInfo: PropTypes.func,
-  uploadAvatarChange: PropTypes.func,
-  uploadReferenceInfo: PropTypes.func
 }

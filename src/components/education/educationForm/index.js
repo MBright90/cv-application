@@ -7,7 +7,6 @@ import React, { useState } from 'react'
 import style from './style.module.css'
 
 const CertificateInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -34,7 +33,6 @@ CertificateInput.propTypes = {
 }
 
 const TextInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -45,7 +43,7 @@ const TextInput = (props) => {
     <div className={style.spanTwo}>
       <label htmlFor="">Institution</label>
       <input
-      className={isValid ? null : style.invalid}
+        className={isValid ? null : style.invalid}
         type="text"
         id={`education-${props.identifier}-input`}
         minLength="3"
@@ -61,11 +59,10 @@ TextInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string.isRequired,
   identifier: PropTypes.string.isRequired,
-  inputLabel: PropTypes.string.isRequired,
+  inputLabel: PropTypes.string.isRequired
 }
 
 const DateInput = (props) => {
-
   const [isValid, setIsValid] = useState(false)
 
   const handleValueChange = (e) => {
@@ -92,7 +89,7 @@ DateInput.propTypes = {
   checkValidity: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   inputLabel: PropTypes.string.isRequired,
-  identifier: PropTypes.string.isRequired,
+  identifier: PropTypes.string.isRequired
 }
 
 export default function EducationForm(props) {
@@ -131,23 +128,23 @@ export default function EducationForm(props) {
     <form className={style.educationInputOverview}>
       <fieldset>
         <legend>{props.formType} New Certificate</legend>
-        <TextInput 
+        <TextInput
           checkValidity={props.validateInput}
           defaultValue={props.educationItem.institutionName}
-          identifier='institution'
-          inputLabel='Institution'
+          identifier="institution"
+          inputLabel="Institution"
         />
         <DateInput
           checkValidity={props.validateInput}
           defaultValue={props.educationItem.dateFrom}
-          identifier='date-from'
-          inputLabel='Date From'
+          identifier="date-from"
+          inputLabel="Date From"
         />
         <DateInput
           checkValidity={props.validateInput}
           defaultValue={props.educationItem.dateTo}
-          identifier='date-to'
-          inputLabel='Date To'
+          identifier="date-to"
+          inputLabel="Date To"
         />
         <div className={`${style.certificateInputContainer} ${style.spanTwo}`}>
           <label htmlFor="certificates">Certificate(s)</label>
